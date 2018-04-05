@@ -1,0 +1,4 @@
+&inputpp
+  prefix='Si',
+  outdir='./tmp',
+/

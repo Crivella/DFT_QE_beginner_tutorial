@@ -1,0 +1,197 @@
+#!/bin/bash
+
+source ../../ENVIRONMENT_VARIABLES
+source ./functions
+echo "BIN_DIR:" $BIN_DIR
+echo "PSEUDO_DIR:" $PSEUDO_DIR
+echo "TMP_DIR:" $TMP_DIR
+echo "Parallel command:" $RUN_COMMAND
+echo "Started at: " `date`
+
+
+CELL_DIM=10.2075
+CUTOFF=40
+nbnd=20
+PREFIX=Si
+
+##################################################################################################
+#Conto scf
+print_scf_in;
+
+IN="Si.scf.in"
+OUT="Si.scf.out"
+COMMAND="  $RUN_COMMAND $BIN_DIR/pw.x < $IN > $OUT"
+echo "$COMMAND"
+$COMMAND < $IN > $OUT
+
+mv -t tmp $OUT
+
+rm -r tmp/Si.save/K*
+rm -r bu 2>/dev/null
+
+##################################################################################################
+#Convergenza sui punti k
+for k_pt in 5 10 15 20; do
+	cp -r tmp bu
+	DIRNAME="kpt_$k_pt"
+
+	#Conti nscf
+	print_nscf_in $k_pt;
+
+	IN="Si.kpt_$k_pt.nscf.in"
+	OUT="Si.kpt_$k_pt.nscf.out"
+	COMMAND="$RUN_COMMAND $BIN_DIR/pw.x < $IN > $OUT"
+	echo "  $COMMAND"
+	$COMMAND < $IN > $OUT
+
+	mkdir -p $DIRNAME
+	mv -t $DIRNAME $OUT tmp
+	cd $DIRNAME
+
+	#Conti DOS
+	print_dos_in;
+
+	IN="Si.dos.in"
+	OUT="Si.dos.out"
+	COMMAND="  $BIN_DIR/dos.x < $IN > $OUT"
+	echo "$COMMAND"
+	$COMMAND < $IN > $OUT
+
+	#Conti proprieta ottiche (Parte immaginaria della funzione dielettrica)
+	print_pw2gw_in
+
+	IN="Si.pw2gw.in"
+	OUT="Si.pw2gw.out"
+	COMMAND="  $BIN_DIR/pw2gw.x < $IN > $OUT"
+	echo "$COMMAND"
+	$COMMAND < $IN > $OUT
+	
+	cd ..
+	rm -r tmp 2>/dev/null
+	mv bu tmp
+	echo -e "\n"
+done
+
+
+##################################################################################################
+#Convergenza sul numero di bande
+for nbnd in 5 10 15; do
+	cp -r tmp bu
+	DIRNAME="bnd_$nbnd"
+
+	#Conti nscf
+	print_nscf_in2 $nbnd;
+
+	IN="Si.bnd_$nbnd.nscf.in"
+	OUT="Si.bnd_$nbnd.nscf.out"
+	COMMAND="$RUN_COMMAND $BIN_DIR/pw.x < $IN > $OUT"
+	echo "  $COMMAND"
+	$COMMAND < $IN > $OUT
+
+	mkdir -p $DIRNAME
+	mv -t $DIRNAME $OUT tmp
+	cd $DIRNAME
+
+	#Conti proprieta ottiche (Parte immaginaria della funzione dielettrica)
+	print_pw2gw_in
+
+	IN="Si.pw2gw.in"
+	OUT="Si.pw2gw.out"
+	COMMAND="  $BIN_DIR/pw2gw.x < $IN > $OUT"
+	echo "$COMMAND"
+	$COMMAND < $IN > $OUT
+	
+	cd ..
+	rm -r tmp 2>/dev/null
+	mv bu tmp
+	echo -e "\n"
+done
+
+$(cd ../../; gcc -o broad.x broad.c -O2 -g -Wall -lm -std=c11)
+../../broad.x kpt_5/epsTOT.dat 0.1 kpt_5_0.1_epsTOT.dat
+../../broad.x kpt_10/epsTOT.dat 0.1 kpt_10_0.1_epsTOT.dat
+../../broad.x kpt_15/epsTOT.dat 0.1 kpt_15_0.1_epsTOT.dat
+../../broad.x kpt_20/epsTOT.dat 0.1 kpt_20_0.1_epsTOT.dat
+../../broad.x bnd_5/epsTOT.dat  0.1 bnd_5_0.1_epsTOT.dat
+../../broad.x bnd_10/epsTOT.dat 0.1 bnd_10_0.1_epsTOT.dat
+../../broad.x bnd_15/epsTOT.dat 0.1 bnd_15_0.1_epsTOT.dat
+
+##################################################################################################
+cat > dos.gnu <<EOF
+#!/usr/bin/gnuplot
+
+set term wxt enhanced
+set key outside
+
+plot \
+	'kpt_5/Si.dos.dat'  u 1:2 w l lw 2              lc rgb "black" title "kpt5" , \
+	'kpt_10/Si.dos.dat' u 1:2 w l lw 2 dt(10,5)     lc rgb "red"   title "kpt10", \
+	'kpt_15/Si.dos.dat' u 1:2 w l lw 2 dt(20,5)     lc rgb "blue"  title "kpt15", \
+	'kpt_20/Si.dos.dat' u 1:2 w l lw 2 dt(15,5,5,5) lc rgb "green" title "kpt20", \
+
+pause -1
+set term pdfcairo enhanced
+set output "DOS_convergence.pdf"
+replot
+EOF
+
+gnuplot dos.gnu
+
+##################################################################################################
+cat > eps_kpt.gnu <<EOF
+#!/usr/bin/gnuplot
+
+set term wxt enhanced
+
+plot \
+	'kpt_5_0.1_epsTOT.dat'  u 1:2 w l lw 2              lc rgb "black" title "kpt5" , \
+	'kpt_10_0.1_epsTOT.dat' u 1:2 w l lw 2 dt(10,5)     lc rgb "red"   title "kpt10", \
+	'kpt_15_0.1_epsTOT.dat' u 1:2 w l lw 2 dt(20,5)     lc rgb "blue"  title "kpt15", \
+	'kpt_20_0.1_epsTOT.dat' u 1:2 w l lw 2 dt(15,5,5,5) lc rgb "green" title "kpt20", \
+
+pause -1
+set term pdfcairo enhanced
+set output "eps_kpt_convergence.pdf"
+replot
+EOF
+
+gnuplot eps_kpt.gnu
+
+
+##################################################################################################
+cat > eps_bnd.gnu <<EOF
+#!/usr/bin/gnuplot
+
+set term wxt enhanced
+
+plot \
+	'bnd_5_0.1_epsTOT.dat'  u 1:2 w l lw 2              lc rgb "black" title "bnd5" , \
+	'bnd_10_0.1_epsTOT.dat' u 1:2 w l lw 2 dt(10,5)     lc rgb "red"   title "bnd10", \
+	'bnd_15_0.1_epsTOT.dat' u 1:2 w l lw 2 dt(20,5)     lc rgb "blue"  title "bnd15", \
+	'kpt_15_0.1_epsTOT.dat' u 1:2 w l lw 2 dt(15,5,5,5) lc rgb "green" title "bnd20", \
+
+pause -1
+set term pdfcairo enhanced
+set output "eps_bnd_convergence.pdf"
+replot
+EOF
+
+gnuplot eps_bnd.gnu
+
+
+
+
+
+
+
+
+
+
+
+
+exit
+
+
+
+
+

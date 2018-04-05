@@ -1,0 +1,131 @@
+function print_nscf_in()
+{
+cat > $PREFIX.kpt_$1.nscf.in << EOF
+&CONTROL
+  calculation  = 'nscf',
+  prefix       = '$PREFIX',
+  pseudo_dir   = '$PSEUDO_DIR',
+  outdir       = '$TMP_DIR',
+  restart_mode = 'from_scratch'
+  verbosity    = 'high'
+  tprnfor = .true.
+  wf_collect=.true.
+/
+&SYSTEM
+  ibrav     = 2,
+  celldm(1) = $CELL_DIM,
+  nat       = 2,
+  ntyp      = 1,
+  ecutwfc   = $CUTOFF 
+  nbnd      = $nbnd
+/
+&ELECTRONS
+  conv_thr    = 1.D-8,
+  mixing_beta = 0.7D0	,
+/
+ATOMIC_SPECIES
+ Si  28.086  Si.pz-vbc.UPF
+ATOMIC_POSITIONS
+ Si 0.00 0.00 0.00
+ Si 0.25 0.25 0.25
+K_POINTS {automatic} 
+$1 $1 $1   1 1 1
+
+EOF
+}
+
+function print_nscf_in2()
+{
+cat > $PREFIX.bnd_$1.nscf.in << EOF
+&CONTROL
+  calculation  = 'nscf',
+  prefix       = '$PREFIX',
+  pseudo_dir   = '$PSEUDO_DIR',
+  outdir       = '$TMP_DIR',
+  restart_mode = 'from_scratch'
+  verbosity    = 'high'
+  tprnfor = .true.
+  wf_collect=.true.
+/
+&SYSTEM
+  ibrav     = 2,
+  celldm(1) = $CELL_DIM,
+  nat       = 2,
+  ntyp      = 1,
+  ecutwfc   = $CUTOFF 
+  nbnd      = $1
+/
+&ELECTRONS
+  conv_thr    = 1.D-8,
+  mixing_beta = 0.7D0	,
+/
+ATOMIC_SPECIES
+ Si  28.086  Si.pz-vbc.UPF
+ATOMIC_POSITIONS
+ Si 0.00 0.00 0.00
+ Si 0.25 0.25 0.25
+K_POINTS {automatic} 
+15 15 15   1 1 1
+
+EOF
+}
+
+function print_dos_in()
+{
+cat > $PREFIX.dos.in <<EOF
+ &dos
+   outdir='$TMP_DIR'
+   prefix='$PREFIX'
+   fildos='$PREFIX.dos.dat',
+        degauss=0.01
+   Emin=-5.0, Emax=30.0, DeltaE=0.1
+ /
+
+EOF
+}
+
+function print_pw2gw_in()
+{
+cat > $PREFIX.pw2gw.in << EOF
+&inputpp
+  prefix='$PREFIX',
+  outdir='$TMP_DIR',
+/
+EOF
+}
+
+function print_scf_in
+{
+cat > $PREFIX.scf.in << EOF
+&CONTROL
+  calculation  = 'scf',
+  prefix       = '$PREFIX',
+  pseudo_dir   = '$PSEUDO_DIR',
+  outdir       = '$TMP_DIR',
+  restart_mode = 'from_scratch'
+  verbosity    = 'high'
+  tprnfor = .true.
+  wf_collect=.true.
+/
+&SYSTEM
+  ibrav     = 2,
+  celldm(1) = $CELL_DIM,
+  nat       = 2,
+  ntyp      = 1,
+  ecutwfc   = $CUTOFF 
+  nbnd      = 20
+/
+&ELECTRONS
+  conv_thr    = 1.D-8,
+  mixing_beta = 0.7D0	,
+/
+ATOMIC_SPECIES
+ Si  28.086  Si.pz-vbc.UPF
+ATOMIC_POSITIONS
+ Si 0.00 0.00 0.00
+ Si 0.25 0.25 0.25
+K_POINTS {automatic} 
+4 4 4   1 1 1
+
+EOF
+}
