@@ -1,0 +1,22 @@
+#The ABSOLUTE PATH of the bin folder containing the QE executables (pw.x, pp.x)
+#BIN_DIR=
+
+if [[ $BIN_DIR == "" ]]; then
+	BIN_DIR=`dirname $(which pw.x)`
+fi
+
+if [[ $BIN_DIR == "" ]]; then
+	echo "Failed to find espresso installation."
+	echo "Specify manual installation directory in the BIN_DIR env variable"
+fi
+
+#The ABSOLUTE PATH of the folder containing the Pseudopotential files .UPF
+PSEUDO_DIR='../../Pseudo'
+
+#The RELATIVE PATH of the folder to contain temporary/restart QE files
+TMP_DIR='./tmp'
+
+#This is the default for running in serial
+RUN_COMMAND=""
+#For parallel execution uncomment this (remove the first # symbol)
+#RUN_COMMAND="mpirun -np 2"
