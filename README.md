@@ -42,6 +42,13 @@ Beginner tutorial for Density Functional Theory(DFT) calculation using [Quantum 
 * Carbon monoxide (2_CO)
   1. Run a relax calculation and visualize the output using xcrysden
   2. Run a calculaiton for a molecule
+  
+## Other folders
+* Docs: Contain additional tutorials in pdf format
+* Codes: Contain user-made code to analyze some of the data produced by QE
+  1. boad.c (by Davide Grassano aka Crivella): Apply a gaussian broadening(to the *y_n* data) to a multicolumn file where the *1st* column represents the x data and the *2nd,3rd,...* columns represent the *y_1, y_2, ...* data.
+  2. plot_pwbands.f90 (by ...) : ...
+* Pseudo: Contain the pseudopotential required to perform the exercises
 
 
 ## Bibliography
