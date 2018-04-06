@@ -19,9 +19,7 @@ Beginner tutorial for Density Functional Theory(DFT) calculation using [Quantum 
 
      ```
      ./configure --prefix=path for installation
-
      make all
-
      make install
      ```
 
