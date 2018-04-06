@@ -21,12 +21,12 @@ Installing/Compiling QE:
 The following exercises are included in this tutorial:
 - Bulk silicon (0_Si_bulk)
    The purpouse of thise exercise is to show how to:
-    1) Construct an input file for a choosen system and visualize it using xcrysden 
-    2) Run a simple self-consistent calculation using pw.x
-    3) Estimate the kinetic cutoff convergency
-    4) Determine the theoretical lattice parameter
-    5) Generate a high-symmetry k-path using xcrysden and calculate a band structure
-    6) Calculate the density of states(DOS) and optical properties(independent particle approximation) and show the convergence over the number of k_points and empty bands used
+    1. Construct an input file for a choosen system and visualize it using xcrysden 
+    2. Run a simple self-consistent calculation using pw.x
+    3. Estimate the kinetic cutoff convergency
+    4. Determine the theoretical lattice parameter
+    5. Generate a high-symmetry k-path using xcrysden and calculate a band structure
+    6. Calculate the density of states(DOS) and optical properties(independent particle approximation) and show the convergence over the number of k_points and empty bands used
 - Two-dimensional boron nitride (1_BN)
    The purpouse of thise exercise is to show how to:
     1) How to use a supercell in order to run calculation for material that are not periodic in all directions.
@@ -40,8 +40,8 @@ The following exercises are included in this tutorial:
     2) Run a calculaiton for a molecule
 
 
-
-[1] - https://www.quantum-espresso.org/
-[2] - P. Giannozzi, S. Baroni, N. Bonini, M. Calandra, R. Car, C. Cavazzoni, D. Ceresoli, G. L. Chiarotti, M. Cococcioni, I. Dabo, et al., Journal of physics: Condensed matter 21, 395502 (2009).
-[3] - P. Giannozzi, O. Andreussi, T. Brumme, O. Bunau, M. B. Nardelli, M. Calandra, R. Car, C. Cavazzoni, D. Ceresoli, M. Cococcioni, et al., Journal of Physics: Condensed Matter 29, 465901 (2017).
+Bibliography:
+- [1] - https://www.quantum-espresso.org/
+- [2] - P. Giannozzi, S. Baroni, N. Bonini, M. Calandra, R. Car, C. Cavazzoni, D. Ceresoli, G. L. Chiarotti, M. Cococcioni, I. Dabo, et al., Journal of physics: Condensed matter 21, 395502 (2009).
+- [3] - P. Giannozzi, O. Andreussi, T. Brumme, O. Bunau, M. B. Nardelli, M. Calandra, R. Car, C. Cavazzoni, D. Ceresoli, M. Cococcioni, et al., Journal of Physics: Condensed Matter 29, 465901 (2017).
 
