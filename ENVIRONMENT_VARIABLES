@@ -1,6 +1,14 @@
 #The ABSOLUTE PATH of the bin folder containing the QE executables (pw.x, pp.x)
 #BIN_DIR=
 
+if [[ test -d $BIN_DIR ]]; then
+	if [[ ! test -f $BIN_DIR/pw.x ]]; then
+		echo "Can't find pw.x in '$BIN_DIR'..."
+		echo "Attempting to find valid version of espresso in PATH..."
+		BIN_DIR=""
+	fi
+fi
+
 if [[ $BIN_DIR == "" ]]; then
 	BIN_DIR=`dirname $(which pw.x)`
 fi
@@ -8,6 +16,7 @@ fi
 if [[ $BIN_DIR == "" ]]; then
 	echo "Failed to find espresso installation."
 	echo "Specify manual installation directory in the BIN_DIR env variable"
+	exit
 fi
 
 #The ABSOLUTE PATH of the folder containing the Pseudopotential files .UPF
