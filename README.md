@@ -12,7 +12,7 @@ Beginner tutorial for Density Functional Theory(DFT) calculation using [Quantum 
     sudo apt-get install quantum-espresso
     ```
 
-* QE can be compiled from source by:
+* QE can be compiled from source:
  1. Download the desired release version from the GitHub page "https://github.com/QEF/q-e/releases". 
  2. Unzip/tar the downloaded package and go inside the folder.
  3. From terminal run the commands
@@ -27,19 +27,19 @@ Beginner tutorial for Density Functional Theory(DFT) calculation using [Quantum 
 
 
 ## Exercises and their purpose/aim
-* Bulk silicon (0_Si_bulk)
+### Bulk silicon (0_Si_bulk)
   1. Construct an input file for a choosen system and visualize it using xcrysden 
   2. Run a simple self-consistent calculation using pw.x
   3. Estimate the kinetic cutoff convergency
   4. Determine the theoretical lattice parameter
   5. Generate a high-symmetry k-path using xcrysden and calculate a band structure
   6. Calculate the density of states(DOS) and optical properties(independent particle approximation) and show the convergence over the number of k_points and empty bands used
-* Two-dimensional boron nitride (1_BN)
+### Two-dimensional boron nitride (1_BN)
   1. How to use a supercell in order to run calculation for material that are not periodic in all directions.
-* Graphene (2_Graphene)
+### Graphene (2_Graphene)
   1. Run calculation for a metallic/semimetallic system
   2. Calculate the charge density for a specific state and display it using xcrysden
-* Carbon monoxide (2_CO)
+### Carbon monoxide (2_CO)
   1. Run a relax calculation and visualize the output using xcrysden
   2. Run a calculaiton for a molecule
   
