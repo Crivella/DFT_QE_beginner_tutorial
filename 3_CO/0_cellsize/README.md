@@ -14,4 +14,7 @@ We could run several calculations for each possible distance and find the minimu
 
 ## Running the exercise
   1. Use the provided script 'run_cellsize' to run several relax calculation for different cellsizes
+      ```
+      ./run_cellsize
+      ```
   2. The script will automatically collect the final coordinates of each calculation and write the in a two-column file vs the cellsize

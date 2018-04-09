@@ -9,4 +9,7 @@ If we wanted to, it could be appropriate to rerun the previous exercise using th
 
 ## Running the exercise
   1. Use the provided script 'run_ecut' to run several relax calculation for different cutoff values
+      ```
+      ./run_ecut
+      ```
   2. The script will automatically collect the final coordinates of each calculation and write the in a two-column file vs the ecut

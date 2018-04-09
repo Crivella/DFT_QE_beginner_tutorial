@@ -6,7 +6,7 @@ It is useful to plot these psi_n,k along an high-symmetry path which usually sho
       pw.x < si.scf-manual.in > si.scf-manual.out
       ```
   2. Run the non-self-consistent(nscf) calculation using the provided input 'si.bands-manual.in'
-       ```
+      ```
       pw.x < si.bands-manual.in > si.bands-manual.out
       ```
   The k-points coordinates can be choosen:

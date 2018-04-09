@@ -7,4 +7,10 @@ We can use an option of pp.x to visualize them, by plotting the charge density f
 
 ## Runing the exercise
   1. Run the script 'run_pp' to perform the calculation of the 5th (HOMO) and 6th (Lumo) band for 2 different cellsize
-  2. Use xcrysden to visualize the charge in the same way of exercise 0.3
+      ```
+      ./run_pp
+      ```
+  2. Use xcrysden to visualize the charge in the same way of exercise '0.3'
+      ```
+      xcrysden --xsf FILE_NAME
+      ```
