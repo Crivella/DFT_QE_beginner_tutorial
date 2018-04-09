@@ -96,7 +96,7 @@ for nbnd in 5 10 15; do
 done
 
 
-$(cd ../../; gcc -o broad.x broad.c -O2 -g -Wall -lm -std=c11)
+$(cd ../../Codes; gcc -o ../broad.x broad.c -O2 -g -Wall -lm -std=c11)
 ../../broad.x kpt_15/epsTOT.dat 0.1 kpt_15_0.1_epsTOT.dat
 ../../broad.x kpt_21/epsTOT.dat 0.1 kpt_21_0.1_epsTOT.dat
 ../../broad.x kpt_30/epsTOT.dat 0.1 kpt_30_0.1_epsTOT.dat
