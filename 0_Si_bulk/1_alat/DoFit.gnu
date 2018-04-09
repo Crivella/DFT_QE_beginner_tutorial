@@ -5,8 +5,10 @@
 # Genera il file "grafico.ps", un PostScript di 3 pagine.
 #
 
-set term post
-set out 'grafico.ps'
+#set term post
+#set out 'grafico.ps'
+set term pdfcairo enhanced
+set out "grafico.pdf"
 set xlabel 'Volume per atomo (au**3)'
 set ylabel 'Energia per atomo (Ry)'
 

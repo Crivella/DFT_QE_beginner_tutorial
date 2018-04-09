@@ -1,8 +1,8 @@
 #The ABSOLUTE PATH of the bin folder containing the QE executables (pw.x, pp.x)
 #BIN_DIR=
 
-if [[ test -d $BIN_DIR ]]; then
-	if [[ ! test -f $BIN_DIR/pw.x ]]; then
+if [ -d "$BIN_DIR" ]; then
+	if [ ! -f $BIN_DIR/pw.x ]; then
 		echo "Can't find pw.x in '$BIN_DIR'..."
 		echo "Attempting to find valid version of espresso in PATH..."
 		BIN_DIR=""

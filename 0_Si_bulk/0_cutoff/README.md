@@ -32,7 +32,7 @@ Look at the file Docs/DFT1.pdf page 16-18
       grep -e "!" *
       ```
   5. Save the cutoff energies and total energies in a 2 column file and plot it to see if you have reached convergence
-  6. The script 'run_ecut' which will do automatically everything from step 3 to 5 (explained using comments inside the script)
+  6. The script 'run_ecut' will do automatically everything from step 3 to 5 (explained using comments inside the script)
       ```
       ./run_ecut
       ```
