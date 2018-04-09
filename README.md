@@ -32,8 +32,9 @@ Beginner tutorial for Density Functional Theory(DFT) calculation using [Quantum 
   2. Run a simple self-consistent calculation using pw.x
   3. Estimate the kinetic cutoff convergency
   4. Determine the theoretical lattice parameter
-  5. Generate a high-symmetry k-path using xcrysden and calculate a band structure
-  6. Calculate the density of states(DOS) and optical properties(independent particle approximation) and show the convergence over the number of k_points and empty bands used
+  5. Calculate a charge density and visualize it using XCrySDen
+  6. Generate a high-symmetry k-path using xcrysden and calculate a band structure
+  7. Calculate the density of states(DOS) and optical properties(independent particle approximation) and show the convergence over the number of k_points and empty bands used
 ### Two-dimensional boron nitride (1_BN)
   1. How to use a supercell in order to run calculation for material that are not periodic in all directions.
 ### Graphene (2_Graphene)
