@@ -9,9 +9,9 @@ It is useful to plot these psi_n,k along an high-symmetry path which usually sho
        ```
       pw.x < si.bands-manual.in > si.bands-manual.out
       ```
-    The k-points coordinates can be choosen:
-    - Manually by lokking up a table of high-symmetry point for the system's lattice
-    - Using the XCrySDen 'tool -> k-path selection' tool.
+  The k-points coordinates can be choosen:
+  - Manually by lokking up a table of high-symmetry point for the system's lattice
+  - Using the XCrySDen 'tool -> k-path selection' tool.
       NOTE: when saving the k-path specify the pwscf extension in the menu and IN THE FILE NAME or XCrySDen will use the wrong format
   3. Run the bands.x post-processing using the provided input 'si.bandspp.in'
       ```
@@ -27,10 +27,11 @@ It is useful to plot these psi_n,k along an high-symmetry path which usually sho
       > 6.377
       > 1 6.377
       ```
-    Where the manual entry represents in the respective order:
-    - Input file name
-    - Energy range in eV
-    - xmgr file name
-    - postscript file name
-    - Fermi energy
-    - Tick spacing, 0 of the plot
+  Where the manual entry represents in the respective order:
+  - Input file name
+  - Energy range in eV
+  - xmgr file name
+  - postscript file name
+  - Fermi energy
+  - Tick spacing, 0 of the plot
+  5. Look at the script 'run_bands' which will automate all the steps (the k-path need to be put manually when building the script)
