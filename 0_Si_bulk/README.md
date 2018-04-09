@@ -1,4 +1,4 @@
-# Silicon bulk
+# Silicon bulk (0_Si_bulk)
 Example on how to run basic DFT calculation on a well known system such as Si
 
 ## Purpose

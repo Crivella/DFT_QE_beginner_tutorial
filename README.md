@@ -39,7 +39,6 @@ Beginner tutorial for Density Functional Theory(DFT) calculation using [Quantum 
   1. How to use a supercell in order to run calculation for material that are not periodic in all directions.
 ### Graphene (2_Graphene)
   1. Run calculation for a metallic/semimetallic system
-  2. Calculate the charge density for a specific state and display it using xcrysden
 ### Carbon monoxide (2_CO)
   1. Run a relax calculation and visualize the output using xcrysden
   2. Run a calculaiton for a molecule
