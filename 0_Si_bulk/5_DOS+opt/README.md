@@ -8,3 +8,5 @@ This transaltes into the needs for convegency test for these imposed limits (num
   - The details on how to run the exercise and the reated theory can be found in the 'Docs/DOS+opt.pdf' file
   - The details on the input file for the post-processing executable 'dos.x' and 'pw2gw.x' can be found in QE's source folder
     'PP/Doc/INPUT_DOS.html' and 'PP/Doc/INPUT_pw2gw.html' (only for version >=6.2)
+  - The script 'run_dos+opt' automate all the action required. 
+    It shows also how to define/call a function in bash in a separate file(functions) to make the main script easier to read.
