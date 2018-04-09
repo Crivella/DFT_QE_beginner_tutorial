@@ -48,7 +48,7 @@ K_POINTS {automatic}
 EOF
 
 echo -e "\tStart: " `date`
-COMMAND="  $RUN_COMMAND $BIN_DIR/pw.x < $IN > $OUT"
+COMMAND="  $RUN_COMMAND $BIN_DIR/pw.x"
 echo -e "\t\t$COMMAND < $IN > $OUT"
 $COMMAND < $IN > $OUT
 echo -e "\tEnd: " `date`

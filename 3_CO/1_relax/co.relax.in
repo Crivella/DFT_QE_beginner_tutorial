@@ -1,23 +1,8 @@
-#!/bin/sh
-
-source ../../ENVIRONMENT_VARIABLES
-echo "BIN_DIR:" $BIN_DIR
-echo "PSEUDO_DIR:" $PSEUDO_DIR
-echo "TMP_DIR:" $TMP_DIR
-echo "Parallel command:" $RUN_COMMAND
-echo "Started at: " `date`
-
-
-for ecut in 10 15 20 25 30 35 40 45 50
-do
-
-# self-consistent calculation
-cat > co.relax.in << EOF
 &CONTROL
   calculation  = "relax",
   prefix       = "CO",
-  pseudo_dir   = "$PSEUDO_DIR",
-  outdir       = "$TMP_DIR",
+  pseudo_dir   = "../../Pseudo",
+  outdir       = "./tmp",
   etot_conv_thr = 1.0D-4
   forc_conv_thr = 1.0D-3
 /
@@ -26,7 +11,7 @@ cat > co.relax.in << EOF
   nat       = 2,
   ntyp      = 2,
   nbnd      = 6,
-  ecutwfc   = $ecut
+  ecutwfc   = 50
 /
 &ELECTRONS
   conv_thr    = 1.D-7,
@@ -46,9 +31,3 @@ ATOMIC_POSITIONS {bohr}
 C  3.000  0.0  0.0  1 1 1
 O  0.000  0.0  0.0  0 0 0
 K_POINTS {Gamma}
-EOF
-
-$RUN_COMMAND $BIN_DIR/pw.x < co.relax.in > co.relax.out_ecut$ecut
-echo "Run completed at: " `date`
-
-done

@@ -41,7 +41,9 @@ Beginner tutorial for Density Functional Theory(DFT) calculation using [Quantum 
   1. Run calculation for a metallic/semimetallic system
 ### Carbon monoxide (2_CO)
   1. Run a relax calculation and visualize the output using xcrysden
-  2. Run a calculaiton for a molecule
+  2. Run a calculaiton for a molecule (0D system)
+  3. Calculate the binding energy of a molecule
+  4. Visualize the HOMO and LUMO of a molecule (charge density for specific k-point and band)
   
 ## Other folders
 * Docs: Contain additional tutorials in pdf format

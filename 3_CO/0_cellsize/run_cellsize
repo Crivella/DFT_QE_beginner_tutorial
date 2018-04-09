@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 source ../../ENVIRONMENT_VARIABLES
 echo "BIN_DIR:" $BIN_DIR
@@ -7,9 +7,13 @@ echo "TMP_DIR:" $TMP_DIR
 echo "Parallel command:" $RUN_COMMAND
 echo "Started at: " `date`
 
+SAVE=bondl_vs_size.dat
+echo -e "# bondl(bohr) size(bohr)" > $SAVE
 
-for size in 5 6 7 8 9 10 11 12 13 14 15
-do
+for size in 5 6 7 8 9 10 11 12 13 14 15; do
+
+IN=co.relax.in
+OUT=co.relax.out_size$size
 
 # self-consistent calculation
 cat > co.relax.in << EOF
@@ -48,7 +52,41 @@ O  0.000  0.0  0.0  0 0 0
 K_POINTS {Gamma}
 EOF
 
-$RUN_COMMAND $BIN_DIR/pw.x < co.relax.in > co.relax.out_size$size
-echo "Run completed at: " `date`
+echo -e "\tStart: " `date`
+COMMAND="  $RUN_COMMAND $BIN_DIR/pw.x"
+echo -e "\t\t$COMMAND < $IN > $OUT"
+#$COMMAND < $IN > $OUT
+echo -e "\tEnd: " `date`
+
+
+BONDL=`cat $OUT | grep "ATOMIC_POS" -A 3 | tail -n 4 | grep "C   " | tr -s " " | cut -d" " -f2`
+echo -e "$size\t\t$BONDL" >> $SAVE
 
 done
+
+echo "Run completed at: " `date`
+
+cat > plot.gnu <<EOF
+#!/usr/bin/gnuplot
+
+set term wxt enhanced
+
+set xlabel "Cell size (bohr)"
+set ylabel "Bond lenght (bohr)"
+
+plot \
+	'$SAVE'  u 1:2 w lp pt 7 lw 2  lc rgb "black" title "bondl vs size" 
+
+pause -1
+set term pdfcairo enhanced
+set output "${SAVE:0: -4}.pdf"
+replot
+EOF
+
+gnuplot plot.gnu
+
+
+exit
+
+
+
