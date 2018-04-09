@@ -12,7 +12,7 @@ echo -e "# ecut(Ry) energy(Ry)" > $SAVE
 
 for ecut in 10 15 20 25 30 35 40 45 50; do
 
-IN=co.relax.in
+IN=co_script.relax.in
 OUT=co.relax.out_ecut$ecut
 
 # self-consistent calculation

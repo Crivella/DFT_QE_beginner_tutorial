@@ -15,7 +15,7 @@ It is useful to plot these psi_n,k along an high-symmetry path which usually sho
       NOTE: when saving the k-path specify the pwscf extension in the menu and IN THE FILE NAME or XCrySDen will use the wrong format
   3. Run the bands.x post-processing using the provided input 'si.bandspp.in'
       ```
-      bands.x < si.bandspp.in > si.bandspp.out
+      bands.x < si.bandspp-manual.in > si.bandspp.out
       ```
   4. Run the plotband.x post-processing specifing from console the input file 'Sibands.dat' (output of bands.x)
       ```

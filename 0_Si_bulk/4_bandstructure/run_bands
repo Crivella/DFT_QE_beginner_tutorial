@@ -9,7 +9,9 @@ echo "Started at: " `date`
 
 
 # self-consistent calculation
-cat > si.scf.in << EOF
+IN=si_script.scf.in
+OUT=si.scf.out
+cat > $IN << EOF
 &CONTROL
   calculation  = "scf",
   prefix       = "Si",
@@ -50,8 +52,6 @@ K_POINTS
    0.3750000  0.3750000  0.6250000   3.00
 EOF
 
-IN=si.scf.in
-OUT=si.scf.out
 echo -e "\tStart: " `date`
 COMMAND="  $RUN_COMMAND $BIN_DIR/pw.x < $IN > $OUT"
 echo -e "\t\t$COMMAND"
@@ -60,7 +60,9 @@ echo -e "\tEnd: " `date`
 
 
 # bands calculation
-cat > si.bands.in << EOF
+IN=si_script.bands.in
+OUT=si.bands.out
+cat > $IN << EOF
 &CONTROL
   calculation  = "bands",
   prefix       = "Si",
@@ -126,8 +128,6 @@ K_POINTS
    0.0 0.0 0.0 36
 EOF
 
-IN=si.bands.in
-OUT=si.bands.out
 echo -e "\tStart: " `date`
 COMMAND="  $RUN_COMMAND $BIN_DIR/pw.x"
 echo -e "\t\t$COMMAND < $IN > $OUT"
@@ -135,7 +135,10 @@ $COMMAND < $IN > $OUT
 echo -e "\tEnd: " `date`
 
 
-cat > si.bandspp.in << EOF
+
+IN=si_script.bandspp.in
+OUT=si.bandspp.out
+cat > $IN << EOF
 &bands
     prefix = "Si",
     outdir='$TMP_DIR'
@@ -144,15 +147,17 @@ cat > si.bandspp.in << EOF
  /
 EOF
 
-IN=si.bandspp.in
-OUT=si.bandspp.out
 echo -e "\tStart: " `date`
 COMMAND="  $RUN_COMMAND $BIN_DIR/bands.x"
 echo -e "\t\t$COMMAND < $IN > $OUT"
 $COMMAND < $IN > $OUT
 echo -e "\tEnd: " `date`
 
-cat > si.plotband.in << EOF
+
+
+IN=si_script.plotband.in
+OUT=si.plotband.out
+cat > $IN << EOF
 Sibands.dat
 -6.0 10.0
 Sibands.xmgr
@@ -161,8 +166,6 @@ Sibands.ps
 1 6.377
 EOF
 
-IN=si.plotband.in
-OUT=si.plotband.out
 echo -e "\tStart: " `date`
 COMMAND="$BIN_DIR/plotband.x"
 echo -e "\t\t$COMMAND < $IN > $OUT"

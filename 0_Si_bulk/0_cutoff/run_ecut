@@ -20,7 +20,7 @@ echo -e "# ecut(Ry)\tEnergy(Ry)" > $SAVE	# COMMAND > NAME  write the stdout of t
 for ecut in 5 10 15 20 25 30; do		#for NAME in LIST; do ... done
 						#cicle the variable NAME in a list of elements
 
-IN=si.scf.in
+IN=si_script.scf.in
 OUT=si.scf.out_ecut$ecut
 						#<<DELIM  ... DELIM   defines a block of text
 						#Will still resolve variables values using $NAME

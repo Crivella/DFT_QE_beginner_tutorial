@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 source ../../ENVIRONMENT_VARIABLES
 echo "BIN_DIR:" $BIN_DIR
@@ -11,7 +11,7 @@ for size in 5 12
 do
 
 # self-consistent calculation
-cat > co.relax.in << EOF
+cat > co_script.relax.in << EOF
 &CONTROL
   calculation  = "relax",
   prefix       = "CO",
@@ -48,12 +48,12 @@ O  6.000  6.0  6.0  0 0 0
 K_POINTS {Gamma}
 EOF
 
-$RUN_COMMAND $BIN_DIR/pw.x < co.relax.in > co.relax.out_size$size
+$RUN_COMMAND $BIN_DIR/pw.x < co_script.relax.in > co.relax.out_size$size
 echo "Run completed at: " `date`
 
 for ib in 5 6 
 do
-cat > co.pp.in << EOF
+cat > co_script.pp.in << EOF
 &INPUTPP
 prefix       = "CO",
 outdir       = "$TMP_DIR",
@@ -72,7 +72,7 @@ fileout = "psi2_size${size}_ib${ib}.xsf"
 /
 EOF
 
-$RUN_COMMAND $BIN_DIR/pp.x < co.pp.in > co.pp.out_size${size}_ib${ib}
+$RUN_COMMAND $BIN_DIR/pp.x < co_script.pp.in > co.pp.out_size${size}_ib${ib}
 echo "Run completed at: " `date`
 
 done 
