@@ -8,7 +8,9 @@ echo "Parallel command:" $RUN_COMMAND
 echo "Started at: " `date`
 
 SAVE=bondl_vs_ecut.dat
-echo -e "# ecut(Ry) energy(Ry)" > $SAVE
+SAVE1=e_vs_ecut.dat
+echo -e "# ecut(Ry) bondl(bohr)" > $SAVE
+echo -e "# ecut(Ry) energy(Ry)" > $SAVE1
 
 for ecut in 10 15 20 25 30 35 40 45 50; do
 
@@ -16,7 +18,7 @@ IN=co_script.relax.in
 OUT=co.relax.out_ecut$ecut
 
 # self-consistent calculation
-cat > co.relax.in << EOF
+cat > $IN << EOF
 &CONTROL
   calculation  = "relax",
   prefix       = "CO",
@@ -59,8 +61,10 @@ $COMMAND < $IN > $OUT
 echo -e "\tEnd: " `date`
 
 
+ENERGY=`cat $OUT | grep ! | tr -dc '0-9,-.'`
 BONDL=`cat $OUT | grep "ATOMIC_POS" -A 3 | tail -n 4 | grep "C   " | tr -s " " | cut -d" " -f2`
 echo -e "$ecut\t\t$BONDL" >> $SAVE
+echo -e "$ecut\t\t$ENERGY" >> $SAVE1
 
 done
 
@@ -75,11 +79,21 @@ set xlabel "ecut (Ry)"
 set ylabel "Bond lenght (bohr)"
 
 plot \
-	'$SAVE'  u 1:2 w lp pt 7 lw 2  lc rgb "black" title "bondl vs E_{cut}" 
+	'$SAVE'  u 1:2 w lp pt 7 lw 2  lc rgb "black" title "bondl vs E_{cut}"
+	
 
 pause -1
 set term pdfcairo enhanced
 set output "${SAVE:0: -4}.pdf"
+replot
+
+set term wxt enhanced
+plot \
+	'$SAVE1'  u 1:2 w lp pt 7 lw 2  lc rgb "black" title "E_{tot} vs E_{cut}"
+
+pause -1
+set term pdfcairo enhanced
+set output "${SAVE1:0: -4}.pdf"
 replot
 EOF
 

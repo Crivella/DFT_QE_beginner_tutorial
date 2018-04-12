@@ -16,7 +16,7 @@ IN=co_script.relax.in
 OUT=co.relax.out_size$size
 
 # self-consistent calculation
-cat > co.relax.in << EOF
+cat > $IN << EOF
 &CONTROL
   calculation  = "relax",
   prefix       = "CO",
@@ -55,7 +55,7 @@ EOF
 echo -e "\tStart: " `date`
 COMMAND="  $RUN_COMMAND $BIN_DIR/pw.x"
 echo -e "\t\t$COMMAND < $IN > $OUT"
-#$COMMAND < $IN > $OUT
+$COMMAND < $IN > $OUT
 echo -e "\tEnd: " `date`
 
 
