@@ -1,0 +1,96 @@
+#!/bin/bash
+
+source ../../ENVIRONMENT_VARIABLES
+echo "BIN_DIR:" $BIN_DIR
+echo "PSEUDO_DIR:" $PSEUDO_DIR
+echo "TMP_DIR:" $TMP_DIR
+echo "Parallel command:" $RUN_COMMAND
+echo "Started at: " `date`
+
+SAVE=e_vs_bondl.dat
+echo -e "# bondl(bohr) Energy(Ry)" > $SAVE
+
+for bondl in 1.60 1.95 2.00 2.05 2.10 2.15 2.20 2.30 2.60 3.00 4.00 5.00 8.00; do
+
+IN=co_script.scf.in
+OUT=co.scf.out_bondl$bondl
+
+# self-consistent calculation
+cat > $IN << EOF
+&CONTROL
+  calculation  = "scf",
+  prefix       = "CO",
+  pseudo_dir   = "$PSEUDO_DIR",
+  outdir       = "$TMP_DIR",
+  etot_conv_thr = 1.0D-4
+  forc_conv_thr = 1.0D-3
+/
+&SYSTEM
+  ibrav     = 0,
+  nat       = 2,
+  ntyp      = 2,
+  nbnd      = 6,
+  ecutwfc   = 50,
+  nspin     = 2,
+  occupations ='smearing',
+  degauss     =0.001,
+  starting_magnetization(1)=0.1
+/
+&ELECTRONS
+  conv_thr    = 1.D-7,
+  mixing_beta = 0.7D0,
+/
+&IONS
+  ion_dynamics = "bfgs"
+/
+CELL_PARAMETERS {bohr}
+ 30.0  0.0  0.0
+  0.0 12.0  0.0
+  0.0  0.0 12.0
+ATOMIC_SPECIES
+O  1.00  O.pw-mt_fhi.UPF
+C  1.00  C.pw-mt_fhi.UPF
+ATOMIC_POSITIONS {bohr}
+C  $bondl  0.0  0.0
+O  0.000  0.0  0.0
+K_POINTS {Gamma}
+EOF
+
+echo -e "\tStart: " `date`
+COMMAND="  $RUN_COMMAND $BIN_DIR/pw.x"
+echo -e "\t\t$COMMAND < $IN > $OUT"
+$COMMAND < $IN > $OUT
+echo -e "\tEnd: " `date`
+
+
+ENERGY=`cat $OUT | grep ! | tr -dc '0-9,-.'`
+echo -e "$bondl\t\t$ENERGY" >> $SAVE
+
+done
+
+echo "Run completed at: " `date`
+
+cat > plot.gnu <<EOF
+#!/usr/bin/gnuplot
+
+set term wxt enhanced
+
+set xlabel "Bond lenght (bohr)"
+set ylabel "E_{tot} (bohr)"
+
+plot \
+	'$SAVE'  u 1:2 w lp pt 7 lw 2  lc rgb "black" title "E_{tot} vs bondl" 
+
+pause -1
+set term pdfcairo enhanced
+set output "${SAVE:0: -4}.pdf"
+replot
+EOF
+
+gnuplot plot.gnu
+
+
+exit
+
+
+
