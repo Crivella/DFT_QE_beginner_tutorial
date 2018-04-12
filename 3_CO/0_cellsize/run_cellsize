@@ -8,7 +8,7 @@ echo "Parallel command:" $RUN_COMMAND
 echo "Started at: " `date`
 
 SAVE=bondl_vs_size.dat
-echo -e "# bondl(bohr) size(bohr)" > $SAVE
+echo -e "# size(bohr) bondl(bohr)" > $SAVE
 
 for size in 5 6 7 8 9 10 11 12 13 14 15; do
 

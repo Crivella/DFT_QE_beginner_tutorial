@@ -75,7 +75,7 @@ cat > plot.gnu <<EOF
 
 set term wxt enhanced
 
-set xlabel "ecut (Ry)"
+set xlabel "E_{cut} (Ry)"
 set ylabel "Bond lenght (bohr)"
 
 plot \
@@ -88,6 +88,10 @@ set output "${SAVE:0: -4}.pdf"
 replot
 
 set term wxt enhanced
+
+set xlabel "E_{cut} (Ry)"
+set ylabel "E_{tot} (Ry)"
+
 plot \
 	'$SAVE1'  u 1:2 w lp pt 7 lw 2  lc rgb "black" title "E_{tot} vs E_{cut}"
 
