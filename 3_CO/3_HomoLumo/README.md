@@ -3,7 +3,7 @@ As with any molecule, we can define the Highest Occupied Molecular Orbital and L
 We can use an option of pp.x to visualize them, by plotting the charge density for a specific k-point and band
 
 ## Purpose
-  1. Use pp.x to visualie the HOMO and LUMO of a moleule
+  1. Use pp.x to visualie the HOMO and LUMO of a molecule
 
 ## Runing the exercise
   1. Run the script 'run_pp' to perform the calculation of the 5th (HOMO) and 6th (Lumo) band for 2 different cellsize

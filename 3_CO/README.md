@@ -6,6 +6,7 @@ Example on how to run a calculaiton for a zero-dimensiona system (molecule/quant
   2. Run a calculaiton for a molecule (0D system)
   3. Calculate the binding energy of a molecule
   4. Visualize the HOMO and LUMO of a molecule (charge density for specific k-point and band)
+  5. Use a Lennard-Jones like potential to fit the data 'E_tot' vs 'bond lenght'
 
 ## Running the exercise
   1. Run the exercise from the folders following the numeric order

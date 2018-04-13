@@ -44,6 +44,7 @@ Beginner tutorial for Density Functional Theory(DFT) calculation using [Quantum 
   2. Run a calculaiton for a molecule (0D system)
   3. Calculate the binding energy of a molecule
   4. Visualize the HOMO and LUMO of a molecule (charge density for specific k-point and band)
+  5. Use a Lennard-Jones like potential to fit the data 'E_tot' vs 'bond lenght'
   
 ## Other folders
 * Docs: Contain additional tutorials in pdf format
