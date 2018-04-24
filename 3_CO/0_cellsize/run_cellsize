@@ -62,11 +62,51 @@ echo -e "\tEnd: " `date`
 BONDL=`cat $OUT | grep "ATOMIC_POS" -A 3 | tail -n 4 | grep "C   " | tr -s " " | cut -d" " -f2`
 echo -e "$size\t\t$BONDL" >> $SAVE
 
+IN=co_script.pp.in
+OUT=co.pp.out_size$size
+cat > $IN << EOF
+&INPUTPP
+       prefix = 'CO',
+       outdir = '$TMP_DIR',
+      filplot = 'CO.pot',
+     plot_num = 11
+/
+
+&PLOT
+        iflag = 3,
+output_format = 3,
+/
+EOF
+
+echo -e "\tStart: " `date`
+COMMAND="  $RUN_COMMAND $BIN_DIR/pp.x"
+echo -e "\t\t$COMMAND < $IN > $OUT"
+$COMMAND < $IN > $OUT
+echo -e "\tEnd: " `date`
+
+IN=co_script.avg.in
+OUT=co.avg.out_size$size
+cat > $IN << EOF
+1
+CO.pot
+1.D0
+1000
+3
+23.737
+/
+EOF
+
+echo -e "\tStart: " `date`
+COMMAND="  $RUN_COMMAND $BIN_DIR/average.x"
+echo -e "\t\t$COMMAND < $IN > $OUT"
+$COMMAND < $IN > $OUT
+echo -e "\tEnd: " `date`
+
 done
 
-echo "Run completed at: " `date`
 
-cat > plot.gnu <<EOF
+
+cat > plot1.gnu <<EOF
 #!/usr/bin/gnuplot
 
 set term wxt enhanced
@@ -83,7 +123,30 @@ set output "${SAVE:0: -4}.pdf"
 replot
 EOF
 
-gnuplot plot.gnu
+gnuplot plot1.gnu
+
+cat > plot2.gnu <<EOF
+#!/usr/bin/gnuplot
+
+set term wxt enhanced
+
+LIST="5 6 7 8 9 10 11 12 13 14 15"
+
+set xlabel "Cell size (bohr)"
+set ylabel "Potential (Ry)"
+
+plot for[i=1:words(LIST)]\
+	sprintf("co.avg.out_size%d",word(LIST,i)+0)  u 1:2 w l lw 2  title sprintf("size=%d",word(LIST,i)+0)
+
+pause -1
+set term pdfcairo enhanced
+set output "vacuum.pdf"
+replot
+EOF
+
+gnuplot plot2.gnu
+
+echo "Run completed at: " `date`
 
 
 exit
