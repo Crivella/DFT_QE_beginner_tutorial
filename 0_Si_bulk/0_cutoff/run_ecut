@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #Every 1st line of a bas script start with #! followed by the shell that should run the script
 
 source ../../ENVIRONMENT_VARIABLES		#Load variables/code present in a different file

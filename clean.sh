@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 find . -name "*.out*" -print -exec rm {} \;
 find . -name "plot.gnu" -print -exec rm {} \;
