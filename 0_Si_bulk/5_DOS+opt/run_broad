@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+$(cd ../../Codes; gcc -o ../broad.x broad.c -O2 -g -Wall -lm -std=c11)
+../../broad.x kpt_5/epsTOT.dat 0.1 kpt_5_0.1_epsTOT.dat
+../../broad.x kpt_10/epsTOT.dat 0.1 kpt_10_0.1_epsTOT.dat
+../../broad.x kpt_15/epsTOT.dat 0.1 kpt_15_0.1_epsTOT.dat
+../../broad.x kpt_20/epsTOT.dat 0.1 kpt_20_0.1_epsTOT.dat
+../../broad.x bnd_5/epsTOT.dat  0.1 bnd_5_0.1_epsTOT.dat
+../../broad.x bnd_10/epsTOT.dat 0.1 bnd_10_0.1_epsTOT.dat
+../../broad.x bnd_15/epsTOT.dat 0.1 bnd_15_0.1_epsTOT.dat

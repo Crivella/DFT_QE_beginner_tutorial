@@ -1,9 +1,9 @@
 &CONTROL
-  calculation  = "scf",
-  prefix       = "Si",
-  pseudo_dir   = "../../Pseudo",
-  outdir       = "./tmp",
-  restart_mode = "from_scratch"
+  calculation  = 'scf',
+  prefix       = 'Si',
+  pseudo_dir   = '../../Pseudo',
+  outdir       = './tmp',
+  restart_mode = 'from_scratch'
   verbosity    = 'high'
   tprnfor = .true.
   wf_collect=.true.
