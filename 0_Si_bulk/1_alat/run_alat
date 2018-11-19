@@ -74,7 +74,7 @@ plot \
 
 pause -1
 set term pdfcairo enhanced
-set output "${SAVE:0: -4}.pdf"
+set output "${SAVE}.pdf"
 replot
 EOF
 
