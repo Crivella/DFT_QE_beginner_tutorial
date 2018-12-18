@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+source ../../ENVIRONMENT_VARIABLES
+source ./functions
+echo "BIN_DIR:" $BIN_DIR
+echo "PSEUDO_DIR:" $PSEUDO_DIR
+echo "TMP_DIR:" $TMP_DIR
+echo "Parallel command:" $RUN_COMMAND
+echo "Started at: " `date`
+
+
+CELL_DIM=4.68
+CUTOFF=40
+nbnd=4
+PREFIX=BN
+
+for CELL_DIM3 in 1 2 3 4 5 6; do
+	##################################################################################################
+	#Conto scf
+	print_scf_in;
+
+	IN="$PREFIX.scf_cdm$CELL_DIM3.in"
+	OUT="$PREFIX.scf_cdm$CELL_DIM3.out"
+	COMMAND="  $RUN_COMMAND $BIN_DIR/pw.x < $IN > $OUT"
+	echo "$COMMAND"
+	$COMMAND < $IN > $OUT
+
+	IN="pp.in"
+	OUT="pp_cdm$CELL_DIM3.out"
+	COMMAND="  $RUN_COMMAND $BIN_DIR/pp.x < $IN > $OUT"
+	echo "$COMMAND"
+	$COMMAND < $IN > $OUT
+
+
+	IN="average.in"
+	OUT="avg_cdm$CELL_DIM3.dat"
+	COMMAND="  $RUN_COMMAND $BIN_DIR/average.x < $IN > $OUT"
+	echo "$COMMAND"
+	$COMMAND < $IN > $OUT
+
+	echo -e "\n"
+done
+
+exit
+
+
+
+
+

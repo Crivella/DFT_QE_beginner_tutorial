@@ -1,0 +1,7 @@
+&INPUTPP
+       prefix = 'BN',
+       outdir = 'tmp',
+      filplot = 'BN.pot',
+     plot_num = 11
+/
+
