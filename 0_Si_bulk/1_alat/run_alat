@@ -16,7 +16,7 @@ IN=si_script.scf.in
 OUT=si_script.scf.out_alat$alat
 
 # self-consistent calculation
-cat > si_script.scf.in << EOF
+cat > $IN << EOF
 &CONTROL
   calculation  = "scf",
   prefix       = "Si",
