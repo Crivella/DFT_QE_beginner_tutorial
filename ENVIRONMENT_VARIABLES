@@ -25,6 +25,7 @@ if [[ `which realpath` != "" ]]; then
 	PSEUDO_DIR=`realpath $PSEUDO_DIR`
 elif [[ `which readlink` != "" ]]; then
 	app=`readlink $PSEUDO_DIR`
+	if [[ $app != "" ]]; then
 		PSEUDO_DIR=$app
 	fi
 fi
