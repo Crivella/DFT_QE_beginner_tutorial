@@ -9,15 +9,15 @@ It is useful to plot these psi_n,k along an high-symmetry path which usually sho
       ```
       pw.x < si.bands-manual.in > si.bands-manual.out
       ```
-  The k-points coordinates can be choosen:
-  - Manually by lokking up a table of high-symmetry point for the system's lattice
+  The k-points coordinates can be chosen:
+  - Manually by looking up a table of high-symmetry point for the system's lattice
   - Using the XCrySDen 'tool -> k-path selection' tool.
       NOTE: when saving the k-path specify the pwscf extension in the menu and IN THE FILE NAME or XCrySDen will use the wrong format
   3. Run the bands.x post-processing using the provided input 'si.bandspp.in'
       ```
       bands.x < si.bandspp-manual.in > si.bandspp.out
       ```
-  4. Run the plotband.x post-processing specifing from console the input file 'Sibands.dat' (output of bands.x)
+  4. Run the plotband.x post-processing specifying from console the input file 'Sibands.dat' (output of bands.x)
       ```
       plotband.x
       > Sibands.dat

@@ -11,6 +11,7 @@ Beginner tutorial for Density Functional Theory(DFT) calculation using [Quantum 
     ```
     sudo apt-get install quantum-espresso
     ```
+    PS: The max version of QE that can be installed this way is the 5.1
 
 * QE can be compiled from source:
  1. Download the desired release version from the GitHub page "https://github.com/QEF/q-e/releases". 
