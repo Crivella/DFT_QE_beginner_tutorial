@@ -1,5 +1,5 @@
 # DFT_esercitazioni
-OBeginner tutorial for Density Functional Theory(DFT) calculation using [Quantum Espresso](https://www.quantum-espresso.org/)(QE)[1,2]
+Beginner tutorial for Density Functional Theory(DFT) calculation using [Quantum Espresso](https://www.quantum-espresso.org/)(QE)[1,2]
 
 ## Required packages
 * A working version of QE needs to be installed/compiled and the executables needs to be located in the PATH environmental variable or specified manually in the variable BIN_DIR.
@@ -11,7 +11,7 @@ OBeginner tutorial for Density Functional Theory(DFT) calculation using [Quantum
     ```
     sudo apt-get install quantum-espresso
     ```
-    PS: The max version of QE that can be installed this way is the 5.1
+    PS: The max version of QE that can be installed this way is ... maybe 6.0 now
 
 * QE can be compiled from source:
  1. Download the desired release version from the GitHub page "https://github.com/QEF/q-e/releases". 
