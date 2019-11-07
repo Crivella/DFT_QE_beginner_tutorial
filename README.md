@@ -1,5 +1,5 @@
 # DFT_esercitazioni
-Beginner tutorial for Density Functional Theory(DFT) calculation using [Quantum Espresso](https://www.quantum-espresso.org/)(QE)[1,2]
+OBeginner tutorial for Density Functional Theory(DFT) calculation using [Quantum Espresso](https://www.quantum-espresso.org/)(QE)[1,2]
 
 ## Required packages
 * A working version of QE needs to be installed/compiled and the executables needs to be located in the PATH environmental variable or specified manually in the variable BIN_DIR.
