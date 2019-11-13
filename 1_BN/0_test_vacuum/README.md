@@ -4,11 +4,19 @@ To do this we can calculate the potential along the z axis of our supercell. In 
 When this behavior is observed, we can say that the potential of one layer in a supercell does not interact with that of another, hence they are isolated.
 
   1. Run the calculation
+    ```
     pw.x < BN.scf_cdm?.in > BN.scf_cdm?.out   ?=(1,2,3,4,5,6)
+    ```
 
   2. Run the post-processing
+    ```
     pp.x < pp.in
     average.x < average.in > avg_cdm?.dat
+    mv avg.dat avg_cdm?-plot.dat
+    ```
 
   3. Repeat step 1 and 2 with different celldm(3) and compare their results (change the name of the inputs/outputs)
-
+    ```
+    gnuplot
+    gnuplot> plot for [i=1:6] "avg_cdm".i."-plot.dat" t "cdm".i w l
+    ```

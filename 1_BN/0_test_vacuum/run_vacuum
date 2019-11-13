@@ -34,9 +34,13 @@ for CELL_DIM3 in 1 2 3 4 5 6; do
 
 	IN="average.in"
 	OUT="avg_cdm$CELL_DIM3.dat"
+	OUT2="avg_cdm$CELL_DIM3-plot.dat"
 	COMMAND="  $RUN_COMMAND $BIN_DIR/average.x < $IN > $OUT"
 	echo "$COMMAND"
 	$COMMAND < $IN > $OUT
+	COMMAND="mv avg.dat $OUT2"
+	echo "$COMMAND"
+	$COMMAND 
 
 	echo -e "\n"
 done
