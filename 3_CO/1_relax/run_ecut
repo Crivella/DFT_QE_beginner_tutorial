@@ -84,7 +84,7 @@ plot \
 
 pause -1
 set term pdfcairo enhanced
-set output "${SAVE:0: -4}.pdf"
+set output "bond_length.pdf"
 replot
 
 set term wxt enhanced
@@ -97,7 +97,7 @@ plot \
 
 pause -1
 set term pdfcairo enhanced
-set output "${SAVE1:0: -4}.pdf"
+set output "total_energy.pdf"
 replot
 EOF
 
