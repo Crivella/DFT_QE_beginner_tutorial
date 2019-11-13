@@ -22,7 +22,7 @@ It is useful to plot these psi_n,k along an high-symmetry path which usually sho
       plotband.x
       > Sibands.dat
       > -6.0 10.0
-      > Sibands.xmgr
+      > 
       > Sibands.ps
       > 6.377
       > 1 6.377
@@ -30,8 +30,13 @@ It is useful to plot these psi_n,k along an high-symmetry path which usually sho
   Where the manual entry represents in the respective order:
   - Input file name
   - Energy range in eV
-  - xmgr file name
+  - xmgr file name (best to leave blank)
   - postscript file name
   - Fermi energy
   - Tick spacing, 0 of the plot
-  5. Look at the script 'run_bands' which will automate all the steps (the k-path need to be put manually when building the script)
+  5. As an alternative to plotband.x, use the Sibands.gnuplot script to plot the Sibands.dat.gnu formatted file directly
+      ```
+    gnuplot
+    gnuplot> load "Sibands.gnuplot"
+      ```
+  6. Look at the script 'run_bands' which will automate all the steps (the k-path need to be put manually when building the script)
