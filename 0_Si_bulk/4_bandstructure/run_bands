@@ -124,13 +124,12 @@ $COMMAND < $IN > $OUT
 echo -e "\tEnd: " `date`
 
 
-
 IN=si_script.plotband.in
 OUT=si.plotband.out
 cat > $IN << EOF
 Sibands.dat
 -6.0 10.0
-Sibands.xmgr
+
 Sibands.ps
 6.377
 1 6.377
@@ -141,6 +140,9 @@ COMMAND="$BIN_DIR/plotband.x"
 echo -e "\t\t$COMMAND < $IN > $OUT"
 $COMMAND < $IN > $OUT
 echo -e "\tEnd: " `date`
+
+echo -e "\tRunning gnuplot script: " `date`
+gnuplot Sibands.gnuplot
 
 echo "Run completed at: " `date`
 
