@@ -1,6 +1,6 @@
 &bands
     prefix = "Si",
-    outdir='$TMP_DIR'
+    outdir='./tmp'
     filband='Sibands.dat'
     lsym=.true.
  /
