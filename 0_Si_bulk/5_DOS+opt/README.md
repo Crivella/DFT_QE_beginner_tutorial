@@ -26,9 +26,9 @@ This translates into the needs for convergence test for these imposed limits (nu
   4. Create a new folder and move the outputs into it. This step is needed because we will be using a different tmp for every calculation. Also the output of pw2gw all have the same names (epsX/Y/Z/TOT.dat and will be overwritten if ran in the same folder)
       ```
       mkdir kpt_??
-      mv -t kpt_?? Si.kpt_??.nscf.out tmp
+      mv Si.kpt_??.nscf.out kpt_??
+      mv tmp kpt_?? 
       ```
-      The command 'mv -t' set a folder as a target and move everything that comes after into it
   5. Go inside the new folder and run the dos and optical calculations. We don't need to save their output since they don't contain any physically relevant information.
       ```
       cd kpt_??
@@ -38,7 +38,7 @@ This translates into the needs for convergence test for these imposed limits (nu
   6. Go back to the previous folder and copy the backup tmp, than repeat steps 3-5 for all calculations with kpt and bnd in the filename (k-point and band convergence). We are copying the tmp folders so we have one for each calculation and we don't overwrite the wave-functions at every step (we could still use them for further post-processing!!!).
       ```
       cd ..
-      cp -r tmp_sct tmp
+      cp -r tmp_scf tmp
       ```
 
   7. Apply a gaussian broadening to the optical properties outputs (epsX/Y/Z/TOT.dat)

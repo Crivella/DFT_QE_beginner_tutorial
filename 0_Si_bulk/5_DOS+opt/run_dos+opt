@@ -24,7 +24,8 @@ COMMAND="  $RUN_COMMAND $BIN_DIR/pw.x < $IN > $OUT"
 echo "$COMMAND"
 $COMMAND < $IN > $OUT
 
-mv -t tmp $OUT
+#mv -t tmp $OUT
+mv $OUT tmp
 
 rm -r tmp/Si.save/K*
 rm -r bu 2>/dev/null
@@ -45,7 +46,9 @@ for k_pt in 5 10 15 20; do
 	$COMMAND < $IN > $OUT
 
 	mkdir -p $DIRNAME
-	mv -t $DIRNAME $OUT tmp
+#mv -t $DIRNAME $OUT tmp
+	mv $OUT $DIRNAME 
+	mv tmp $DIRNAME
 	cd $DIRNAME
 
 	#Conti DOS
@@ -89,7 +92,9 @@ for nbnd in 5 10 15; do
 	$COMMAND < $IN > $OUT
 
 	mkdir -p $DIRNAME
-	mv -t $DIRNAME $OUT tmp
+#mv -t $DIRNAME $OUT tmp
+	mv $OUT $DIRNAME 
+	mv tmp $DIRNAME
 	cd $DIRNAME
 
 	#Conti proprieta ottiche (Parte immaginaria della funzione dielettrica)
