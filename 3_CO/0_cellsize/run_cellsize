@@ -10,6 +10,7 @@ echo "Started at: " `date`
 SAVE=bondl_vs_size.dat
 echo -e "# size(bohr) bondl(bohr)" > $SAVE
 
+#for size in 5 10 15; do
 for size in 5 6 7 8 9 10 11 12 13 14 15; do
 
 IN=co_script.relax.in
@@ -100,6 +101,8 @@ echo -e "\tStart: " `date`
 COMMAND="  $RUN_COMMAND $BIN_DIR/average.x"
 echo -e "\t\t$COMMAND < $IN > $OUT"
 $COMMAND < $IN > $OUT
+mv avg.dat $OUT
+
 echo -e "\tEnd: " `date`
 
 done
@@ -119,7 +122,7 @@ plot \
 
 pause -1
 set term pdfcairo enhanced
-set output "${SAVE:0: -4}.pdf"
+set output "bond_length.pdf"
 replot
 EOF
 
@@ -135,8 +138,9 @@ LIST="5 6 7 8 9 10 11 12 13 14 15"
 set xlabel "Cell size (bohr)"
 set ylabel "Potential (Ry)"
 
-plot for[i=1:words(LIST)]\
-	sprintf("co.avg.out_size%d",word(LIST,i)+0)  u 1:2 w l lw 2  title sprintf("size=%d",word(LIST,i)+0)
+#plot for[i=1:words(LIST)]\
+#	sprintf("co.avg.out_size%d",word(LIST,i)+0)  u 1:2 w l lw 2  title sprintf("size=%d",word(LIST,i)+0)
+plot for[i=5:15] "co.avg.out_size".i  u 1:2 w l lw 2  title "size=".i
 
 pause -1
 set term pdfcairo enhanced
