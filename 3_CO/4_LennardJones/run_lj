@@ -37,6 +37,7 @@ cat > $IN << EOF
   starting_magnetization(1)=0.1
 /
 &ELECTRONS
+  electron_maxstep=200
   conv_thr    = 1.D-7,
   mixing_beta = 0.7D0,
 /
@@ -83,7 +84,7 @@ plot \
 
 pause -1
 set term pdfcairo enhanced
-set output "${SAVE:0: -4}.pdf"
+set output "total_energy.pdf"
 replot
 EOF
 
