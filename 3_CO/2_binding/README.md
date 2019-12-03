@@ -5,7 +5,7 @@ It can be computed by calculation the total energy of the isolated atoms with re
 # Purpose
   1. Calcualte the binding energy of a molecule
   2. Run a spin polarized calculation
-  - Here we have a problem!!! Oxygen is a paramagnetic atom where the electron prefer to occupy states with parallel spin instead of filling up states with antiparallel configuration.
+  - Here we have a problem!!! Oxygen is a paramagnetic atom where the electron prefer to occupy states with parallel spin instead of filling up states with antiparallel configuration. See Ref/hunds_rule.png for an illustration of the electron configuration.
   - In order to perform this calculation we set 'starting_magnetization=0.1' to a value different from 0.0 to tell QE to perform a spin-polarized calculation
 
 # Running the exercise
@@ -17,3 +17,9 @@ It can be computed by calculation the total energy of the isolated atoms with re
   3. Calculate the binding energy "CO_tot - (C_tot + O_tot)"
   4. Confront the obtained value withe the provided reference "3_CO/Ref/binding.dat"
 
+# Script
+Alternately just launch the script and learn nothing :)
+     ```
+     ./run_pp
+     ```
+Check the numbers in binding_energy.dat

@@ -3,6 +3,7 @@
   prefix       = "O",
   pseudo_dir   = "../../Pseudo",
   outdir       = "./tmp",
+  verbosity   = 'high'
 /
 &SYSTEM
   ibrav      = 0,
