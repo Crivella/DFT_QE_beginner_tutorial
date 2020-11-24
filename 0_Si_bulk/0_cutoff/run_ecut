@@ -12,6 +12,7 @@ echo "Started at: " `date`
 SAVE=E_vs_ecut.dat				#NAME=something assign a variable of name NAME and value something (can be a string ora  number)
 						#!!!!!! There must be no spaces when assigning variable
 						#Use "... ..." for a string with spaces
+GAP=Gap_vs_ecut.dat
 echo -e "# ecut(Ry)\tEnergy(Ry)" > $SAVE	# COMMAND > NAME  write the stdout of the command COMMAND into the file NAME
 						#Create the file if it does not exist
 						#Overwrite the file it exist
@@ -68,6 +69,9 @@ ENERGY=`cat $OUT | grep ! | tr -dc '0-9,-.'`		#COMMAND1 | COMMAND2   pipe stdout
 							#tr -dc LIST  (delete complementary)  deletes every character that is not present 
 							#in the list LIST
 echo -e "$ecut\t\t$ENERGY" >> $SAVE
+
+BANDS=`cat $OUT | grep highest | awk '{print $7,$8,$8-$7}'`
+echo -e "$ecut\t\t$BANDS" >> $GAP
 
 done
 
