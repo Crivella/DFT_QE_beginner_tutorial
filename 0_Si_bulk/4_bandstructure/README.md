@@ -27,7 +27,7 @@ We also specify 6 points to define 5 "lines" in k-space that contain 8 or 1 poin
       Compare the output of the 'si.scf.out' and 'si.bands.out' files: note the difference in the k-point lists and in the SCF/NSCF iteration loops.
 
       The k-points coordinates can be chosen:
-      - Manually by looking up a table of high-symmetry point for the system's lattice (FCC)
+      - Manually by looking up a table of high-symmetry point for the system's lattice (FCC), e.g. from [Bilbao crystallographic server](https://www.cryst.ehu.es/cryst/get_kvec.html) or [1] or standard textbooks.
       ![BZ](Ref/bands-mix.png?raw=true "BZ")
       - Or by using the XCrySDen `tools` -> `k-path selection` tool. NOTE: when saving the k-path specify the pwscf extension in the menu and IN THE FILE NAME or XCrySDen will use the wrong format.
 
@@ -57,3 +57,5 @@ We also specify 6 points to define 5 "lines" in k-space that contain 8 or 1 poin
       ```
       gnuplot> load "Scripts/Sibands.gnuplot"
       ```
+## Bibliography
+1.  Aroyo et al, Acta Cryst. (2014). A70, 126-137 [Link](https://doi.org/10.1107/S205327331303091X)
