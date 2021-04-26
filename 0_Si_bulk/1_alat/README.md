@@ -17,14 +17,16 @@ We then need to minimize the total energy with respect to a range of lattice par
   2. Use grep to collect the total energies from all files in one command
       ```
       % grep -e '!' *out*alat*
+      si.scf.out_alat10.00:!    total energy              =     -15.84397990 Ry
+      [...]
       ```
   3. Save the lattice parameters and total energies in a 2 column file (alat,Etot) called 'Etot_vs_alat.dat' and plot it to estimate the lattice parameter corresponding to the minimum energy.
      ```
      gnuplot> plot "Etot_vs_alat.dat" w lp  
      ```
-  4. In principle you could use a finer grid to find a precise value of alat, but this may not yield the right value for various reasons. It is better to determine alat by fitting to an equation of state such as the Murnaghan equation:
+  4. In principle you could use a finer grid to find a precise value of alat, but this may not yield the right value for various reasons. It is better to determine alat by fitting to an equation of state such as the third-order Birch-Murnaghan equation:
      ![Third-order Birch–Murnaghan isothermal equation of state](Ref/birch.png?raw=true "Birch-Murnaghan EOS")
-     You can use the quantum-ESPRESSO tool `ev.x` to fit with the Birch-Murnaghan (Birch2) EOS:
+     You can use the quantum-ESPRESSO tool `ev.x` to fit with this EOS by selecting "birch2":
      ```
      % ev.x
         Lattice parameter or Volume are in (au, Ang) > au
@@ -39,7 +41,7 @@ We then need to minimize the total energy with respect to a range of lattice par
      # a0 =  5.40333 Ang, k0 =  94.9 GPa,  V0 =   266.15 (a.u.)^3,  V0 =   39.44 A^3 
      [...]
      ```
-     which shows the correct alat is 10.21 bohr. To obtain a reasonable value of the lattice constant, you should compute Etot over a range of about 5-10% above and below the minimum.
+     which shows the correct alat is 10.211 bohr. To obtain a reasonable value of the lattice constant, you should compute Etot over a range of about 5-10% above and below the minimum.
   5. Alternatively you can use the 'DoFit.gnu' gnuplot script to do the curve fitting and plot the resulting fits. It works only for FCC lattice and expects to read a file called 'Etot_vs_alat.dat'. The result of the fitting procedure is displayed on-screen (Lattice constant = 10.211 au) and the curves are plotted in the file 'murnaghan_fit.pdf'
      ```
      % gnuplot DoFit.gnu
