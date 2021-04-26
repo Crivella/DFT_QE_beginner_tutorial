@@ -42,12 +42,12 @@ We also specify 6 points to define 5 "lines" in k-space that contain 8 or 1 poin
       gnuplot> plot "Sibands.dat.gnu" w l
       ```
       It is common to redefine the energy zero as being at the top of the valence band (or at the Fermi level in a metal). The VBM lies at the Gamma point in silicon, so it is easy to find in the 'si.bandspp.out' file. (It is not a point in the SCF k-grid.)
+> Note that the Fermi level is written in the output of the *SCF* run.
       ```
           k = 0.0000 0.0000 0.0000 (   411 PWs)   bands (ev):
               
       -5.8271   6.2154   6.2154   6.2154   8.7810   8.7810   8.7810   9.6565
       ```
-> Note that the Fermi level is written in the output of the *SCF* run.
 
       Plotting again but shifting the data by VBM we have
       ```
