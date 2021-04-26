@@ -3,23 +3,18 @@ QE expands the wavefunctions on a plane wave (PW) basis set.
 As with any basis set, an infinite number of functions is required to perfectly represent the original function.
 We need to limit the number of PW to the smallest number that represents our system accurately.
 
-  1. Look at the provided input file for bulk silicon
+  1. Look at the provided input file for bulk silicon and visualize it with `Xcrysden`. A brief explanation of variables is given in the file. Complete details are given on the [QE website](https://www.quantum-espresso.org/Doc/INPUT_PW.html).
       ```
       % cat si.scf.in
+      % xcrysden --pwi si.scf.in
       ```
-      A brief explanation of variables is given in the file. Complete details are given on the [QE website](https://www.quantum-espresso.org/Doc/INPUT_PW.html).
-
-      Run the calculation using the provided input file:
+      Now run the calculation, redirecting the output to a file:
       ```
       % pw.x < si.scf.in > si.scf.out
       ```
       or to use multiple processors, if quantum-espresso has been compiled in parallel
       ```
       % mpirun -np 2 pw.x < si.scf.in > si.scf.out
-      ```
-      Visualize the system using `Xcrysden`:
-      ```
-      % xcrysden --pwi si.scf.in
       ```
   2. Look at the information presented on the output file 
       - A header containing information of the version of espresso used
