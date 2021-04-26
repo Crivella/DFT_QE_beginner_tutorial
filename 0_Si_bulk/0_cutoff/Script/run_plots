@@ -37,13 +37,21 @@ gnuplot plot-energy-script.gnu
 cat > plot-gap-script.gnu <<EOF
 #!/usr/bin/gnuplot
 
-set term pdfcairo enhanced
-set output "${GAP}.pdf"
-
 set xlabel "E_{cut} (Ry)"
 set ylabel "E (eV)
 
+# Generate a PDF image
+set term pdfcairo enhanced
+set output "${GAP}.pdf"
+set multiplot layout 1,2
+plot \
+	'$GAP'  u 1:3 w lp pt 7 lw 2  lc rgb "red" title "CBM",\
+	'$GAP'  u 1:2 w lp pt 6 lw 2  lc rgb "blue" title "VBM"
+plot \
+	'$GAP'  u 1:4 w lp pt 5 lw 2  lc rgb "black" title "Gap"
+set nomulti
 
+# Generate a PNG image (useful for GitHub)
 set term pngcairo enhanced size 800,400
 set output "${GAP}.png"
 set multiplot layout 1,2
@@ -55,8 +63,8 @@ plot \
 set nomulti
 replot
 
-# x11 should work on any system
-# try wxt (ubuntu) or aqua (mac) for nicer plots
+# Plot onscreen just the gap.
+# x11 should work on most system. Try wxt (ubuntu) or aqua (mac) for nicer plots.
 set term x11 enhanced
 set out
 plot \
@@ -68,19 +76,5 @@ EOF
 #Run the gnuplot script to make the plot
 gnuplot plot-gap-script.gnu
 
-
-
 exit
-
-
-
-
-
-
-
-exit
-
-
-
-
 

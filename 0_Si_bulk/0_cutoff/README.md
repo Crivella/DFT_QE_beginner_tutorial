@@ -47,9 +47,13 @@ We need to limit the number of PW to the smallest number that represents our sys
       % grep -e '!' *out*Ry
       ```
      Copy and paste the cutoff energies and total energies into a 2 column file (Ecut,Etot) called 'Etot_vs_Ecut.dat' and plot it to see if you have reached convergence. 
+     ```
+     gnuplot> plot "Etot_vs_Ecut.dat" w l
      A possible (but tight) threshold is 1meV/atom. An example file and plot is given in the Ref folder. 
 
-     If the plot doesn't look right, make sure you have used the right cutoff in the right input and output file:
+     ![Total energy vs kinetic energy cutoff](Ref/Etot_vs_Ecut.png?raw=true "Total energy vs kinetic energy cutoff")
+
+     If the plot doesn't look right, make sure you have used the right cutoff in the appropriate input and output files:
      ```
      % grep 'kinetic-energy cutoff' si.scf.out_25Ry 
      kinetic-energy cutoff     =      25.0000  Ry
@@ -57,7 +61,6 @@ We need to limit the number of PW to the smallest number that represents our sys
      ecutwfc   = 25,
      ```
 
-     ![Total energy vs kinetic energy cutoff](Ref/Etot_vs_Ecut.png?raw=true "Total energy vs kinetic energy cutoff")
   5. Use grep on each file to extract the eigenvalues of the highest occupied and lowest unoccupied bands, and compute the band gap using the 'bc -l' program
       ```
       % grep -e 'highest' *out*Ry 
