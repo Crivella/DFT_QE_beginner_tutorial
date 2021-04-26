@@ -1,18 +1,18 @@
 # Band structure calculation
-In a periodic solid, the eigenfunction of the system can be characterized by the reciprocal space vector k and a band index.
-It is useful to plot these psi_n,k along an high-symmetry path which usually shows most of the interesting feature.
-  1. Run the self-consistent calculation using the provided input 'si.scf-manual.in'
+In a periodic solid, the eigenfunction of the system can be characterized by the reciprocal space vector **k** and a band index *n*.
+It is useful to plot these Ψ(n,**k**) along high-symmetry paths which usually shows most of the interesting features.
+  1. Run the self-consistent calculation using the provided input 'si.scf.in' to generate the ground state electronic charge density.
       ```
-      pw.x < si.scf-manual.in > si.scf-manual.out
+      % pw.x < si.scf.in > si.scf.out
       ```
-  2. Run the non-self-consistent(nscf) calculation using the provided input 'si.bands-manual.in'
+  2. Run the non-self-consistent (nscf/bands) calculation using the provided input 'si.bands.in' to generate a set of eigenvalues and eigenfunctions on specific k-points of the Brillouin zone
       ```
-      pw.x < si.bands-manual.in > si.bands-manual.out
+      % pw.x < si.bands.in > si.bands.out
       ```
   The k-points coordinates can be chosen:
   - Manually by looking up a table of high-symmetry point for the system's lattice
-  - Using the XCrySDen 'tool -> k-path selection' tool.
-      NOTE: when saving the k-path specify the pwscf extension in the menu and IN THE FILE NAME or XCrySDen will use the wrong format
+  - Using the XCrySDen `tools` -> `k-path selection` tool.
+> NOTE: when saving the k-path specify the pwscf extension in the menu and IN THE FILE NAME or XCrySDen will use the wrong format
   3. Run the bands.x post-processing using the provided input 'si.bandspp.in'
       ```
       bands.x < si.bandspp-manual.in > si.bandspp.out
