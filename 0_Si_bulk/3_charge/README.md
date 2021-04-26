@@ -28,3 +28,5 @@ We adopt the kinetic energy cutoff, k-point mesh, and lattice parameter determin
 ## Bibliography
 1. Koumpouras and Andreas Larsson, J. Phys.: Condens. Matter 32 (2020) 315502 (12pp) [Link](https://doi.org/10.1088/1361-648X/ab7fd8)
 Distinguishing between chemical bonding and physical binding using electron localization function (ELF)
+
+### When you have completed this tutorial, you can move on to [4_bandstructure: Computing the bands](../4_bandstructure)

@@ -38,3 +38,5 @@ A second parameter that must be converged is the number of k-points that are use
   6. ADVANCED: Investigate the effect of using odd folding parameters (e.g. 3 3 3 1 1 1 and 3 3 3 0 0 0). Is it more or less efficient than before? Why?
   7. ADVANCED: Use the 'run_kpoints' and 'run_plots' scripts in the 'Scripts' directory to run 1-3 and 5 automatically.
      Do not use the scripts for your own projects unless you understand well how they work!
+
+### When you have completed this tutorial, you can move on to [3_charge: Computing the charge density](../3_charge)

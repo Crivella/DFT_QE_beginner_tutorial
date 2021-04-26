@@ -57,4 +57,4 @@ We then need to minimize the total energy with respect to a range of lattice par
      Do not use the scripts for your own projects unless you understand well how they work!
   7. ADVANCED: An alternative method to find the lattice parameters is to use the 'vc-relax' option within quantum-ESPRESSO. By reading the [INPUT_PW documentation](https://www.quantum-espresso.org/Doc/INPUT_PW.html), modify the 'si.scf.in' file for a vc-relax run, and compare the result you get for alat with the above methods.
 
-
+## When you have completed this tutorial, you can move on to [2_kpoints: Convergence with k-points](../2_kpoints)
