@@ -16,7 +16,7 @@ We then need to minimize the total energy with respect to a range of lattice par
       ```
   2. Use grep to collect the total energies from all files in one command
       ```
-      grep -e '!' *out*alat*
+      % grep -e '!' *out*alat*
       ```
   3. Save the lattice parameters and total energies in a 2 column file (alat,Etot) called 'Etot_vs_alat.dat' and plot it to estimate the lattice parameter corresponding to the minimum energy.
      ```
@@ -40,7 +40,7 @@ We then need to minimize the total energy with respect to a range of lattice par
      [...]
      ```
      which shows the correct alat is 10.21 bohr. To obtain a reasonable value of the lattice constant, you should compute Etot over a range of about 5-10% above and below the minimum.
-  5. Alternatively you can use the 'DoFit.gnu' gnuplot script to do the curve fitting and plot the resulting fits (works only for FCC lattice). The result of the fit is displayed on-screen (Lattice constant = 10.211 au) and the curves are plotted in the file 'murnaghan_fit.pdf'
+  5. Alternatively you can use the 'DoFit.gnu' gnuplot script to do the curve fitting and plot the resulting fits. It works only for FCC lattice and expects to read a file called 'Etot_vs_alat.dat'. The result of the fitting procedure is displayed on-screen (Lattice constant = 10.211 au) and the curves are plotted in the file 'murnaghan_fit.pdf'
      ```
      % gnuplot DoFit.gnu
      ```
@@ -52,7 +52,7 @@ We then need to minimize the total energy with respect to a range of lattice par
      % ./Scripts/run_plots
      ```
      Note that the file generated in this way is called 'Etot_vs_alat-script.dat'.
-     NB: Do not use the scripts for your own projects unless you understand well how they work!
+     Do not use the scripts for your own projects unless you understand well how they work!
   7. ADVANCED: An alternative method to find the lattice parameters is to use the 'vc-relax' option within quantum-ESPRESSO. By reading the [INPUT_PW documentation](https://www.quantum-espresso.org/Doc/INPUT_PW.html), modify the 'si.scf.in' file for a vc-relax run, and compare the result you get for alat with the above methods.
 
 

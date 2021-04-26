@@ -88,4 +88,5 @@ We need to limit the number of PW to the smallest number that represents our sys
       ./Script/run_ecut
       ./Script/run_plots
       ```
+      NB: Do not use the scripts for your own projects unless you understand well how they work!
       
