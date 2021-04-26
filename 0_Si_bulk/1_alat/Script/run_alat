@@ -7,7 +7,7 @@ echo "TMP_DIR:" $TMP_DIR
 echo "Parallel command:" $RUN_COMMAND
 echo "Started at: " `date`
 
-SAVE=E_vs_cell.dat
+SAVE=Etot_vs_cell-script.dat
 echo -e "# alat(bohr) energy(Ry)" > $SAVE
 
 for alat in 10.00 10.05 10.10 10.15 10.20 10.25 10.30 10.35; do
@@ -60,29 +60,4 @@ echo -e "$alat\t\t$ENERGY" >> $SAVE
 done
 
 echo "Run completed at: " `date`
-
-cat > plot.gnu <<EOF
-#!/usr/bin/gnuplot
-
-set term wxt enhanced
-
-set xlabel "alat (bohr)"
-set ylabel "E_{tot} (Ry)"
-
-plot \
-	'$SAVE'  u 1:2 w lp pt 7 lw 2  lc rgb "black" title "E vs alat" 
-
-pause -1
-set term pdfcairo enhanced
-set output "${SAVE}.pdf"
-replot
-EOF
-
-gnuplot plot.gnu
-
-
-exit
-
-
-
-
+echo "Now launch the run_plots script."
