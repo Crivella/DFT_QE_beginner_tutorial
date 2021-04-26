@@ -1,16 +1,32 @@
 # Band structure calculation
 In a periodic solid, the eigenfunction of the system can be characterized by the reciprocal space vector **k** and a band index *n*.
 It is useful to plot these Ψ(n,**k**) along high-symmetry paths which usually shows most of the interesting features.
-  1. Run the self-consistent calculation using the provided input 'si.scf.in' to generate the ground state electronic charge density.
+  1. Run the self-consistent calculation using the provided input 'si.scf.in' to generate the ground state electronic charge density. As before, we use an automatically generated k-point set:
       ```
+      % tail -2 si.scf.in 
+      K_POINTS {automatic}
+      4 4 4 1 1 1
+
       % pw.x < si.scf.in > si.scf.out
       ```
-  2. Run the non-self-consistent (nscf/bands) calculation using the provided input 'si.bands.in' to generate a set of eigenvalues and eigenfunctions on specific k-points of the Brillouin zone
+  2. Run the non-self-consistent (nscf/bands) calculation using the provided input 'si.bands.in' to generate a set of eigenvalues and eigenfunctions on specific k-points of the Brillouin zone. We now request several empty bands (6) in addition to the filled (4) ones via `  nbnd      = 10`. 
+We also specify 6 points to define 5 "lines" in k-space that contain 8 or 1 points per line. Here the k-points are defined in cartesian coordinates in terms of 2π/alat; for other options see the documentation for [K_POINTS](http://https://www.quantum-espresso.org/Doc/INPUT_PW.html).
       ```
+      % tail -8 si.bands.on
+      K_POINTS {tpiba_b}
+      6
+      0.500 0.500 0.500 8 ! L
+      0.000 0.000 0.000 8 ! Gamma
+      0.000 1.000 0.000 8 ! X
+      0.250 1.000 0.250 1 ! U
+      0.750 0.750 0.000 8 ! K
+      0.000 0.000 0.000 1 ! Gamma
+
       % pw.x < si.bands.in > si.bands.out
       ```
   The k-points coordinates can be chosen:
-  - Manually by looking up a table of high-symmetry point for the system's lattice
+  - Manually by looking up a table of high-symmetry point for the system's lattice (FCC)
+  ![BZ](Ref/fcc_brillouin.png?raw=true "BZ")
   - Using the XCrySDen `tools` -> `k-path selection` tool.
 > NOTE: when saving the k-path specify the pwscf extension in the menu and IN THE FILE NAME or XCrySDen will use the wrong format
   3. Run the bands.x post-processing using the provided input 'si.bandspp.in'
