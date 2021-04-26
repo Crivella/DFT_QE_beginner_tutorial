@@ -43,6 +43,7 @@ We then need to minimize the total energy with respect to a range of lattice par
   5. Alternatively you can use the 'DoFit.gnu' gnuplot script to do the curve fitting and plot the resulting fits (works only for FCC lattice). The result of the fit is displated on-screen and the curves are plotted in the file 'murnaghan_fit.pdf'
      ```
      % gnuplot DoFit.gnu
+     ```
      ![Murnaghan and parabolic fits](Ref/murnagan_fit.png?raw=true "Murnaghan fits")
   6. ADVANCED: Use the scripts 'run_alat' and 'run_plots' which will do all the above steps automatically.
   7. ADVANCED: An alternative method is to use the 'vc-relax' option within quantum-ESPRESSO. By reading the INPUT_PW file, modify the si.scf.in file for a vc-relax run, and compare the result you get for alat with the above methods.
