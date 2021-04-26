@@ -2,7 +2,7 @@
 Beginner tutorial for Density Functional Theory (DFT) calculations using [Quantum Espresso](https://www.quantum-espresso.org/)(QE)[1,2]. 
 
 ## Required packages
-* A working version of QE needs to be installed/compiled and the executables needs to be located in the PATH environmental variable or specified manually in the variable BIN_DIR.
+* A working version of QE (>=6.4) needs to be installed/compiled and the executables needs to be located in the PATH environmental variable or specified manually in the variable BIN_DIR.
 * A working version of gnuplot (>=5.0) (Some scripts will generate gnuplot files to plot the results. Other programs can also be used)
 * A working version of XCrySDen (http://www.xcrysden.org/), a program that can visualize input and output files of QE.
 
