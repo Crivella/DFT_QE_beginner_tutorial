@@ -57,8 +57,7 @@ We need to limit the number of PW to the smallest number that represents our sys
      ecutwfc   = 25,
      ```
 
-     Etot_vs_Ecut-script.dat.pdf
-     ![Total energy vs kinetic energy cutoff](Ref/Etot_vs_Ecut.pdf?raw=true "Total energy vs kinetic energy cutoff")
+     ![Total energy vs kinetic energy cutoff](Ref/Etot_vs_Ecut.png?raw=true "Total energy vs kinetic energy cutoff")
   5. Use grep on each file to extract the eigenvalues of the highest occupied and lowest unoccupied bands, and compute the band gap using the 'bc -l' program
       ```
       % grep -e 'highest' *out*Ry 
