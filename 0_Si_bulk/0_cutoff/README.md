@@ -7,9 +7,9 @@ We need to limit the number of PW to the smallest number that represents our sys
       ```
       % cat si.scf.in
       ```
-     A brief explanation of variables is given in the file. Complete details are given at https://www.quantum-espresso.org/Doc/INPUT_PW.html
+      A brief explanation of variables is given in the file. Complete details are given at [https://www.quantum-espresso.org/Doc/INPUT_PW.html]
 
-Run the calculation using the provided input file:
+      Run the calculation using the provided input file:
       ```
       % pw.x < si.scf.in > si.scf.out
       ```
