@@ -83,7 +83,7 @@ We need to limit the number of PW to the smallest number that represents our sys
       ```
      Save the energies in a 4 column file (Ecut, VBM, CBM, gap) called 'Gap_vs_Ecut.dat' and plot them versus the cutoff. How does the convergence compare with the value expected from the total energy run?
      ![Eigenvalues and gap vs kinetic energy cutoff](Ref/Gap_vs_Ecut.png?raw=true "Gap vs kinetic energy cutoff")
-  6. ADVANCED USERS: The shell scripts 'run_ecut' and 'run_plots' in the 'Script' directory will do everything automatically from step 3 to 5 (explained using comments inside the script). They must run from the main 0_cutoff directory (or copied there). Inspect the PDFs that are created.
+  6. ADVANCED USERS: The shell scripts 'run_ecut' and 'run_plots' in the 'Script' directory will do everything automatically from step 3 to 5 (explained using comments inside the script). You may first have to modify the ENVIRONMENT_VARIABLES file in the root directory. The scripts must be run from the main 0_cutoff directory (or copied there). Hit 'q' to cycle through plot windows as they appear. Inspect the PDFs or PNGs that are created.
       ```
       ./Script/run_ecut
       ./Script/run_plots
