@@ -9,8 +9,8 @@ echo "Started at: " `date`
 
 
 # self-consistent calculation
-IN=si_script.scf.in
-OUT=si.scf.out
+IN=si.scf-script.in
+OUT=si.scf-script.out
 cat > $IN << EOF
 &CONTROL
   calculation  = "scf",
@@ -60,8 +60,8 @@ echo -e "\tEnd: " `date`
 
 
 # bands calculation
-IN=si_script.bands.in
-OUT=si.bands.out
+IN=si.bands-script.in
+OUT=si.bands-script.out
 cat > $IN << EOF
 &CONTROL
   calculation  = "bands",
@@ -106,8 +106,8 @@ echo -e "\tEnd: " `date`
 
 
 
-IN=si_script.bandspp.in
-OUT=si.bandspp.out
+IN=si.bandspp-script.in
+OUT=si.bandspp-script.out
 cat > $IN << EOF
 &bands
     prefix = "Si",
@@ -124,8 +124,8 @@ $COMMAND < $IN > $OUT
 echo -e "\tEnd: " `date`
 
 
-IN=si_script.plotband.in
-OUT=si.plotband.out
+IN=si.plotband-script.in
+OUT=si.plotband-script.out
 cat > $IN << EOF
 Sibands.dat
 -6.0 10.0
