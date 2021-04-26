@@ -45,8 +45,8 @@ We also specify 6 points to define 5 "lines" in k-space that contain 8 or 1 poin
      ```
           k = 0.0000 0.0000 0.0000 (   411 PWs)   bands (ev):
 
-    -5.8271   6.2154   6.2154   6.2154   8.7810   8.7810   8.7810   9.6565
-    ```
+     -5.8271   6.2154   6.2154   6.2154   8.7810   8.7810   8.7810   9.6565
+     ```
 > Note that the Fermi level is written in the output of the *SCF* run.
 
      Plotting again but shifting the data by VBM we have
