@@ -31,9 +31,9 @@ We then need to minimize the total energy with respect to a range of lattice par
         Enter type of bravais lattice (fcc, bcc, sc, noncubic) > fcc
         Enter type of equation of state :
         1=birch1, 2=birch2, 3=keane, 4=murnaghan > 2
-        Input file > E_vs_cell.dat
-        Output file > E_vs_cell-birch2.dat
-     % cat E_vs_cell-birch2.dat
+        Input file > Etot_vs_alat.dat
+        Output file > Etot_vs_alat-birch2.dat
+     % cat Etot_vs_alat-birch2.dat
      # equation of state: birch 3rd order.  chisq =   0.3538D-09
      # a0 = 10.2108 a.u., k0 =  948 kbar, dk0 =  5.53 d2k0 = -0.036 emin =  -15.84756
      # a0 =  5.40333 Ang, k0 =  94.9 GPa,  V0 =   266.15 (a.u.)^3,  V0 =   39.44 A^3 
@@ -46,12 +46,13 @@ We then need to minimize the total energy with respect to a range of lattice par
      ```
      ![Murnaghan and parabolic fits](Ref/murnagan_fit.png?raw=true "Murnaghan fits")
      In contrast to a simple parabolic fit, the Murnaghan EOS fits perfectly to the computed data.
-  6. ADVANCED: Use the scripts 'run_alat' and 'run_plots' in the 'Scripts' folder which will do all the above steps automatically.
+  6. ADVANCED: Use the scripts 'run_alat' and 'run_plots' in the 'Scripts' folder which will do steps 1-3 automatically. 
      ```
      % ./Scripts/run_alat
      % ./Scripts/run_plots
      ```
-     NB: Do not use the scripts for your own projects unless you understand well how they work.
+     Note that the file generated in this way is called 'Etot_vs_alat-script.dat'.
+     NB: Do not use the scripts for your own projects unless you understand well how they work!
   7. ADVANCED: An alternative method to find the lattice parameters is to use the 'vc-relax' option within quantum-ESPRESSO. By reading the [INPUT_PW documentation](https://www.quantum-espresso.org/Doc/INPUT_PW.html), modify the 'si.scf.in' file for a vc-relax run, and compare the result you get for alat with the above methods.
 
 

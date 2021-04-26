@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SAVE=E_vs_cell-script.dat
+SAVE=Etot_vs_alat-script.dat
 
 cat > plot-script.gnu <<EOF
 #!/usr/bin/gnuplot

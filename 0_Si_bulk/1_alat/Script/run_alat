@@ -7,7 +7,7 @@ echo "TMP_DIR:" $TMP_DIR
 echo "Parallel command:" $RUN_COMMAND
 echo "Started at: " `date`
 
-SAVE=Etot_vs_cell-script.dat
+SAVE=Etot_vs_alat-script.dat
 echo -e "# alat(bohr) energy(Ry)" > $SAVE
 
 for alat in 10.00 10.05 10.10 10.15 10.20 10.25 10.30 10.35; do
