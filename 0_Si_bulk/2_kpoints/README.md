@@ -33,8 +33,8 @@ A second parameter that must be converged is the number of k-points that are use
      ![k-point convergence of gap](Ref/Gap_vs_kgrid.png?raw=true "k-point convergence of gap")
      Unlike the total energy, the gap does not converge well with k-points! Why is this, and is it a problem?
 
-  4. ADVANCED: Previously we have specified an offset "N N N 1 1 1" in the k-point list. This causes the k-grid to be shifted away from the origin, i.e., it does not contain the gamma point. You could instead use no offset "N N N 0 0 0", however it often turns out to be less efficient. Demonstrate that this is the case for bulk silicon by repeating the above calculations and removing the offset each time.
+  5. ADVANCED: Previously we have specified an offset "N N N 1 1 1" in the k-point list. This causes the k-grid to be shifted away from the origin, i.e., it does not contain the gamma point. You could instead use no offset "N N N 0 0 0", however it often turns out to be less efficient. Demonstrate that this is the case for bulk silicon by repeating the above calculations and removing the offset each time.
      ![k-point convergence and offset](Ref/Etot_vs_kgrid.dat.png?raw=true "effect of offset")
-  5. ADVANCED: Investigate the effect of using odd folding parameters (e.g. 3 3 3 1 1 1 and 3 3 3 0 0 0). Is it more or less efficient than before? Why?
-  6. ADVANCED: Use the 'run_kpoints' and 'run_plots' scripts in the 'Scripts' directory to run 1-4 automatically.
+  6. ADVANCED: Investigate the effect of using odd folding parameters (e.g. 3 3 3 1 1 1 and 3 3 3 0 0 0). Is it more or less efficient than before? Why?
+  7. ADVANCED: Use the 'run_kpoints' and 'run_plots' scripts in the 'Scripts' directory to run 1-3 and 5 automatically.
      Do not use the scripts for your own projects unless you understand well how they work!
