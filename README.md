@@ -1,5 +1,5 @@
-# DFT_esercitazioni
-Beginner tutorial for Density Functional Theory(DFT) calculation using [Quantum Espresso](https://www.quantum-espresso.org/)(QE)[1,2]
+# DFT Tutorial 
+Beginner tutorial for Density Functional Theory (DFT) calculations using [Quantum Espresso](https://www.quantum-espresso.org/)(QE)[1,2]. 
 
 ## Required packages
 * A working version of QE needs to be installed/compiled and the executables needs to be located in the PATH environmental variable or specified manually in the variable BIN_DIR.
@@ -9,7 +9,7 @@ Beginner tutorial for Density Functional Theory(DFT) calculation using [Quantum 
 ## Installing/Compiling QE
 * QE can be installed from repository for Debian based linux distros (e.g.: Ubuntu) by running the command
     ```
-    sudo apt-get install quantum-espresso
+    % sudo apt-get install quantum-espresso
     ```
     PS: The latest available version is shown at: https://packages.ubuntu.com/groovy/quantum-espresso (>6.5-1)
 
@@ -19,22 +19,22 @@ Beginner tutorial for Density Functional Theory(DFT) calculation using [Quantum 
  3. From terminal run the commands
 
      ```
-     ./configure --prefix=path for installation
-     make all
-     make install
+     % ./configure --prefix=path for installation
+     % make all
+     % make install
      ```
 
-  NOTES: options for the configuration / use of external libraries for optimized executables is beyond the purpose of this tutorial.
+  NOTE: options for the configuration / use of external libraries for optimized executables is beyond the purpose of this tutorial.
 
 
-## Exercises and their purpose/aim
+## Overview of exercises 
 ### Bulk silicon (0_Si_bulk)
-  1. Construct an input file for a choosen system and visualize it using xcrysden 
+  1. View an input file for a simple crystal and visualize it using xcrysden 
   2. Run a simple self-consistent calculation using pw.x
-  3. Estimate the kinetic cutoff convergency
+  3. Determine the convergence with respect to the kinetic energy cutoff and k-point mesh 
   4. Determine the theoretical lattice parameter
   5. Calculate a charge density and visualize it using XCrySDen
-  6. Generate a high-symmetry k-path using xcrysden and calculate a band structure
+  6. Generate a high-symmetry k-path using xcrysden and calculate a band structure using a non-self-consistent calculation
   7. Calculate the density of states(DOS) and optical properties(independent particle approximation) and show the convergence over the number of k_points and empty bands used
 ### Two-dimensional boron nitride (1_BN)
   1. How to use a supercell in order to run calculation for material that are not periodic in all directions.

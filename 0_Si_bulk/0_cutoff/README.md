@@ -3,13 +3,23 @@ QE expands the wavefunctions on a plane wave (PW) basis set.
 As with any basis set, an infinite number of functions is required to perfectly represent the original function.
 We need to limit the number of PW to the smallest number that represents our system accurately.
 
-  1. Run the calculation using the provided input file:
+  1. Look at the provided input file for bulk silicon
+      ```
+      % cat si.scf.in
+      ```
+     A brief explanation of variables is given in the file. Complete details are given at https://www.quantum-espresso.org/Doc/INPUT_PW.html
+
+Run the calculation using the provided input file:
       ```
       % pw.x < si.scf.in > si.scf.out
       ```
       or to use multiple processors, if quantum-espresso has been compiled in parallel
       ```
       % mpirun -np 2 pw.x < si.scf.in > si.scf.out
+      ```
+      Visualize the system using `Xcrysden`:
+      ```
+      % xcrysden --pwi si.scf.in
       ```
   2. Look at the information presented on the output file 
       - A header containing information of the version of espresso used
@@ -20,17 +30,16 @@ We need to limit the number of PW to the smallest number that represents our sys
       - The eigenvalues and occupations for the requested Kohn-Sham states at every k-point
       - The total energy marked by a ! ( as a sum of different contributions)
       - The forces acting on the atoms (should be 0 for a system at the equilibrium)
-      - Information on the total time and time for each subroutine 
-     Note that QE often uses Rydberg and bohr atomic units: 1 Ry = 13.6057eV, 1 bohr = 0.529177 Angstrom.
-  3. Repeat step 1 and change each time the value of ecutwfc from 5 up to 30 Ry and the name of the output (so as to not overwrite them)
+      - Information on the total time and time for each subroutine. Note that QE often uses Rydberg and bohr atomic units: 1 Ry = 13.6057eV, 1 bohr = 0.529177 Angstrom.
+  3. Repeat step 1 and change each time the value of `ecutwfc` from 5 up to 30 Ry and the name of the output (so as to not overwrite them)
       ```
       % pw.x < si.scf.in > si.scf.out_5Ry
       ```
-      Modify (edit) the si.scf.in file and change ecutwfc 5 -> ecutwfc 10
+      Modify (edit) the `si.scf.in` file and change `ecutwfc = 5` to `ecutwfc = 10`
       ```
       % pw.x < si.scf.in > si.scf.out_10Ry
       ```
-      You can also make this change directly to the original input file using the 'sed' command:
+      You can also make this change directly to the original input file using the `sed` command:
       ```
       % sed -e 's/ecutwfc   = 5/ecutwfc   = 10/' si.scf.in > si.scf.in_10Ry
       % grep 'ecutwfc' si.scf.in_10Ry 
