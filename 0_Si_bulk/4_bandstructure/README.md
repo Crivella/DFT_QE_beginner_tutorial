@@ -26,7 +26,7 @@ We also specify 6 points to define 5 "lines" in k-space that contain 8 or 1 poin
       ```
   The k-points coordinates can be chosen:
   - Manually by looking up a table of high-symmetry point for the system's lattice (FCC)
-  ![BZ](Ref/fcc_brillouin.png?raw=true "BZ")
+  ![BZ](Ref/bands-mix.png?raw=true "BZ")
   - Using the XCrySDen `tools` -> `k-path selection` tool.
 > NOTE: when saving the k-path specify the pwscf extension in the menu and IN THE FILE NAME or XCrySDen will use the wrong format
   3. Run the bands.x post-processing using the provided input 'si.bandspp.in'
