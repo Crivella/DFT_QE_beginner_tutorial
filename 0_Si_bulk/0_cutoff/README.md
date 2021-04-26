@@ -21,7 +21,8 @@ We need to limit the number of PW to the smallest number that represents our sys
       - The total energy marked by a ! ( as a sum of different contributions)
       - The forces acting on the atoms (should be 0 for a system at the equilibrium)
       - Information on the total time and time for each subroutine 
-  3. Repeat step 1 and change each time the value of ecutwfc from 5 up to 30 and the name of the output (so as to not overwrite them)
+     Note that QE often uses Rydberg and bohr atomic units: 1 Ry = 13.6057eV, 1 bohr = 0.529177 Angstrom.
+  3. Repeat step 1 and change each time the value of ecutwfc from 5 up to 30 Ry and the name of the output (so as to not overwrite them)
       ```
       % pw.x < si.scf.in > si.scf.out_5Ry
       ```
@@ -56,6 +57,8 @@ We need to limit the number of PW to the smallest number that represents our sys
      ecutwfc   = 25,
      ```
 
+     Etot_vs_Ecut-script.dat.pdf
+     ![Total energy vs kinetic energy cutoff](Ref/Etot_vs_Ecut.pdf?raw=true "Total energy vs kinetic energy cutoff")
   5. Use grep on each file to extract the eigenvalues of the highest occupied and lowest unoccupied bands, and compute the band gap using the 'bc -l' program
       ```
       % grep -e 'highest' *out*Ry 
