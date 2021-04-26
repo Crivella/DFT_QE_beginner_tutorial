@@ -9,20 +9,24 @@ echo "TMP_DIR:" $TMP_DIR
 echo "Parallel command:" $RUN_COMMAND
 echo "Started at: " `date`
 
-SAVE=E_vs_ecut.dat				#NAME=something assign a variable of name NAME and value something (can be a string ora  number)
+# Prepare the files to be plotted
+SAVE=Etot_vs_Ecut-script.dat				#NAME=something assign a variable of name NAME and value something (can be a string ora  number)
 						#!!!!!! There must be no spaces when assigning variable
 						#Use "... ..." for a string with spaces
-GAP=Gap_vs_ecut.dat
-echo -e "# ecut(Ry)\tEnergy(Ry)" > $SAVE	# COMMAND > NAME  write the stdout of the command COMMAND into the file NAME
+echo -e "# Ecut(Ry)\tEnergy(Ry)" > $SAVE	# COMMAND > NAME  write the stdout of the command COMMAND into the file NAME
 						#Create the file if it does not exist
 						#Overwrite the file it exist
 						#Use >> to append at the end of the file
 
+GAP=Gap_vs_Ecut-script.dat
+echo -e "# Ecut(Ry)\tVBM\tCBM\tGap (eV)" > $GAP	
+
+# Loop over cutoff energies
 for ecut in 5 10 15 20 25 30; do		#for NAME in LIST; do ... done
 						#cicle the variable NAME in a list of elements
 
 IN=si_script.scf.in
-OUT=si.scf.out_ecut$ecut
+OUT=si_script.scf.out_Ecut$ecut
 						#<<DELIM  ... DELIM   defines a block of text
 						#Will still resolve variables values using $NAME
 						#cat NAME/TEXT   read a file or string/block of text and print it into the stdout
@@ -73,36 +77,8 @@ echo -e "$ecut\t\t$ENERGY" >> $SAVE
 BANDS=`cat $OUT | grep highest | awk '{print $7,$8,$8-$7}'`
 echo -e "$ecut\t\t$BANDS" >> $GAP
 
-done
+done    # end of main loop over cutoff energy
 
 echo "Run completed at: " `date`
-
-#Print a gnuplot script to plot the 2 column files
-cat > plot.gnu <<EOF
-#!/usr/bin/gnuplot
-
-set term wxt enhanced
-
-set xlabel "E_{cut} (Ry)"
-set ylabel "E_{tot} (Ry)
-
-plot \
-	'$SAVE'  u 1:2 w lp pt 7 lw 2  lc rgb "black" title "E vs E_{cut}" 
-
-pause -1
-set term pdfcairo enhanced
-set output "${SAVE}.pdf"
-replot
-EOF
-
-#Run the gnuplot script to make the plot
-gnuplot plot.gnu
-
-
-
-exit
-
-
-
-
+echo "Now run the run_plots script" 
 
