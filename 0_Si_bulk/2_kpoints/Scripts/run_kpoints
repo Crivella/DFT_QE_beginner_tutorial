@@ -7,13 +7,20 @@ echo "TMP_DIR:" $TMP_DIR
 echo "Parallel command:" $RUN_COMMAND
 echo "Started at: " `date`
 
-SAVE=E_vs_grid.dat
-echo -e "# N(NxNxN grid) energy(Ry)" > $SAVE
+SAVE=Etot_vs_kgrid-script.dat
+SAVE0="${SAVE}0"
+SAVE1="${SAVE}1"
+echo -e "# N(NxNxN 000 grid) energy(Ry)" > $SAVE0
+echo -e "# N(NxNxN 111 grid) energy(Ry)" > $SAVE1
 
-for grid in 2 4 6 8 12; do
+for offset in 1 0; do
+for grid in 2 4 6 8 10; do
+
+klist="$grid $grid $grid $offset $offset $offset"
+echo $klist
 
 IN=si_script.scf.in
-OUT=si_script.scf.out_grid$grid
+OUT=si_script.scf.out_k${grid}_${offset}
 
 # self-consistent calculation
 cat > $IN << EOF
@@ -44,7 +51,7 @@ ATOMIC_POSITIONS
  Si 0.00 0.00 0.00
  Si 0.25 0.25 0.25
 K_POINTS {automatic}
-$grid $grid $grid 1 1 1
+$klist
 EOF
 
 echo -e "\tStart: " `date`
@@ -55,31 +62,13 @@ echo -e "\tEnd: " `date`
 
 
 ENERGY=`cat $OUT | grep ! | tr -dc '0-9,-.'`
-echo -e "$grid\t\t$ENERGY" >> $SAVE
+echo -e "$grid\t\t$ENERGY" >> $SAVE${offset}
 
 done
 
+done
 echo "Run completed at: " `date`
-
-cat > plot.gnu <<EOF
-#!/usr/bin/gnuplot
-
-set term wxt enhanced
-
-set xlabel "N (NxNxN k-point mesh)"
-set ylabel "E_{tot} (Ry)"
-
-plot \
-	'$SAVE'  u 1:2 w lp pt 7 lw 2  lc rgb "black" title "E vs NxNxN" 
-
-pause -1
-set term pdfcairo enhanced
-set output "${SAVE}.pdf"
-replot
-EOF
-
-gnuplot plot.gnu
-
+echo "Now launch the run_plots script."
 
 exit
 
