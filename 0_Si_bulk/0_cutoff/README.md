@@ -49,6 +49,7 @@ We need to limit the number of PW to the smallest number that represents our sys
      Copy and paste the cutoff energies and total energies into a 2 column file (Ecut,Etot) called 'Etot_vs_Ecut.dat' and plot it to see if you have reached convergence. 
      ```
      gnuplot> plot "Etot_vs_Ecut.dat" w l
+     ```
      A possible (but tight) threshold is 1meV/atom. An example file and plot is given in the Ref folder. 
 
      ![Total energy vs kinetic energy cutoff](Ref/Etot_vs_Ecut.png?raw=true "Total energy vs kinetic energy cutoff")
