@@ -3,7 +3,7 @@ Example on how to run basic DFT calculations on a well known system: bulk silico
 
 ## Running the exercise
   Enter each sub-directory in numerical order, and follow the detailed instructions in each README file.
-  - 0_cutoff 
+  - [0_cutoff](0_cutoff)
     - View an input file for a simple crystal and visualize it using xcrysden. 
     - Run a simple self-consistent calculation using pw.x
     - Determine the convergence with respect to the kinetic energy cutoff

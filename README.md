@@ -28,7 +28,7 @@ Beginner tutorial for Density Functional Theory (DFT) calculations using [Quantu
 
 
 ## Overview of exercises 
-### Bulk silicon (0_Si_bulk)
+### [Bulk silicon](0_Si_bulk)
   1. View an input file for a simple crystal and visualize it using xcrysden 
   2. Run a simple self-consistent calculation using pw.x
   3. Determine the convergence with respect to the kinetic energy cutoff and k-point mesh 
