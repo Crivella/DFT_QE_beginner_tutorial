@@ -17,12 +17,16 @@ set ylabel "E_{tot} (Ry)
 
 plot \
 	'$SAVE'  u 1:2 w lp pt 7 lw 2  lc rgb "black" title "Total energy" 
-replot GPVAL_DATA_Y_MIN t "Min value" w l lt 3,GPVAL_DATA_Y_MIN+.0068 w l lt 2 t "Min + 1meV/atom"
+replot GPVAL_DATA_Y_MIN t "Min value" w l lt 4 dt 4 lc "red",GPVAL_DATA_Y_MIN+.0068 w l lt 2 lc "blue" t "Min + 1meV/atom"
 
 pause -1
 set term pdfcairo enhanced
 set output "${SAVE}.pdf"
 replot
+set term pngcairo enhanced
+set output "${SAVE}.png"
+replot
+
 EOF
 
 
