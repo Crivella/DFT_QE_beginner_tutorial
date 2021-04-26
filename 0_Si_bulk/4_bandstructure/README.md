@@ -31,6 +31,7 @@ We also specify 6 points to define 5 "lines" in k-space that contain 8 or 1 poin
   ![BZ](Ref/bands-mix.png?raw=true "BZ")
   - Or by using the XCrySDen `tools` -> `k-path selection` tool.
 > NOTE: when saving the k-path specify the pwscf extension in the menu and IN THE FILE NAME or XCrySDen will use the wrong format
+
   3. The output from the previous step is not in a human-readable format. To plot an actual bandstructure, you must run the `bands.x` post-processing tool using the provided input 'si.bandspp.in'
       ```
       % bands.x < si.bandspp.in > si.bandspp.out
@@ -47,10 +48,12 @@ We also specify 6 points to define 5 "lines" in k-space that contain 8 or 1 poin
 
      -5.8271   6.2154   6.2154   6.2154   8.7810   8.7810   8.7810   9.6565
      ```
-> Note that the Fermi level is written in the output of the *SCF* run.
+>    Note that the Fermi level is written in the output of the *SCF* run.
 
      Plotting again but shifting the data by VBM we have
+     ```
      gnuplot> plot "Sibands.dat.gnu" u 1:($2-6.2154) w l
+     ```
      ![Si bandstructure](Ref/Sibands-nosym.png?raw=true "Si band structure")
   6. ADVANCED: You can also use the script 'run_bands' which will automate all the steps (the k-path need to be put manually when building the script) and also makes use of the `plotband.x` code. The gnuplot script 'Sibands.gnuplot' will create the image shown above from the 'Sibands.dat.gnu' file. 
       ```
