@@ -3,15 +3,15 @@ Beginner tutorial for Density Functional Theory(DFT) calculation using [Quantum 
 
 ## Required packages
 * A working version of QE needs to be installed/compiled and the executables needs to be located in the PATH environmental variable or specified manually in the variable BIN_DIR.
-* A working version of gnuplot (>=5.0) (The exercises script will generate gnuplot file to plot the results. Other programs can also be used)
-* A working version of XCrySDen, a program that can visualize input and output files of QE.
+* A working version of gnuplot (>=5.0) (Some scripts will generate gnuplot files to plot the results. Other programs can also be used)
+* A working version of XCrySDen (http://www.xcrysden.org/), a program that can visualize input and output files of QE.
 
 ## Installing/Compiling QE
 * QE can be installed from repository for Debian based linux distros (e.g.: Ubuntu) by running the command
     ```
     sudo apt-get install quantum-espresso
     ```
-    PS: The max version of QE that can be installed this way is ... maybe 6.0 now
+    PS: The latest available version is shown at: https://packages.ubuntu.com/groovy/quantum-espresso (>6.5-1)
 
 * QE can be compiled from source:
  1. Download the desired release version from the GitHub page "https://github.com/QEF/q-e/releases". 
