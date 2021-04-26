@@ -23,6 +23,7 @@ We adopt the kinetic energy cutoff, k-point mesh, and lattice parameter determin
   6. Now try a much higher value, 90-95% near the maximum. What are you looking at now?
      ![charge density](Ref/charge2.png?raw=true "charge density")
   7. ADVANCED: The pp.x tool can plot a lot of useful data. Modify 'charge.in' to plot the 'Electron Localization Function' for bulk silicon. Note the isovalue for ELF is defined between 0 and 1. Have a look at [1] to understand the results.
+     ![ELF](Ref/elf.png?raw=true "ELF")
 
 ## Bibliography
 1. Koumpouras and Andreas Larsson, J. Phys.: Condens. Matter 32 (2020) 315502 (12pp) [Link](https://doi.org/10.1088/1361-648X/ab7fd8)
