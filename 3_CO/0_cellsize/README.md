@@ -40,10 +40,11 @@ We could run several calculations for each possible distance and find the minimu
      ```
      % pw.x < co.relax.in > co.relax.out
      % xcrysden --pwo co.relax.out
+     ```
      When the Xcrysden windows open, select `Display all coordinates as animation` and view the exciting movie. What is the final C-O distance?
      
-     Use 'grep' to see how the interatomic distance changes with each iteration step.
-     % grep -A2 ATOM co.relax.out
+     Use `grep` to see how the interatomic distance changes with each iteration step.
+     % grep -A2 ATOM co.relax.out                    # -A2 means "show also the 2 lines following each matching line"
 
   3. One way to visualize the interaction (if any) between repeating images is by looking at the electrostatic potential within the cell. To do this we use the post-processing tool `pp.x`. We ask that the 3D potential data is computed and written to a file 'CO.pot' and that xcrysden-readable data is written to standard output:
      ```
@@ -75,10 +76,12 @@ We could run several calculations for each possible distance and find the minimu
      - The bond length (i.e. the x-position of the C atom)
      - The final total energy (Hint: search for 'Final')
      - The HOMO energy (Hint: search for 'highest')
+
      Use the values of the electrostatic potential in the middle of the vacuum to estimate the ionization potential (Evac-HOMO). Prepare a file containing the columns (cell size,bond length,Etot,IP), and plot the computed quantities as a function of the cell size. Which kinds of data are better behaved?
-  6. ADVANCED: Use the provided script 'run_cellsize' to run several relax calculation for a large range of different cellsizes
+  6. ADVANCED: Use the provided script 'run_cellsize' to run several relax calculation for a large range of different cellsizes.
+     Do NOT use the scripts for your own projects until you understand well how they work!
      ```
-     ./run_cellsize
+     ./Script/run_cellsize
      ```
      Note how the bond length does not change smoothly. Why is this?
       ![bond vs size](Ref/bond_length-script.png?raw=true "potential vs cell size")
