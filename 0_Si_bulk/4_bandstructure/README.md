@@ -9,8 +9,18 @@ It is useful to plot these Ψ(n,**k**) along high-symmetry paths which usually s
 
       % pw.x < si.scf.in > si.scf.out
       ```
-  2. Run the non-self-consistent (nscf/bands) calculation using the provided input 'si.bands.in' to generate a set of eigenvalues and eigenfunctions on specific k-points of the Brillouin zone. We now request several empty bands (6) in addition to the filled (4) ones via `  nbnd      = 10`. 
-We also specify 6 points to define 5 "lines" in k-space that contain 8 or 1 points per line. Here the k-points are defined in cartesian coordinates in terms of 2π/alat; for other options see the documentation for [K_POINTS](http://https://www.quantum-espresso.org/Doc/INPUT_PW.html).
+      As this is a SCF run, we set `calculation = 'scf'` in the input file.
+      By inspecting the output file, we see we have 8 electrons and 4 filled bands.
+
+  2.  Run the non-self-consistent (nscf/bands) calculation using the provided input 'si.bands.in' to generate a set of eigenvalues and eigenfunctions on specific k-points of the Brillouin zone. There are two important changes to the input file:
+      ```
+      calculation = 'bands'
+      nbnd        = 10
+      ```
+      We now request several empty bands (6) in addition to the filled (4) ones. 
+      We also specify 6 points that define 5 "symmetry lines" in k-space that contain 8 points per line (or 1 for a line of zero length). 
+      Here the k-points are defined in cartesian coordinates in terms of 2π/alat; 
+      for other options see the documentation for [K_POINTS](http://https://www.quantum-espresso.org/Doc/INPUT_PW.html).
       ```
       % tail -8 si.bands.on
       K_POINTS {tpiba_b}
