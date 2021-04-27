@@ -7,14 +7,14 @@ echo "TMP_DIR:" $TMP_DIR
 echo "Parallel command:" $RUN_COMMAND
 echo "Started at: " `date`
 
-SAVE=bondl_vs_size.dat
+SAVE=bondl_vs_size-script.dat
 echo -e "# size(bohr) bondl(bohr)" > $SAVE
 
 #for size in 5 10 15; do
 for size in 5 6 7 8 9 10 11 12 13 14 15; do
 
-IN=co_script.relax.in
-OUT=co.relax.out_size$size
+IN=co.relax-script.in
+OUT=co.relax-script.out_size$size
 
 # self-consistent calculation
 cat > $IN << EOF
@@ -63,8 +63,8 @@ echo -e "\tEnd: " `date`
 BONDL=`cat $OUT | grep "ATOMIC_POS" -A 3 | tail -n 4 | grep "C   " | tr -s " " | cut -d" " -f2`
 echo -e "$size\t\t$BONDL" >> $SAVE
 
-IN=co_script.pp.in
-OUT=co.pp.out_size$size
+IN=co.pp-script.in
+OUT=co.pp-script.out
 cat > $IN << EOF
 &INPUTPP
        prefix = 'CO',
@@ -85,15 +85,15 @@ echo -e "\t\t$COMMAND < $IN > $OUT"
 $COMMAND < $IN > $OUT
 echo -e "\tEnd: " `date`
 
-IN=co_script.avg.in
-OUT=co.avg.out_size$size
+IN=co.avg-script.in
+OUT=co.avg-script.out_size$size
 cat > $IN << EOF
 1
 CO.pot
 1.D0
 1000
 3
-23.737
+1.0
 /
 EOF
 
@@ -101,6 +101,7 @@ echo -e "\tStart: " `date`
 COMMAND="  $RUN_COMMAND $BIN_DIR/average.x"
 echo -e "\t\t$COMMAND < $IN > $OUT"
 $COMMAND < $IN > $OUT
+# Overwrite the useless output with the actual datafile.
 mv avg.dat $OUT
 
 echo -e "\tEnd: " `date`
@@ -109,29 +110,32 @@ done
 
 
 
-cat > plot1.gnu <<EOF
+cat > plot.gnu <<EOF
 #!/usr/bin/gnuplot
 
-set term wxt enhanced
+set term x11 enhanced
 
 set xlabel "Cell size (bohr)"
-set ylabel "Bond lenght (bohr)"
+set ylabel "Bond length (bohr)"
 
 plot \
 	'$SAVE'  u 1:2 w lp pt 7 lw 2  lc rgb "black" title "bondl vs size" 
 
 pause -1
 set term pdfcairo enhanced
-set output "bond_length.pdf"
+set output "bond_length-script.pdf"
+replot
+set term pngcairo enhanced
+set output "bond_length-script.png"
 replot
 EOF
 
-gnuplot plot1.gnu
+gnuplot plot.gnu
 
-cat > plot2.gnu <<EOF
+cat > plot.gnu <<EOF
 #!/usr/bin/gnuplot
 
-set term wxt enhanced
+set term x11 enhanced
 
 LIST="5 6 7 8 9 10 11 12 13 14 15"
 
@@ -140,15 +144,18 @@ set ylabel "Potential (Ry)"
 
 #plot for[i=1:words(LIST)]\
 #	sprintf("co.avg.out_size%d",word(LIST,i)+0)  u 1:2 w l lw 2  title sprintf("size=%d",word(LIST,i)+0)
-plot for[i=5:15] "co.avg.out_size".i  u 1:2 w l lw 2  title "size=".i
+plot for[i=5:15] "co.avg-script.out_size".i  u 1:2 w l lw 2  title "size=".i
 
 pause -1
 set term pdfcairo enhanced
-set output "vacuum.pdf"
+set output "potential-script.pdf"
+replot
+set term pngcairo enhanced
+set output "potential-script.png"
 replot
 EOF
 
-gnuplot plot2.gnu
+gnuplot plot.gnu
 
 echo "Run completed at: " `date`
 

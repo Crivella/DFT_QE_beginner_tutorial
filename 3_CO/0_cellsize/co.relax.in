@@ -28,7 +28,6 @@ ATOMIC_SPECIES
 O  1.00  O.pw-mt_fhi.UPF
 C  1.00  C.pw-mt_fhi.UPF
 ATOMIC_POSITIONS {bohr}
-C  2.256  0.0  0.0
+C  2.256  0.0  0.0  1 0 0
 O  0.000  0.0  0.0  0 0 0
 K_POINTS {Gamma}
-EOF
