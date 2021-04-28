@@ -14,10 +14,14 @@ set out
 
 set xlabel "E_{cut} (Ry)"
 set ylabel "E_{tot} (Ry)
+thres_1meV_per_atom=0.0068
+thres_10meV_per_atom=0.068
 
 plot \
 	'$SAVE'  u 1:2 w lp pt 7 lw 2  lc rgb "black" title "Total energy" 
-replot GPVAL_DATA_Y_MIN t "Min value" w l lt 4 dt 4 lc "red",GPVAL_DATA_Y_MIN+.0068 w l lt 2 lc "blue" t "Min + 1meV/atom"
+replot GPVAL_DATA_Y_MIN t "Min value" w l lt 4 dt 4 lc "red",\
+        GPVAL_DATA_Y_MIN+thres_1meV_per_atom w l lt 2 lc "blue" t "Min + 1meV/atom",\
+        GPVAL_DATA_Y_MIN+thres_10meV_per_atom w l lt 3 lc "magenta" t "Min + 10meV/atom"
 
 pause -1
 set term pdfcairo enhanced
