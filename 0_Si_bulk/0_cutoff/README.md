@@ -56,7 +56,7 @@ We need to limit the number of PW to the smallest number that represents our sys
      ```
      gnuplot> plot "Etot_vs_Ecut.dat" w l
      ```
-     A possible (but tight) threshold is 1meV/atom. An example file and image (png & pdf) are given in the Ref folder. 
+     A possible (but tight) threshold is 1meV/atom; 10meV/atom is quite reasonable. An example file and image (png & pdf) are given in the Ref folder. 
 
      ![Total energy vs kinetic energy cutoff](Ref/Etot_vs_Ecut.png?raw=true "Total energy vs kinetic energy cutoff")
 

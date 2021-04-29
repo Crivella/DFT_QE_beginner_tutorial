@@ -1,7 +1,8 @@
 # Band structure calculation
-In a periodic solid, the eigenfunction of the system can be characterized by the reciprocal space vector **k** and a band index *n*.
-It is useful to plot these Ψ(n,**k**) along high-symmetry paths which usually shows most of the interesting features.
-  1. Run the self-consistent calculation using the provided input 'si.scf.in' to generate the ground state electronic charge density. As before, we use an automatically generated k-point set:
+In a periodic solid, the eigenfunctions Ψ(n,**k**) and eigenvalues E(n,**k**) of the system can be characterized by the reciprocal space vector **k** and a band index *n*.
+It is useful to plot E(n,**k**) along high-symmetry paths which usually shows most of the interesting features.
+
+  1. Run the self-consistent calculation using the provided input 'si.scf.in' to generate the ground state electronic charge density. As before, we use an automatically generated, regularly spaced, k-point grid:
       ```
       % tail -2 si.scf.in 
       K_POINTS {automatic}
@@ -9,8 +10,20 @@ It is useful to plot these Ψ(n,**k**) along high-symmetry paths which usually s
 
       % pw.x < si.scf.in > si.scf.out
       ```
-  2. Run the non-self-consistent (nscf/bands) calculation using the provided input 'si.bands.in' to generate a set of eigenvalues and eigenfunctions on specific k-points of the Brillouin zone. We now request several empty bands (6) in addition to the filled (4) ones via `  nbnd      = 10`. 
-We also specify 6 points to define 5 "lines" in k-space that contain 8 or 1 points per line. Here the k-points are defined in cartesian coordinates in terms of 2π/alat; for other options see the documentation for [K_POINTS](http://https://www.quantum-espresso.org/Doc/INPUT_PW.html).
+      As this is a SCF run, we set `calculation = 'scf'` in the input file.
+      By inspecting the output file, we see we have 8 electrons and 4 filled bands.
+
+  2.  Run the non-self-consistent (nscf/bands) calculation using the provided input 'si.bands.in' to generate a set of eigenvalues and eigenfunctions on specific k-points of the Brillouin zone. There are two important changes to the input file:
+      ```
+      calculation = 'bands'
+      nbnd        = 10
+      ```
+      We thus request several empty bands (6) in addition to the filled (4) ones. 
+
+      We also specify 6 points that define 5 "symmetry lines" in k-space that contain 8 points per line (or 1 for a line of zero length). 
+      Here the k-points are defined in cartesian coordinates in terms of 2π/alat; 
+      for other options see the documentation for [K_POINTS](http://https://www.quantum-espresso.org/Doc/INPUT_PW.html).
+      Note that the k-points are thus along a path in the BZ and do not form a grid like in the SCF calculation.
       ```
       % tail -8 si.bands.on
       K_POINTS {tpiba_b}
@@ -31,7 +44,7 @@ We also specify 6 points to define 5 "lines" in k-space that contain 8 or 1 poin
       ![BZ](Ref/bands-mix.png?raw=true "BZ")
       - Or by using the XCrySDen `tools` -> `k-path selection` tool. NOTE: when saving the k-path specify the pwscf extension in the menu and IN THE FILE NAME or XCrySDen will use the wrong format.
 
-  3. The output from the previous step is not in a human-readable format. To plot an actual bandstructure, you must run the `bands.x` post-processing tool using the provided input 'si.bandspp.in'
+  3.  The output from the previous step is not in a human-readable format. To plot an actual bandstructure, you must run the `bands.x` post-processing tool using the provided input 'si.bandspp.in'
       ```
       % bands.x < si.bandspp.in > si.bandspp.out
       ```
@@ -41,7 +54,7 @@ We also specify 6 points to define 5 "lines" in k-space that contain 8 or 1 poin
       ```
       gnuplot> plot "Sibands.dat.gnu" w l
       ```
-      It is common to redefine the energy zero as being at the top of the valence band (or at the Fermi level in a metal). The VBM lies at the Γ point in silicon, so it is easy to find in the 'si.bandspp.out' file. (It is not a point in the SCF k-grid.) Note that the Fermi level is written in the output of the *SCF* run.
+      It is common to redefine the energy zero as being at the top of the valence band (or at the Fermi level in a metal). The VBM lies at the Γ point in silicon, so it is easy to find in the 'si.bandspp.out' file. (It is not a point in the SCF k-grid.) Note that the Fermi level is written in the output of the *SCF* run (can you understand why?).
       ```
           k = 0.0000 0.0000 0.0000 (   411 PWs)   bands (ev):
                                                                         

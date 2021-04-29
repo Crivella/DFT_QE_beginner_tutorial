@@ -1,0 +1,110 @@
+#!/usr/bin/env bash
+
+source ../../ENVIRONMENT_VARIABLES
+echo "BIN_DIR:" $BIN_DIR
+echo "PSEUDO_DIR:" $PSEUDO_DIR
+echo "TMP_DIR:" $TMP_DIR
+echo "Parallel command:" $RUN_COMMAND
+echo "Started at: " `date`
+
+SAVE=bondl_vs_ecut.dat
+SAVE1=e_vs_ecut.dat
+echo -e "# ecut(Ry) bondl(bohr)" > $SAVE
+echo -e "# ecut(Ry) energy(Ry)" > $SAVE1
+
+for ecut in 10 15 20 25 30 35 40 45 50; do
+
+IN=co_script.relax.in
+OUT=co.relax.out_ecut$ecut
+
+# self-consistent calculation
+cat > $IN << EOF
+&CONTROL
+  calculation  = "relax",
+  prefix       = "CO",
+  pseudo_dir   = "$PSEUDO_DIR",
+  outdir       = "$TMP_DIR",
+  etot_conv_thr = 1.0D-4
+  forc_conv_thr = 1.0D-3
+/
+&SYSTEM
+  ibrav     = 0,
+  nat       = 2,
+  ntyp      = 2,
+  nbnd      = 6,
+  ecutwfc   = $ecut
+/
+&ELECTRONS
+  conv_thr    = 1.D-7,
+  mixing_beta = 0.7D0,
+/
+&IONS
+  ion_dynamics = "bfgs"
+/
+CELL_PARAMETERS {bohr}
+12.0  0.0  0.0
+ 0.0 12.0  0.0
+ 0.0  0.0 12.0
+ATOMIC_SPECIES
+O  1.00  O.pw-mt_fhi.UPF
+C  1.00  C.pw-mt_fhi.UPF
+ATOMIC_POSITIONS {bohr}
+C  3.000  0.0  0.0  1 1 1
+O  0.000  0.0  0.0  0 0 0
+K_POINTS {Gamma}
+EOF
+
+echo -e "\tStart: " `date`
+COMMAND="  $RUN_COMMAND $BIN_DIR/pw.x"
+echo -e "\t\t$COMMAND < $IN > $OUT"
+$COMMAND < $IN > $OUT
+echo -e "\tEnd: " `date`
+
+
+ENERGY=`cat $OUT | grep ! | tr -dc '0-9,-.'`
+BONDL=`cat $OUT | grep "ATOMIC_POS" -A 3 | tail -n 4 | grep "C   " | tr -s " " | cut -d" " -f2`
+echo -e "$ecut\t\t$BONDL" >> $SAVE
+echo -e "$ecut\t\t$ENERGY" >> $SAVE1
+
+done
+
+echo "Run completed at: " `date`
+
+cat > plot.gnu <<EOF
+#!/usr/bin/gnuplot
+
+set term wxt enhanced
+
+set xlabel "E_{cut} (Ry)"
+set ylabel "Bond lenght (bohr)"
+
+plot \
+	'$SAVE'  u 1:2 w lp pt 7 lw 2  lc rgb "black" title "bondl vs E_{cut}"
+	
+
+pause -1
+set term pdfcairo enhanced
+set output "bond_length.pdf"
+replot
+
+set term wxt enhanced
+
+set xlabel "E_{cut} (Ry)"
+set ylabel "E_{tot} (Ry)"
+
+plot \
+	'$SAVE1'  u 1:2 w lp pt 7 lw 2  lc rgb "black" title "E_{tot} vs E_{cut}"
+
+pause -1
+set term pdfcairo enhanced
+set output "total_energy.pdf"
+replot
+EOF
+
+gnuplot plot.gnu
+
+
+exit
+
+
+

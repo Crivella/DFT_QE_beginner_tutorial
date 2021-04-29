@@ -1,0 +1,16 @@
+&INPUTPP
+prefix       = "CO",
+outdir       = "./tmp",
+plot_num     = 7
+filplot      = "psi2.plot"
+kpoint       = 1
+kband        = 5
+lsign        =.true.
+/
+&PLOT
+nfile     = 1
+filepp(1) ="psi2.plot"
+iflag     = 3
+output_format = 5
+fileout = "psi2_size12_ib5.xsf"
+/

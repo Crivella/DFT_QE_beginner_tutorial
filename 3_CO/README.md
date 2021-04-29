@@ -1,12 +1,21 @@
 # Carbon monoxide (2_CO)
-Example on how to run a calculaiton for a zero-dimensiona system (molecule/quantum-dot).
-
-## Purpose
-  1. Run a relax calculation and visualize the output using xcrysden
-  2. Run a calculaiton for a molecule (0D system)
-  3. Calculate the binding energy of a molecule
-  4. Visualize the HOMO and LUMO of a molecule (charge density for specific k-point and band)
-  5. Use a Lennard-Jones like potential to fit the data 'E_tot' vs 'bond lenght'
+This tutorial illustrates how to run a calculation for a zero-dimensional system (molecule/quantum-dot).  
+Follow the exercises from the sub-folders in numerical order.
 
 ## Running the exercise
-  1. Run the exercise from the folders following the numeric order
+  Enter each sub-directory in numerical order, and follow the detailed instructions in each README file.
+  - [0_cellsize](0_cellsize) 
+    - Run a relax calculation for a molecule and visualize the output using xcrysden
+    - Plot the electrostatic potential in the cell
+    - Converge the bond length with the cell size
+    - Test convergence of other properties with cell size
+  - [1_relax](1_relax)
+    - Converge the geometry with the kinetic energy cutoff
+  - [2_binding](2_binding)
+    - Compute the binding energy of the CO molecule
+    - Understand how to treat orbital occupation correctly in the O atom
+  - [3_homolumo](3_homolumo)
+    - Visualize the HOMO and LUMO of the CO molecule 
+    - Investigate the orbital character as a function of cell size
+  - [4_LennardJones](4_LennardJones) Use a Lennard-Jones like potential to fit the Energy vs Bond length curves
+
