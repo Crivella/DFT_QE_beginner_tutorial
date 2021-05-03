@@ -1,0 +1,10 @@
+&inputpp
+  prefix='Ge5H12',
+  outdir='./tmp'
+  what='gw',
+  qplda=.false.,
+  vxcdiag=.false.,
+  vkb=.false.,
+  Emax=10.0
+  DeltaE=0.02
+/
