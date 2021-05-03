@@ -23,8 +23,8 @@ cat > $IN << EOF
   prefix       = "CO",
   pseudo_dir   = "$PSEUDO_DIR",
   outdir       = "$TMP_DIR",
-  etot_conv_thr = 1.0D-4
-  forc_conv_thr = 1.0D-3
+  etot_conv_thr = 1.0D-5
+  forc_conv_thr = 1.0D-4
 /
 &SYSTEM
   ibrav     = 0,

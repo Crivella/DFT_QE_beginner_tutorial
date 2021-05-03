@@ -1,9 +1,9 @@
 # Convergence over amount of vacuum
-In this tutorial we consider an isolated system, the CO molecule. Since we are using a planewave code and Bloch's theorem, we must adopt a supercell scheme in which the molecule is surrounded by vacuum in all directions.
+In this tutorial we consider an isolated system, the CO molecule. Since we are using a code based on Bloch's theorem for periodic systems, we must adopt a supercell scheme in which the molecule is surrounded by vacuum in all directions.
 The amount of vacuum has to be determined through a convergence test. We can do this before determining the kinetic energy cutoff.
 Once a large enough vacuum is used, quantities such as the bond length, HOMO-LUMO gap, binding energy, ionization potential, or total energy, etc, should not vary if we further increase the vacuum (i.e., the cell size): what observable parameter we monitor depends on what we want to compute.
 
-In this exercise we only know that we have a carbon and an oxygen atom and a starting guess for the distance between the 2.
+In this exercise we only know that we have a carbon and an oxygen atom and rough guess of the distance between them.
 We could run several calculations for each possible distance and find the minimum by fitting the data with a Lennard-Jones potential, but in this case it is easier to let QE do the work for us, by moving the atoms position according to the forces acting on them ('relax' calculation)
 
 # Purpose
