@@ -1,0 +1,58 @@
+ &CONTROL
+        calculation='nscf',
+        title='Ge5H12',
+        verbosity='high',
+        restart_mode='from_scratch',
+!        nstep=100,
+!        iprint=1,
+        tprnfor=.true.,
+        outdir='./tmp/',
+        prefix='Ge5H12',
+        disk_io='default',
+        pseudo_dir ='../../pseudo',      
+        wf_collect =.true.,
+/ 
+ &SYSTEM
+        ibrav=1,
+        celldm(1)=30.0,
+        nat=17,
+        ntyp=2,
+        nbnd=60,
+        ecutwfc=30.0,
+        ecutrho=120.0
+        nosym=.true.,
+       	occupations='smearing',
+        smearing='gaussian',  
+ 	degauss=0.0005,
+ /
+ &ELECTRONS
+        conv_thr=1.0d-8,
+        mixing_mode = 'plain',
+        mixing_beta=0.7d0,
+ /
+ &IONS
+        ion_dynamics='bfgs',
+        upscale=20.0,
+ /
+ATOMIC_SPECIES
+	Ge    72.61  	Ge.pz-bhs.UPF
+    H     1.00794   H.pz-vbc.UPF
+ATOMIC_POSITIONS (bohr)
+H       12.933539007   8.846010861   9.570307533
+H       19.157119893  10.886976632  12.925482478
+H       18.933897296  15.151961401  10.992975089
+H       19.237376281  14.701865477  15.648295991
+H       12.806028537  19.198469359  11.633886334
+H       13.134198666  18.875248522  16.297348091
+H        9.181144964  17.588271686  14.131462766
+H       13.460054140  12.259921806  19.528327259
+H       13.475481386   8.360890926  16.925554898
+H        9.557778055  10.905143311  17.312762100
+H       12.732112023  13.046063716   7.498095712
+H        9.075070500  11.476092676   9.973166442
+Ge      11.956413657  11.547761133   9.838787077
+Ge      12.433524835  11.044742586  17.120840581
+Ge      13.639043583  13.445344731  13.533534834
+Ge      12.059588551  17.620582744  13.931486721
+Ge      18.110438628  13.556222433  13.251656095
+K_POINTS  GAMMA
