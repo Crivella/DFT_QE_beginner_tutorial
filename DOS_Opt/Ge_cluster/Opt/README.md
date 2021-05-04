@@ -1,6 +1,6 @@
 # Dielectric Function 
 
-Dielectric function, as well as the DOS, is a quantity that requires the integration over the whole Brillouin zone. Ge<sub>5</sub>H<sub>12</sub>.  In general, in order to produce reliable data, a convergency test over the size of the k-point mesh needs to be run. Since the optical properties depends on both occupied and unoccupied states, another convergency test over the number of bands *nbnd* must be performed.
+Dielectric function, as well as the DOS, is a quantity that requires the integration over the whole Brillouin zone. In general, in order to produce reliable data, a convergency test over the size of the k-point mesh needs to be run. Since the optical properties depends on both occupied and unoccupied states, another convergency test over the number of bands *nbnd* must be performed.
 
 ## Steps
 
