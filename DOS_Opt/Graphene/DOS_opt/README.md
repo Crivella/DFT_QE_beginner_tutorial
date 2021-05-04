@@ -1,6 +1,6 @@
 # Dielectric Function and DOS
 
-Dielectric function, as well as the DOS, is a quantity that requires the integration over the whole Brillouin zone. In general, in order to produce reliable data, a convergency test over the size of the k-point mesh needs to be run. Since the optical properties depends on both occupied and unoccupied states, another convergency test over the number of bands *nbnd* must be performed. In this section we will calculate the eps <sub>2</sub> and the DOS simultaneously.
+Dielectric function, as well as the DOS, is a quantity that requires the integration over the whole Brillouin zone. In general, in order to produce reliable data, a convergency test over the size of the k-point mesh needs to be run. Since the optical properties depends on both occupied and unoccupied states, another convergency test over the number of bands *nbnd* must be performed. In this section we will calculate the $\varepsilon$ <sub>2</sub> and the DOS simultaneously.
 
 ## Steps
 
@@ -69,12 +69,12 @@ Dielectric function, as well as the DOS, is a quantity that requires the integra
 
      ```    
      gnuplot> plot  'kpt15/Grafene.dos.dat'  u  1:2  t  'kpt15'  w  l  dashtype  2 , 'kpt21/Grafene.dos.dat'  u  1:2  w  l lw 2  lc  rgb  'red'  t  'kpt21' , 'kpt30/Grafene.dos.dat'  u  1:2  w  l lw 2  lc  rgb     'black'  t  'kpt30'     ```
- 12.  To plot the  eps <sub>2</sub> of graphene for different values of *nbnd*,  in *gnuplot* :
+ 12.  To plot the  $\varepsilon$ <sub>2</sub> of graphene for different values of *nbnd*,  in *gnuplot* :
          ```   
         gnuplot> plot  'bnd5/epsTOT.dat'  u  1:2  t  'bnd5'  w  l    dashtype  2 , 'bnd10/epsTOT.dat'  u  1:2  w  l lw 1  lc  rgb  'red'  t  'bnd10' , 'bnd15/epsTOT.dat'  u  1:2  w  l lw 2  lc  rgb  'blue'  t  'bnd15'
        ```  
 
- 13. To plot the  eps <sub>2</sub> of graphene for different values of *kpt*,  in *gnuplot*
+ 13. To plot the  $\varepsilon$ <sub>2</sub> of graphene for different values of *kpt*,  in *gnuplot*
      ```   
      gnuplot> plot  'kpt15/epsTOT.dat'  u  1:2  t  'kpt15'  w  l  dashtype  2 , 'kpt21/epsTOT.dat'  u  1:2  w  l lw 1  lc  rgb  'red'  t  'kpt21' , 'kpt30/epsTOT.dat'  u  1:2  w  l lw 2  lc  rgb  'blue'  t  'kpt30' , 'epsTOT_396.dat'  u  1:2  w  l lw 3  lc  rgb  'black'  t'kpt396'
       ```  
