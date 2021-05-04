@@ -1,8 +1,0 @@
-&dos
-    outdir='./tmp'
-    prefix='Si_bulk'
-    fildos='Si_bulk.dos.dat',
-    degauss=0.01
-    Emin=-5.0, Emax=30.0, DeltaE=0.01
-/
-
