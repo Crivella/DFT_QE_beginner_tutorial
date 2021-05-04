@@ -1,0 +1,41 @@
+&control
+    calculation       = 'scf'
+    restart_mode      = 'from_scratch'
+    prefix            = 'Grafene'
+    tstress           = .true.
+    tprnfor           = .true.
+    pseudo_dir        = '../../pseudo'
+    outdir            = './tmp/'
+    verbosity         = 'high'
+    disk_io           = 'minimal'
+    wf_collect        = .true.
+    nstep             = 100
+/
+&system
+    ibrav             = 4
+    celldm(1)         =  4.650
+    celldm(3)         =  9
+    nat               =  2
+    ntyp              = 1
+    ecutwfc           =  80
+    nbnd              = 10
+/
+&electrons
+    diagonalization   = 'david'
+   ! conv_thr          = 1.0d-8
+    diago_thr_init=1.0e-3
+    mixing_mode       = 'plain'
+   ! mixing_beta       = 0.2
+    electron_maxstep=60
+    conv_thr = 1.0d-8,
+    mixing_beta = 0.7
+
+/
+
+ATOMIC_SPECIES
+C     12.0107  C.pz-vbc.UPF
+ATOMIC_POSITIONS (alat)
+C        0.000000000   0.577350300   0.000000000
+C        0.500000000   0.288675100   0.000000000
+K_POINTS {automatic}
+6 6 1 0 0 0

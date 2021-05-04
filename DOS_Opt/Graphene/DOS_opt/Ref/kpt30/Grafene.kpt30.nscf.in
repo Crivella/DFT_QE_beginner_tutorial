@@ -1,0 +1,35 @@
+&CONTROL
+    calculation       = 'nscf'
+    restart_mode      = 'from_scratch'
+    prefix            = 'Grafene'
+    tstress           = .true.
+    tprnfor           = .true.
+    pseudo_dir        = '../../Pseudo'
+    outdir            = './tmp'
+    verbosity         = 'high'
+    disk_io = 'minimal'
+    wf_collect        = .true.
+/
+&SYSTEM
+                       ibrav = 4,
+                   celldm(1) = 4.635,
+                   celldm(3) = 6,
+                         nat = 2,
+                        ntyp = 1,
+                     ecutwfc = 40 ,
+                        nbnd = 20,
+                   !input_dft = 'bz-vbc' ,
+                 occupations = 'smearing' ,
+                     degauss = 0.03 ,
+                    smearing = 'gaussian' ,
+/
+&ELECTRONS
+                 mixing_beta = 0.7 ,
+/
+ATOMIC_SPECIES
+    C   12.01100  C.pz-vbc.UPF 
+ATOMIC_POSITIONS crystal 
+    C      0.000000000    0.000000000    0.000000000    
+    C      0.333333333    0.666666667    0.000000000    
+K_POINTS automatic
+ 30 30 1	1 1 1
