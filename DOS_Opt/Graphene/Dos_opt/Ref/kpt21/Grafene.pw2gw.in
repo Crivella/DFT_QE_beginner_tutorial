@@ -1,0 +1,4 @@
+&inputpp
+  prefix='Grafene',
+  outdir='./tmp',
+/

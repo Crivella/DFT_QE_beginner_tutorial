@@ -1,0 +1,44 @@
+#The ABSOLUTE PATH of the bin folder containing the QE executables (pw.x, pp.x)
+BIN_DIR='/Users/simonebrozzesi/Uni/qe-6.4.1/bin'
+#
+#By default the code will run in serial.
+RUN_COMMAND=""
+#For running in parallel, uncomment the following line (remove the first # symbol)
+#RUN_COMMAND="mpirun -np 2"
+
+
+#
+# DO NOT MODIFY ANYTHING BELOW THIS LINE
+#
+if [ -d "$BIN_DIR" ]; then
+	if [ ! -f $BIN_DIR/pw.x ]; then
+		echo "Can't find pw.x in '$BIN_DIR'..."
+		echo "Attempting to find valid version of espresso in PATH..."
+		BIN_DIR=""
+	fi
+fi
+
+if [[ $BIN_DIR == "" ]]; then
+	BIN_DIR=`dirname $(which pw.x)`
+fi
+
+if [[ $BIN_DIR == "" ]]; then
+	echo "Failed to find espresso installation."
+	echo "Specify manual installation directory in the BIN_DIR env variable"
+	exit
+fi
+
+#The ABSOLUTE PATH of the folder containing the Pseudopotential files .UPF
+PSEUDO_DIR='../../Pseudo'
+if [[ `which realpath` != "" ]]; then
+	PSEUDO_DIR=`realpath $PSEUDO_DIR`
+elif [[ `which readlink` != "" ]]; then
+	app=`readlink $PSEUDO_DIR`
+	if [[ $app != "" ]]; then
+		PSEUDO_DIR=$app
+	fi
+fi
+
+#The RELATIVE PATH of the folder to contain temporary/restart QE files
+TMP_DIR='./tmp'
+
