@@ -13,6 +13,7 @@ Since quantum-ESPRESSO works only with periodic systems, we create a supercell f
   ```
   and view it with Xcrysden (do not reduce dimensionality). 
   Verify that the distance between layers is given by 4.68 bohr x 6 = 14.85 Angstrom (this is the meaning of celldm(3) when ibrav=4, i.e. c/a).
+    ![BN supercell](Ref/BN.scf.png?raw=true "BN supercell")
 
   2. Since the repeated layers (images) are separated by empty space, we can compute the vacuum level. To do this, we compute the electrostatic potential V along the z axis. Near the atoms, V will show a dip, while far away from the atoms the potential will tend to a constant value: the vacuum level. The calculation is in two parts. First the potential is computed using pp.x in a 3D box defined by the cell (BN.pot). Then we make a planar average on (x,y) of BN.pot for a set of z values:
   ```
