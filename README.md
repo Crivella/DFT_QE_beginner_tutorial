@@ -39,6 +39,7 @@ The repository can be updated by running
   ```
   git pull
   ```
+Alternatively, you can download a static copy by browsing to https://github.com/cdhogan/DFT-basics , click the green Code button and Download zip (unzip to extract)
 
 ## Overview of exercises 
 ### [Bulk silicon (0_Si_bulk)](0_Si_bulk)
