@@ -28,6 +28,18 @@ Beginner tutorial for Density Functional Theory (DFT) calculations using [Quantu
   NOTE: options for the configuration / use of external libraries for optimized executables is beyond the purpose of this tutorial.
 
 
+## Downloading the exercises 
+
+To download the exercise repository, run
+  ```
+  git clone https://github.com/cdhogan/DFT-basics.git DFT-basics
+  cd DFT-basics
+  ```
+The repository can be updated by running
+  ```
+  git pull
+  ```
+
 ## Overview of exercises 
 ### [Bulk silicon (0_Si_bulk)](0_Si_bulk)
   1. View an input file for a simple crystal and visualize it using xcrysden 
@@ -37,7 +49,6 @@ Beginner tutorial for Density Functional Theory (DFT) calculations using [Quantu
   5. Calculate a charge density and visualize it using XCrySDen
   6. Generate a high-symmetry k-path using xcrysden and calculate a band structure using a non-self-consistent calculation
 <!--  7. Calculate the density of states(DOS) and optical properties(independent particle approximation) and show the convergence over the number of k_points and empty bands used -->
-[//]: # this is a comment
 ### [Two-dimensional boron nitride (1_BN)](1_BN)
   1. How to use a supercell to simulate a material that is not periodic in all directions.
   2. Compute the vacuum level and work function.
