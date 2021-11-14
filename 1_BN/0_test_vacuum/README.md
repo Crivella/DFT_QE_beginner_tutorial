@@ -20,3 +20,4 @@ When this behavior is observed, we can say that the potential of one layer in a 
     gnuplot
     gnuplot> plot for [i=1:6] "avg_cdm".i."-plot.dat" t "cdm".i w l
     ```
+  4. Compute the work function for the BN sheet, using the expression WF = Evac - Efermi
