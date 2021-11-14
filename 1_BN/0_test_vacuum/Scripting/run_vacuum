@@ -10,7 +10,7 @@ echo "Started at: " `date`
 
 
 CELL_DIM=4.68
-CUTOFF=40
+CUTOFF=20
 nbnd=4
 PREFIX=BN
 

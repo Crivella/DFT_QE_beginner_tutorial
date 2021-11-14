@@ -32,7 +32,7 @@ Since quantum-ESPRESSO works only with periodic systems, we create a supercell f
   4. Compute the ionization energy for the BN sheet, using IE=Evac - VBM. 
 
 # Test vacuum size
-If the vacuum is large enough, the potential between layers is flat and we can say that the layers do not interact with their images, i.e. they are isolated. We can test this by varying the size of the vacuum until we reach convergence. Do this by changing celldm
+If the vacuum is large enough, the potential between layers is flat and we can say that the layers do not interact with their images, i.e. they are isolated. We can test this by varying the size of the vacuum until we reach convergence. Do this by changing celldm(3).
 
  1. Make a copy of the input file and change celldm(1) from 6 to 1:
     ```
@@ -54,3 +54,5 @@ If the vacuum is large enough, the potential between layers is flat and we can s
     gnuplot> plot for [i=1:6] "avg_cdm".i."-plot.dat" t "cdm".i w l
     ```
     ![Dependence of electrostatic potential on cell size](Ref/Vacuum.png?raw=true "Potential vs cell size")
+
+ 4. ADVANCED USERS: The script run_vacuum in the Scripts folder will perform steps 1-2 automatically. Note also the use of a function, called by the script, to create an input file for each celldm(3).
