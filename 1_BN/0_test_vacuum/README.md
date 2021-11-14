@@ -15,18 +15,18 @@ Since quantum-ESPRESSO works only with periodic systems, we create a supercell f
   Verify that the distance between layers is given by 4.68 bohr x 6 = 14.85 Angstrom (this is the meaning of celldm(3) when ibrav=4, i.e. c/a).
 
   2. Since the repeated layers (images) are separated by empty space, we can compute the vacuum level. To do this, we compute the electrostatic potential V along the z axis. Near the atoms, V will show a dip, while far away from the atoms the potential will tend to a constant value: the vacuum level. The calculation is in two parts. First the potential is computed using pp.x in a 3D box defined by the cell. Then we make a planar average on (x,y) for a set of z values:
-    ```
-    pw.x < BN.scf.in > BN.scf.out   
-    pp.x < pp.in
-    average.x < average.in > average.out
-    ```
-    This creates a file called "avg.dat".
-    Note: average.x must be run in serial, so if you are using mpirun, use "mpirun -np 1 average.x"
+  ```
+  pw.x < BN.scf.in > BN.scf.out   
+  pp.x < pp.in
+  average.x < average.in > average.out
+  ```
+  This creates a file called "avg.dat".
+  Note: average.x must be run in serial, so if you are using mpirun, use "mpirun -np 1 average.x"
 
   3. Now plot the data with gnuplot and extract the value in the middle of the vacuum. The potential is given in Rydberg units (1 Ry=13.606eV)
-    ```
-    gnuplot
-    gnuplot> plot "avg.dat" w l
+  ```
+  gnuplot
+  gnuplot> plot "avg.dat" w l
   4. Compute the ionization energy for the BN sheet, using IE=Evac - VBM. 
 
 # Test vacuum size
