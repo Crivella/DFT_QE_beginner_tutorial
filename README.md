@@ -47,12 +47,14 @@ Beginner tutorial for Density Functional Theory (DFT) calculations using [Quantu
   3. Calculate the binding energy of a molecule
   4. Visualize the HOMO and LUMO of a molecule (charge density for specific k-point and band)
   5. Use a Lennard-Jones like potential to fit the data 'E_tot' vs 'bond length'
+### [Optical properties and DOS](DOS_OPT)
+  1. Calculated the DOS and optical properties for systems of differing dimensionality
   
 ## Other folders
 * Docs: Contain additional tutorials in pdf format
 * Codes: Contain user-made code to analyze some of the data produced by QE
-  1. boad.c (by Davide Grassano aka Crivella): Apply a gaussian broadening(to the *y_n* data) to a multicolumn file where the *1st* column represents the x data and the *2nd,3rd,...* columns represent the *y_1, y_2, ...* data.
-  2. plot_pwbands.f90 (by ...) : ...
+  1. broad.c (by Davide Grassano): Apply a gaussian broadening(to the *y_n* data) to a multicolumn file where the *1st* column represents the x data and the *2nd,3rd,...* columns represent the *y_1, y_2, ...* data.
+  2. plot_pwbands.f90 (by C. Hogan): A code for generating plottable data from the pwscf output (obsolete)
 * Pseudo: Contain the pseudopotential required to perform the exercises
 
 
