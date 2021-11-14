@@ -5,6 +5,7 @@ Beginner tutorial for Density Functional Theory (DFT) calculations using [Quantu
 * A working version of QE (>=6.4) needs to be installed/compiled and the executables needs to be located in the PATH environmental variable or specified manually in the variable BIN_DIR.
 * A working version of gnuplot (>=5.0) (Some scripts will generate gnuplot files to plot the results. Other programs can also be used)
 * A working version of XCrySDen (http://www.xcrysden.org/), a program that can visualize input and output files of QE.
+* A working version of avogadro (https://avogadro.cc/), a program for creating and viewing molecular structures
 
 ## Installing/Compiling QE
 * QE can be installed from repository for Debian based linux distros (e.g.: Ubuntu) by running the command
@@ -45,7 +46,7 @@ Beginner tutorial for Density Functional Theory (DFT) calculations using [Quantu
   2. Run a calculaiton for a molecule (0D system)
   3. Calculate the binding energy of a molecule
   4. Visualize the HOMO and LUMO of a molecule (charge density for specific k-point and band)
-  5. Use a Lennard-Jones like potential to fit the data 'E_tot' vs 'bond lenght'
+  5. Use a Lennard-Jones like potential to fit the data 'E_tot' vs 'bond length'
   
 ## Other folders
 * Docs: Contain additional tutorials in pdf format
