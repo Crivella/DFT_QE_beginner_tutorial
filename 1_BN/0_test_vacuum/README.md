@@ -51,3 +51,4 @@ If the vacuum is large enough, the potential between layers is flat and we can s
     gnuplot
     gnuplot> plot for [i=1:6] "avg_cdm".i."-plot.dat" t "cdm".i w l
     ```
+    ![Dependence of electrostatic potential on cell size](Ref/Vacuum.png?raw=true "Potential vs cell size")
