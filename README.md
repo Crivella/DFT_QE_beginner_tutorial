@@ -29,7 +29,7 @@ Beginner tutorial for Density Functional Theory (DFT) calculations using [Quantu
 
 
 ## Overview of exercises 
-### [Bulk silicon](0_Si_bulk)
+### [Bulk silicon (0_Si_bulk)](0_Si_bulk)
   1. View an input file for a simple crystal and visualize it using xcrysden 
   2. Run a simple self-consistent calculation using pw.x
   3. Determine the convergence with respect to the kinetic energy cutoff and k-point mesh 
@@ -37,17 +37,18 @@ Beginner tutorial for Density Functional Theory (DFT) calculations using [Quantu
   5. Calculate a charge density and visualize it using XCrySDen
   6. Generate a high-symmetry k-path using xcrysden and calculate a band structure using a non-self-consistent calculation
   7. Calculate the density of states(DOS) and optical properties(independent particle approximation) and show the convergence over the number of k_points and empty bands used
-### Two-dimensional boron nitride (1_BN)
-  1. How to use a supercell in order to run calculation for material that are not periodic in all directions.
-### Graphene (2_Graphene)
+### [Two-dimensional boron nitride (1_BN)](1_BN)
+  1. How to use a supercell to simulate a material that is not periodic in all directions.
+  2. Compute the vacuum level and work function.
+### [Graphene (2_Graphene)](2_Graphene)
   1. Run calculation for a metallic/semimetallic system
-### Carbon monoxide (3_CO)
+### [Carbon monoxide molecule (3_CO)](3_CO)
   1. Run a relax calculation and visualize the output using xcrysden
-  2. Run a calculaiton for a molecule (0D system)
+  2. Run a calculation for a molecule (0D system)
   3. Calculate the binding energy of a molecule
   4. Visualize the HOMO and LUMO of a molecule (charge density for specific k-point and band)
   5. Use a Lennard-Jones like potential to fit the data 'E_tot' vs 'bond length'
-### [Optical properties and DOS](DOS_OPT)
+### [Optical properties and DOS (DOS_Opt)](DOS_Opt)
   1. Calculated the DOS and optical properties for systems of differing dimensionality
   
 ## Other folders
