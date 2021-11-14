@@ -34,21 +34,21 @@ Since quantum-ESPRESSO works only with periodic systems, we create a supercell f
 # Test vacuum size
 If the vacuum is large enough, the potential between layers is flat and we can say that the layers do not interact with their images, i.e. they are isolated. We can test this by varying the size of the vacuum until we reach convergence. Do this by changing celldm
 
-  1. Make a copy of the input file and change celldm(1) from 6 to 1:
+    1. Make a copy of the input file and change celldm(1) from 6 to 1:
     ```
     cp BN.scf.in BN.scf_cdm1.in
     vi BN.scf_cdm1.in   (or use sed)
     pw.x < BN.scf_cdm1.in > BN.scf_cdm1.out  
     ```
 
-  2. Run the post-processing
+    2. Run the post-processing
     ```
     pp.x < pp.in
     average.x < average.in > average.out
     mv avg.dat avg_cdm1-plot.dat
     ```
 
-  3. Repeat step 1 and 2 changing celldm(3) to 1,2,3,4,5,6 and compare their results. Change the name of the input and avg.dat file each time.
+    3. Repeat step 1 and 2 changing celldm(3) to 1,2,3,4,5,6 and compare their results. Change the name of the input and avg.dat file each time.
     ```
     gnuplot
     gnuplot> plot for [i=1:6] "avg_cdm".i."-plot.dat" t "cdm".i w l
