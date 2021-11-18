@@ -14,7 +14,7 @@ Follow the exercises from the sub-folders in numerical order.
   - [2_binding](2_binding)
     - Compute the binding energy of the CO molecule
     - Understand how to treat orbital occupation correctly in the O atom
-  - [3_homolumo](3_homolumo)
+  - [3_HomoLumo](3_HomoLumo)
     - Visualize the HOMO and LUMO of the CO molecule 
     - Investigate the orbital character as a function of cell size
   - [4_LennardJones](4_LennardJones) Use a Lennard-Jones like potential to fit the Energy vs Bond length curves
