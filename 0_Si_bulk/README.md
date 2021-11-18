@@ -15,7 +15,7 @@ Example on how to run basic DFT calculations on a well known system: bulk silico
     - Calculate a charge density and visualize it using XCrySDen
   - [4_bandstructure](4_bandstructure)
     - Calculate a band structure using a non-self-consistent calculation
-  - [5_DOS+opt](5_DOS+opt)
+  - [6_DOS_opt_scripting](6_DOS_opt_scripting)
     - Calculate the density of states(DOS) and optical properties (independent particle approximation) and show the convergence over the number of k_points and empty bands used
 
 ## Documentation
@@ -29,7 +29,7 @@ Example on how to run basic DFT calculations on a well known system: bulk silico
      - [INPUT_PROJWFC](http://https://www.quantum-espresso.org/Doc/INPUT_PROJWFC.html)
      - [everything else](https://www.quantum-espresso.org/resources/users-manual/input-data-description)
 
-  4. Look at the file Docs/DFT1.pdf for some slides.
+  4. Look at the files Docs/*.pdf for some more descriptive slides.
 
       
         
