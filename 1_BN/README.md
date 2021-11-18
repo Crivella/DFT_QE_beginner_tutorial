@@ -8,6 +8,8 @@ so that the repeating layers are far enough apart that they do not interact.
   1. Calculate a non fully periodic material using a supercell.
   2. Compute an observable quantity like the ionization energy or work function.
   3. Test the convergence with respect to cell/vacuum size.
+  4. Geometry optimization using variable cell relaxation.
 
 ## Running the exercise
   1. Run the exercises in the folder [0_test_vacuum](0_test_vacuum).
+  2. Run the exercises in the folder [1_variable_cell](1_variable_cell).

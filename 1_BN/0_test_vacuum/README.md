@@ -57,3 +57,5 @@ If the vacuum is large enough, the potential between layers is flat and we can s
     ![Dependence of electrostatic potential on cell size](Ref/Vacuum.png?raw=true "Potential vs cell size")
 
  4. ADVANCED USERS: The script run_vacuum in the Scripts folder will perform steps 1-2 automatically. Note also the use of a function, called by the script, to create an input file for each celldm(3).
+
+### When you have completed this tutorial, you can move on to [1_variable_cell: Variable cell optimization](../1_variable_cell)
