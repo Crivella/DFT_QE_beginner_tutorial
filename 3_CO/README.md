@@ -17,5 +17,8 @@ Follow the exercises from the sub-folders in numerical order.
   - [3_HomoLumo](3_HomoLumo)
     - Visualize the HOMO and LUMO of the CO molecule 
     - Investigate the orbital character as a function of cell size
-  - [4_LennardJones](4_LennardJones) Use a Lennard-Jones like potential to fit the Energy vs Bond length curves
+  - [4_LennardJones](4_LennardJones) 
+    - Use a Lennard-Jones like potential to fit the Energy vs Bond length curves
+  - [5_project_states](5_project_states) 
+    - Project the molecular states onto atomic orbitals
 
