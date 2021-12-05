@@ -1,6 +1,6 @@
 &INPUTPP
        prefix = 'BN',
-       outdir = './',
+       outdir = 'tmp',
       filplot = 'BN.pot',
      plot_num = 11
 /

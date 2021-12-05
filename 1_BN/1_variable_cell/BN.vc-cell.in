@@ -1,5 +1,5 @@
 &control
-    calculation       = 'scf'
+    calculation       = 'vc-relax'
     restart_mode      = 'from_scratch'
     prefix            = 'BN'
     tstress           = .true.
@@ -27,6 +27,9 @@
 &ions
     ion_dynamics='bfgs',
     upscale=10
+/
+&cell
+    cell_dofree='2Dxy'
 /
 
 ATOMIC_SPECIES
