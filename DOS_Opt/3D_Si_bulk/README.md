@@ -33,7 +33,12 @@ Dielectric function, as well as the DOS, is a quantity that requires the integra
     % cp -r tmp bnd5
     % cp -r tmp bnd10
     % cp -r tmp bnd15
-    ```   
+    ``` 
+    Alternatively, this can be done with a simple for loop just by the command line, typing:
+    ```
+    % for i in 5 10 20; do cp -r tmp kpt$i; done
+    % for i in 5 10 15; do cp -r tmp bnd$i; done
+    ```      
  6. Move the different *nscf* input in the relative directories typing:
     ```
     % mv Si_bulk_nscf_kpt5.in kpt5/
@@ -45,16 +50,16 @@ Dielectric function, as well as the DOS, is a quantity that requires the integra
     ```
  7. We have to copy the Si_bulk.dos.in and Si_bulk.pw2gw.in files in the kptXX e bndYY directories. This is necessary to avoid overwriting of the files since the dos.x and pw2gw.x codes generate file with default name (e.g. `epsTOT.dat`). We have to do this with both the dos and pw2gw input files.
     ```
-    % xargs -n 1 cp -v Si_bulk.dos.in<<<"kpt5/ kpt10/ kpt20/ bnd5/ bnd10/ bnd15/"
-    % xargs -n 1 cp -v Si_bulk.pw2gw.in<<<"kpt5/ kpt10/ kpt20/ bnd5/ bnd10/ bnd15/"
+    % xargs -n 1 cp -v Si_bulk_dos.in<<<"kpt5/ kpt10/ kpt20/ bnd5/ bnd10/ bnd15/"
+    % xargs -n 1 cp -v Si_bulk_pw2gw.in<<<"kpt5/ kpt10/ kpt20/ bnd5/ bnd10/ bnd15/"
     ```
  
  8. Once completed the organization of the input files in the relative folder we can start the calculations. Starting from the bnd5 folder we have to run in sequence the *nscf* , the dos and the pw2gw calculation, running the commands:
     ```
       % cd bnd5/
       % pw.x < Si_bulk_nscf_bnd5.in > Si_bulk_nscf_bnd5.out
-      % dos.x < Si_bulk.dos.in > Si_bulk.dos.out
-      % pw2gw.x < Si_bulk.pw2gw.in > Si_bulk.pw2gw.out
+      % dos.x < Si_bulk_dos.in > Si_bulk_dos.out
+      % pw2gw.x < Si_bulk_pw2gw.in > Si_bulk_pw2gw.out
       % rm -r tmp
       % cd ../bnd10/
     ```
