@@ -41,4 +41,6 @@ In this tutorial we will use Avogadro to create the pyrrole molecule, relax the 
 
   ![Pyrrole HOMO](Ref/pyrrole_HOMO.png?raw=true "pyrrole")
 
+  Note that the LUMO, in comparison, looks terrible compared to published work. This is due to several factors, including over-delocalization with PBE and LDA functionals.
+
 ### When you have completed this tutorial, you can move on to [1_Crystal: Design a bulk crystal calculation from scratch](../1_Crystal)
