@@ -1,5 +1,5 @@
 # Design a crystal from scratch
-In this tutorial we will create and optimize a crystal structure for a known material, wurtzite GaAs. This is a cell with hexagonal symmetry, as distinct from the diamond-like zinc blende phase.
+In this tutorial we will create and optimize a crystal structure for a known material, wurtzite GaAs, making use of modern databases. This is a cell with hexagonal symmetry, as distinct from the diamond-like zinc blende phase.
 ![Wurtzite structure](Ref/GaAs_structures.png?raw=true "GaAs")
 
   1. Look up online the space group for the wurtzite crystal. According to Wikipedia https://en.wikipedia.org/wiki/Wurtzite_crystal_structure it is No. 186 or P6_3mc.
@@ -63,4 +63,4 @@ In this tutorial we will create and optimize a crystal structure for a known mat
   - https://materials.nrel.gov/
   - http://www.2dmatpedia.org/
   - https://omdb.mathub.io/
-  See https://www.nature.com/articles/s43588-020-00016-5 for a nice discussion of their use.
+See https://www.nature.com/articles/s43588-020-00016-5 for a nice discussion of their use.
