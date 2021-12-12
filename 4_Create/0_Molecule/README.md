@@ -32,10 +32,12 @@ In this tutorial we will use Avogadro to create the pyrrole molecule, relax the 
   ```
   - At this point you need to edit the file: insert the atoms for pyrrole_shifted.xyz, modify appropriately the number and type of atoms, define an appropriate supercell, etc.
   - Download suitable pseudopotentials from the quantum-ESPRESSO website. For simplicity, let's choose PBE kinds for N,C,H from http://www.pseudo-dojo.org/   (they are also in the Ref and Pseudo folders)
-  - At this point you should perform the same convergence tests as we demonstrated for the CO molecule.
+
+  3.  At this point you should perform the same convergence tests as we demonstrated for the CO molecule.
   - If time is short, take the cutoff from the pseudo-DOJO site and define a cubic box so that molecules are separated by at least 10 angstrom.
   - Relax the structure.
-  - Plot the HOMO using pp.x, and check it looks reasonable using a Google search.
+
+  4. Plot the HOMO using pp.x, and check it looks reasonable using a Google search.
 
   ![Pyrrole HOMO](Ref/pyrrole_HOMO.png?raw=true "pyrrole")
 
