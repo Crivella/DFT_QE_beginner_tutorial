@@ -37,7 +37,7 @@ In this tutorial we will create and optimize a crystal structure for a known mat
 
   7. Carry out a test calculation using a reasonable guess for the cutoff and k-point set, setting the number of bands in order to report the gap at the Gamma point. Use a small smearing. Is the gap large or small? 
 
-     Indeed, the small gap in GaAs makes calculations quite difficult to carry out. One must take much care with k-point sampling and convergence tests in general, as well as in choice of pseudopotentials.
+     Indeed, the small gap in GaAs with LDA/GGA makes calculations quite difficult to carry out. One must take much care with k-point sampling and convergence tests in general, as well as in choice of pseudopotentials.
 
   8. Compute the band structure of wurtzite GaAs along a suitable path. Use either the Xcrysden k-path tool or the materials cloud seekpath tool: https://www.materialscloud.org/work/tools/seekpath 
 
@@ -53,14 +53,14 @@ In this tutorial we will create and optimize a crystal structure for a known mat
  12. ADVANCED: Using fully relativistic pseudopotentials, compute the spin-orbit split-off energy for ZB GaAs.
 ![GaAs SOC](Ref/GaAs_SOC.png?raw=true "GaAs SOC")
 
-### Some other material science databases:
-    - https://materialsproject.org
-    - http://oqmd.org/
-    - https://www.materialscloud.org/
-    - https://nomad-lab.eu/
-    - http://aflowlib.org/
-    - https://jarvis.nist.gov/
-    - https://materials.nrel.gov/
-    - http://www.2dmatpedia.org/
-    - https://omdb.mathub.io/
-    See https://www.nature.com/articles/s43588-020-00016-5 for a nice discussion of their use.
+### Various material science databases:
+  - https://materialsproject.org
+  - http://oqmd.org/
+  - https://www.materialscloud.org/
+  - https://nomad-lab.eu/
+  - http://aflowlib.org/
+  - https://jarvis.nist.gov/
+  - https://materials.nrel.gov/
+  - http://www.2dmatpedia.org/
+  - https://omdb.mathub.io/
+  See https://www.nature.com/articles/s43588-020-00016-5 for a nice discussion of their use.
