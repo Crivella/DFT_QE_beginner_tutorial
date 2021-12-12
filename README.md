@@ -63,6 +63,9 @@ Alternatively, you can download a static copy by browsing to https://github.com/
   5. Use a Lennard-Jones like potential to fit the data 'E_tot' vs 'bond length'
 ### [Optical properties and DOS (DOS_Opt)](DOS_Opt)
   1. Calculated the DOS and optical properties for systems of differing dimensionality
+### [Computing arbitary materials (4_Create)](4_Create)
+  1. Set-up and calculate an arbitrary molecule
+  2. Make use of modern databases and tools to calculate an arbitrary crystal
   
 ## Other folders
 * Docs: Contain additional tutorials in pdf format
