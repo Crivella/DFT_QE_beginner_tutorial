@@ -1,5 +1,6 @@
 # Design a molecule from scratch
 In this tutorial we will use Avogadro to create the pyrrole molecule, relax the structure with a force-field optimization, and then perform an accurate geometry optimization using quantum-ESPRESSO.
+
     ![Pyrrole structure](Ref/pyrrole01.png?raw=true "pyrrole")
 
   1. Launch Avogadro. There is detailed Documentation on their website at https://avogadro.cc/docs/getting-started/drawing-molecules/
@@ -22,6 +23,8 @@ In this tutorial we will use Avogadro to create the pyrrole molecule, relax the 
   ...
  
   % awk '{if (NR>2) {print $1,$2,$3+5,$4+10} else print}' pyrrole.xyz > pyrrole_shifted.xyz  (choose suitable values)
+  ```
+  You can also do this using the main Avogadro menus "Build -> Cartesian Editor" and then translate using the Manipulate submenu.
 
   2. Now create an input file for PWscf. The easiest thing is to copy and modify a previous file, i.e. one from the CO tutorial.
   ```
@@ -33,7 +36,8 @@ In this tutorial we will use Avogadro to create the pyrrole molecule, relax the 
   - At this point you should perform the same convergence tests as we demonstrated for the CO molecule.
   - If time is short, take the cutoff from the pseudo-DOJO site and define a cubic box so that molecules are separated by at least 10 angstrom.
   - Relax the structure.
-  - Plot the HOMO using pp.x.
-    ![Pyrrole HOMO](Ref/pyrrole_HOMO.png?raw=true "pyrrole")
+  - Plot the HOMO using pp.x, and check it looks reasonable using a Google search.
+
+  ![Pyrrole HOMO](Ref/pyrrole_HOMO.png?raw=true "pyrrole")
 
 ### When you have completed this tutorial, you can move on to [1_Crystal: Design a bulk crystal calculation from scratch](../1_Crystal)
