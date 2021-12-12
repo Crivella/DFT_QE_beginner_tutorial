@@ -1,0 +1,6 @@
+&bands
+    prefix = "GaAs",
+    outdir='./tmp'
+    filband='GaAs-bands.dat'
+    lsym=.false.
+ /
