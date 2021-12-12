@@ -1,7 +1,6 @@
 # Design a molecule from scratch
 In this tutorial we will use Avogadro to create the pyrrole molecule, relax the structure with a force-field optimization, and then perform an accurate geometry optimization using quantum-ESPRESSO.
-
-    ![Pyrrole structure](Ref/pyrrole01.png?raw=true "pyrrole")
+![Pyrrole structure](Ref/pyrrole01.png?raw=true "pyrrole")
 
   1. Launch Avogadro. There is detailed Documentation on their website at https://avogadro.cc/docs/getting-started/drawing-molecules/
     ![Avogadro menu](Ref/avogadro_menu.png?raw=true "pyrrole")
