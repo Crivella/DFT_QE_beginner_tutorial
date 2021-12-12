@@ -1,0 +1,33 @@
+&CONTROL
+  calculation  = "scf",
+  prefix       = "GaAs",
+  pseudo_dir   = "../../Pseudo",
+  outdir       = "./tmp",
+  restart_mode = "from_scratch"
+  tprnfor = .true.
+  wf_collect=.true.
+/
+&SYSTEM
+     ibrav=4
+     A=4.05346620
+     C=6.67955800
+  nat       = 4,
+  ntyp      = 2,
+  ecutwfc   = 20 
+! nbnd      = 5
+/
+&ELECTRONS
+  conv_thr    = 1.D-8,
+  mixing_beta = 0.7D0	,
+/
+ATOMIC_SPECIES
+ Ga  28.086  Ga.upf
+ As  28.086  As.upf
+ATOMIC_POSITIONS {crystal} 
+  Ga 0.66666667  0.33333333  0.49998900  
+  Ga 0.33333333  0.66666667  0.99998900  
+  As 0.66666667  0.33333333  0.87401100  
+  As 0.33333333  0.66666667  0.37401100  
+K_POINTS {automatic}
+6 6 4 0 0 0
+
