@@ -43,8 +43,9 @@ It is useful to plot E(n,**k**) along high-symmetry paths which usually shows mo
       - Manually by looking up a table of high-symmetry point for the system's lattice (FCC), e.g. from [Bilbao crystallographic server](https://www.cryst.ehu.es/cryst/get_kvec.html) or [1] or standard textbooks. 
       For example, bulk silicon has space group 227 (Fd-3m): click _Optimized listing_ and _include primitive basis_ to see the coordinates of various high symmetry points. 
       ![BZ](Ref/bands-mix.png?raw=true "BZ")
-      - Or by using the XCrySDen `tools` -> `k-path selection` tool. 
-NOTE: when saving the k-path specify the pwscf extension in the menu and IN THE FILE NAME or XCrySDen will use the wrong format.
+      - Or by using the XCrySDen `tools` -> `k-path selection` tool. Note: k-points are specified in 'crystal' units.
+        NOTE: when saving the k-path specify the pwscf extension in the menu and IN THE FILE NAME or XCrySDen will use the wrong format.
+      - Or by uploading your input file to the [SeekPath app](https://www.materialscloud.org/work/tools/seekpath)
       - Or read the DFT-basics/Doc/brillouin_zones.pdf guide.
 
   3.  The output from the previous step is not in a human-readable format. To plot an actual bandstructure, you must run the `bands.x` post-processing tool using the provided input 'si.bandspp.in'
