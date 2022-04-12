@@ -2,6 +2,14 @@
 A second parameter that must be converged is the number of k-points that are used to perform integrals over the Brillouin zone. A list of k-points can be specified manually or generated automatically via the 'automatic' keyword. For the latter, QE uses a regular Monkhorst-Pack grid defined by a set of three integer folding parameters and three offsets. The density of points needed is inversely proportional to the size of the unit cell, and should be converged with respect to the total energy. In contrast to the kinetic energy, however, the convergence with k is not necessarily monotonous.
 
   1. In the provided input files we have used alat=10.21 a.u. and ecutwfc=20 as determined from the previous step. 
+     You can first quickly check how they differ by using the unix 'diff' command:
+      ```
+      % diff si.scf.in_2x2x2 si.scf.in_4x4x4 
+      29c29
+      < 2 2 2 1 1 1
+      ---
+      > 4 4 4 1 1 1
+      ```
      Run the self-consistent calculations for increasing k-point mesh density via the folding parameter NxNxN:
       ```
       % pw.x < si.scf.in_2x2x2 > si.scf.out_2x2x2
