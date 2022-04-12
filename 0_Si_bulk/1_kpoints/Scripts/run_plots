@@ -13,8 +13,10 @@ set xlabel "N (NxNxN k-point mesh)"
 set ylabel "E_{tot} (Ry)"
 
 plot \
-	'$SAVE0'  u 1:2 w lp pt 7 lw 2  lc rgb "black" title "E vs NxNxN 000",\
-	'$SAVE1'  u 1:2 w lp pt 7 lw 2  lc rgb "red" title "E vs NxNxN 111",\
+	'$SAVE0'  u 1:3 w lp pt 7 lw 2  lc rgb "black" title "E vs NxNxN 000",\
+	'$SAVE0'  u 1:3:2 w labels offset char 1,1 notitle,\
+	'$SAVE1'  u 1:3 w lp pt 7 lw 2  lc rgb "red" title "E vs NxNxN 111",\
+	'$SAVE1'  u 1:3:2 w labels offset char 1,-1 notitle,\
 	-15.84773834+.0068 w l lt 1 dt 2 lc "green" t "+1 meV/atom",\
 	-15.84773834-.0068 w l lt 1 dt 2 lc "green" t "-1 meV/atom"
 pause -1
