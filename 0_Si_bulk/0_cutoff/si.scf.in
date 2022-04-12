@@ -18,7 +18,7 @@
   ntyp      = 1,			!The number of types of atoms (pseudopotentials loaded)
 					!The number of lines under the NAMELIST 'ATOMIC_SPECIES' must be the same as 'ntyp'
   ecutwfc   = 5, 			!The kinetic energy cutoff on the wave functions in [Ry]
-  nbnd      = 5				!The number of Kohn-Sham states to be calculated (here 4 occupied, 1 empty)
+  nbnd      = 6				!The number of Kohn-Sham states to be calculated (here 4 occupied, 1 empty)
 /
 &ELECTRONS
   conv_thr    = 1.D-8,			!Convergency threshold for self-consistency

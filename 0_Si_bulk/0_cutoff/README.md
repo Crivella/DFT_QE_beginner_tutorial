@@ -90,4 +90,4 @@ We need to limit the number of PW to the smallest number that represents our sys
       ```
       NB: Do not use the scripts for your own projects unless you understand well how they work!
       
-### When you have completed this tutorial, you can move on to [1_alat: Computing the lattice parameter](../1_alat)
+### When you have completed this tutorial, you can move on to [1_kpoints: Convergence with k-points](../1_kpoints)

@@ -7,10 +7,10 @@ Example on how to run basic DFT calculations on a well known system: bulk silico
     - View an input file for a simple crystal and visualize it using xcrysden. 
     - Run a simple self-consistent calculation using pw.x
     - Determine the convergence with respect to the kinetic energy cutoff
-  - [1_alat](1_alat)
-    - Determine the theoretical lattice parameter
-  - [2_kpoints](2_kpoints)
+  - [1_kpoints](1_kpoints)
     - Determine the convergence with respect to the k-point mesh
+  - [2_alat](2_alat)
+    - Determine the theoretical lattice parameter
   - [3_charge](3_charge)
     - Calculate a charge density and visualize it using XCrySDen
   - [4_bandstructure](4_bandstructure)
