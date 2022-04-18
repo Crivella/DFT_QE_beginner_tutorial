@@ -7,11 +7,12 @@ Like in the bulk Si tutorial, we start by testing convergence with respect to th
       First leave "Do not reduce dimensionality" checked.
       Click Modify -> Numer of units drawn -> Expand to 3x3x3.
      ![Graphene geometry](Ref/graphene-supercell.png?raw=true "Graphene geometry")
-      We have constructed what is known as a "supercell". Each supercell contains a thin slab sandwiched between thicker layers of empty space (vacuum). The unit cell contains 2 atoms of C, and the slab is only a single atom thick (a monolayer). Since quantum-ESPRESSO uses periodic boundary conditions, the system is composed of infinite sheets in the x-y plane, separated by vacuum. We will look more closely at the geometry in the following tutorials. First, however, we must carry out some convergence tests.
+
+      We have constructed what is known as a "supercell". Each supercell contains a thin slab sandwiched between thicker layers of empty space (vacuum). The unit cell contains 2 atoms of C, and the slab is only a single atom thick (a monolayer). Since quantum-ESPRESSO uses periodic boundary conditions, the system is composed of infinite sheets in the x-y plane, periodically repeated in the z direction. We will look more closely at the geometry in the following tutorials. First, however, we must carry out some convergence tests.
 
   2. As in the case of bulk Si, we start with the kinetic energy cutoff. Change the value of `ecutwfc` from 10 up to 100 Ry in regular steps. Change the name of the output file each time.
       ```
-      % pw.x < graphene.scf.in > graphene.scf.in_10Ry
+      % pw.x < graphene.scf.in > graphene.scf.out_10Ry
       ```
       You can also make this change directly to the original input file using the `sed` command:
 ecutwfc = 20
