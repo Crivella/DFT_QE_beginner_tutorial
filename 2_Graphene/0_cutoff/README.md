@@ -1,20 +1,11 @@
 # Convergence on the kinetic energy cutoff
 Like in the bulk Si tutorial, we start by testing convergence with respect to the kinetic energy cutoff, ecutwfc.
-Carbon is typically "harder" than silicon and requires a higher cutoff for the same family of pseudopotentials.
-      ```
-      Now run the calculation, redirecting the output to a file:
-      ```
-      % pw.x < si.scf.in > si.scf.out
-      ```
-      or to use multiple processors, if quantum-espresso has been compiled in parallel
-      ```
-      % mpirun -np 2 pw.x < si.scf.in > si.scf.out
-      ```
   1. First take a look at the system with xcrysden.
       ```
       % xcrysden --pwi graphene.scf.in
       ```
-      Click Modify -> Unit cells -> Expand to 3x3x3.
+      First leave "Do not reduce dimensionality" checked.
+      Click Modify -> Numer of units drawn -> Expand to 3x3x3.
       We have constructed what is known as a "supercell". Each supercell contains a thin slab sandwiched between thicker layers of empty space (vacuum). The unit cell contains 2 atoms of C, and the slab is only a single atom thick (a monolayer). Since quantum-ESPRESSO uses periodic boundary conditions, the system is composed of infinite sheets in the x-y plane, separated by vacuum. We will look more closely at the geometry in the following tutorials. First, however, we must carry out some convergence tests.
 
   2. As in the case of bulk Si, we start with the kinetic energy cutoff. Change the value of `ecutwfc` from 10 up to 100 Ry in regular steps. Change the name of the output file each time.
