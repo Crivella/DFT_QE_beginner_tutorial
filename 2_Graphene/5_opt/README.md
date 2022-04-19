@@ -1,3 +1,5 @@
+Note: This tutorial has been superceded by those in the DOS_Opt folder, and has not been checked.
+
 # Dielectric function
 The dielectric function is an example of integrated quantitie that depends on the wave function psi_n,k for all n and k.
 Obviously, for implementation on a computer, the problems needs to be discretized and limited to a range.

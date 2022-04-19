@@ -1,14 +1,17 @@
 # Graphene (2_Graphene)
-Example on how to run calculation for a metallic/semi-metallic system.
-In the previous exercises the systems manifested a band-gap.
-In the case of a metal/semi-metal, the bands cross the Fermi level which causes problem for the routines if we work with a step-like distribution (Fermi-Dirac at 0K).
-A smearing(temperature) needs to be introduced using the input cards 'occupation='smearing', 'degauss=...[Ry]' and 'smearing=gaussian/...'.
-Look at the input file description for all the possible types of smearing.
-Another problem arise for quantities that are results of integration over the entire BZ. 
-As it is hinted in 'Docs/DOS+OPT.pdf' integrated properties for metals/semi-metals requires extremely dense k-point meshes to converge.
-
-## Purpose
-1. Run calculation for a metallic/semimetallic system
+In this tutorial we show how to perform calculations for (1) metallic/semi-metallic systems, a (2) low-dimensional (2D) system, and (3) a spin-polarized system.
 
 ## Running the exercise
-1. Run the exercise from the folders following the numeric order
+  Enter each sub-directory in numerical order, and follow the detailed instructions in each README file.
+  - [0_cutoff](0_cutoff)
+    - View an input file for a supercell and visualize it using xcrysden. 
+    - Determine the convergence with respect to the kinetic energy cutoff
+  - [1_ksmear](1_ksmear)
+    - Determine the convergence with respect to the k-point mesh and smearing
+  - [2_vacuum](2_vacuum)
+    - Test convergence with respect to the cell size/vacuum spacing.
+  - [3_alat](3_alat)
+    - Determine the theoretical lattice parameter
+  - [4_spin](4_spin)
+    - Investigate spin-polarization in a graphene nanoribbon.
+

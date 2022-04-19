@@ -1,6 +1,6 @@
 # Low-dimensional systems: convergence vacuum thickness
 In this tutorial we investigate the role of the vacuum thickness. 
-Recall that to study an isolated 2D graphene sheet we use a supercell full of empty space. The amount of vacuum (i.e. tje distance between the periodically repeating layer replicas) is determined by the cell height. In this case, since we are  using ibrav=4, the cell height is defined by celldm(3)=c/a.
+Recall that to study an isolated 2D graphene sheet we use a supercell full of empty space. The amount of vacuum (i.e. the distance between the periodically repeating layer replicas) is determined by the cell height. In this case, since we are  using ibrav=4, the cell height is defined by celldm(3)=c/a. Instead, the in-plane lattice parameter is given by celldm(1).
 
 ## Compute the work function
   1. First view the input file graphene.scf.in with xcrysden and verify the distance between layers is 27.8 bohr or 14.7 angstrom for the given value of celldm=6. 

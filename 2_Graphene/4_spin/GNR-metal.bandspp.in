@@ -1,0 +1,5 @@
+&bands
+    prefix = "GNR",
+    outdir='metal'
+    filband='GNR-metal-bands.dat'
+ /

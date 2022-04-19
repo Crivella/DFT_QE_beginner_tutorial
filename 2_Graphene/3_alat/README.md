@@ -1,7 +1,7 @@
 # Variable cell relaxation
 In this tutorial we investigate how to perform a structural relaxation in which both the atomic positions and cell parameters are allowed to vary. It is an alternative method to obtain the lattice parameters.
 
-Recall that to study an isolated 2D graphene sheet we use a supercell full of empty space. The amount of vacuum (i.e. tje distance between the periodically repeating layer replicas) is determined by the cell height. In this case, since we are  using ibrav=4, the cell height is defined by celldm(3)=c/a.
+Recall that to study an isolated 2D graphene sheet we use a supercell full of empty space. The amount of vacuum (i.e. the distance between the periodically repeating layer replicas) is determined by the cell height. In this case, since we are  using ibrav=4, the cell height is defined by celldm(3)=c/a. Instead, the in-plane lattice constant is given by celldm(1).
 
 ## Free relax
   1. First view the input file graphene.vc-relax-free.in. There are a few new variables and namelists:
@@ -13,6 +13,7 @@ Recall that to study an isolated 2D graphene sheet we use a supercell full of em
   &CELL
   /
   ``` 
+  The &IONS namelist allows the atoms to move within the unit cell. Actually, they are already in their equilibrium positions and will not move from there. 
   Run the code and look at the output animation with xcrysden
   ```
   pw.x < graphene.vc-relax-free.in > graphene.vc-relax-free.out
@@ -45,6 +46,6 @@ Recall that to study an isolated 2D graphene sheet we use a supercell full of em
   pw.x < graphene.vc-relax-buckled2.in > graphene.vc-relax-buckled2.out
   xcrysden --pwo graphene.vc-relax-buckled2.out
   ```
-  The message here is: vc-relax cannot work miracles! If you start too far from the global minimum, the code will not be ableto find it. Use vc-relax with care, and always check the output files..
+  The message here is: vc-relax cannot work miracles! If you start too far from the global minimum, the code might not be able to find it. It is easy to generate metastable (or garbage) geometries. Symmetry of the system also plays a crucial role. The code will not break symmetries during a run, and thus will never find an ABA graphite structure. Use vc-relax with care, and always check the output files.
 
 ### When you have completed this tutorial, you can move on to [1_variable_cell: Variable cell optimization](../1_variable_cell)

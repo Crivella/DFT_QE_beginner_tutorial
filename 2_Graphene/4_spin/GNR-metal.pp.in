@@ -1,0 +1,17 @@
+&INPUTPP
+prefix       = "GNR",
+outdir       = "./metal",
+plot_num     = 7
+filplot      = "psi2"
+kpoint       = 16
+kband(1)        = 17
+kband(2)        = 18
+lsign        =.false.
+/
+&PLOT
+nfile     = 1
+filepp(1) ="psi2"
+iflag     = 3
+output_format = 5
+fileout = "_GNR-metal.xsf"
+/
