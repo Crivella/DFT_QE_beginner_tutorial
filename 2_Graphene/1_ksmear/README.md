@@ -1,8 +1,8 @@
 # Convergence on the smearing and k-points
 Convergence with k-points is more complicated for graphene than for bulk Si for a number of reasons: 
-..* First, the c-axis of the supercell is very large compared to the xy-axes. The Brillouin zone is thus very flat. 
-..* Second, the system is hexagonal, which impacts our choice of mesh. 
-..* Third, graphene is a semi-metal or zero-gap semiconductor, because its conduction and valence bands meet at the same points (Dirac points). Thus, it should be treated the same way as a metal, and k-point integration should be modified to include "smearing".
+* First, the c-axis of the supercell is very large compared to the xy-axes. The Brillouin zone is thus very flat. 
+* Second, the system is hexagonal, which impacts our choice of mesh. 
+* Third, graphene is a semi-metal or zero-gap semiconductor, because its conduction and valence bands meet at the same points (Dirac points). Thus, it should be treated the same way as a metal, and k-point integration should be modified to include "smearing".
      ![Graphene electronic properties](Ref/graphene-BZ.png?raw=true "Graphene electronic properties")
   1. First take a look at the Brillouin zone.the system with `xcrysden`.
       ```
