@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+SAVE=graphene.scf.vacuum-script
+#Print a gnuplot script to plot the 2 column files
+cat > plot-vacuum-script.gnu <<EOF
+#!/usr/bin/gnuplot
+
+# x11 should work on any system
+# try wxt (ubuntu) or aqua (mac) for nicer plots
+set term x11 enhanced
+set out
+
+set xlabel "x (bohr)"
+set ylabel "E (eV)
+thres_1meV_per_atom=0.0068
+thres_10meV_per_atom=0.068
+
+Ry=27.2114/2
+plot for [cdm in "0.5 1 2 3 4 5 6 7 8 9 10"] "graphene.scf_script_az".cdm.".out.avg" using 1:(\$2*Ry) title "celldm3 = ".cdm with lines
+
+pause -1
+set term pdfcairo enhanced
+set output "${SAVE}.pdf"
+replot
+set term pngcairo enhanced size 600,400
+set output "${SAVE}.png"
+replot
+EOF
+
+#Run the gnuplot script to make the plot of the total energy
+gnuplot plot-vacuum-script.gnu
+
+cat > plot-WF-script.gnu <<EOF2
+#!/usr/bin/gnuplot
+set term x11 enhanced
+set out
+set xlabel "celldm3 (c/a)"
+set ylabel "Work function (eV)"
+set key bottom right
+plot "E_vs_vacuum-script.dat" u 1:4 t "Calculation" w lp,4.56 t "Expt"
+pause -1
+set term pngcairo enhanced size 600,400
+set output "work_function-script.png"
+replot
+EOF2
+gnuplot plot-WF-script.gnu
+
+
+exit
+
