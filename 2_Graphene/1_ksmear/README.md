@@ -1,5 +1,8 @@
 # Convergence on the smearing and k-points
-Convergence with k-points is more complicated for graphene than for bulk Si for a number of reasons. First, the c-axis of the supercell is very large compared to the xy-axes. The Brillouin zone is then very flat, and we only need one k-point in the z direction. Second, the system is hexagonal, which impacts our choice of mesh. Third, graphene is a semi-metal or zero-gap semiconductor, because its conduction and valence bands meet at the same points (Dirac points). Thus, it should be treated the same way as a metal, and k-point integration should be modified to include "smearing".
+Convergence with k-points is more complicated for graphene than for bulk Si for a number of reasons: 
+..* First, the c-axis of the supercell is very large compared to the xy-axes. The Brillouin zone is thus very flat. 
+..* Second, the system is hexagonal, which impacts our choice of mesh. 
+..* Third, graphene is a semi-metal or zero-gap semiconductor, because its conduction and valence bands meet at the same points (Dirac points). Thus, it should be treated the same way as a metal, and k-point integration should be modified to include "smearing".
      ![Graphene electronic properties](Ref/graphene-BZ.png?raw=true "Graphene electronic properties")
   1. First take a look at the Brillouin zone.the system with `xcrysden`.
       ```
@@ -59,7 +62,7 @@ Convergence with k-points is more complicated for graphene than for bulk Si for 
       A complete set of data is also provided in the Ref folder.
      ![Smearing in graphene](Ref/smearing.png?raw=true "Smearing")
       
-      In principle we are converging the calculation with k-points for each value of degauss. At higher smearing (0.1Ry), it is clear the data is not converged with k-points.
+      In principle we are converging the calculation with k-points for each value of degauss. At higher smearing (>0.1Ry), it is clear the data is not converged with k-points. Of course, it depends on the precision required. The blue box in the figure indicates +/-1meV/atom range about the converged value.
 
       Graphene is something of a special case. The convergence is quite different for a true metal like Al. In that case, one cannot  reduce the smearing too much: the energy levels must have some overlap, or else the advantage of broadening is lost.
 
