@@ -48,10 +48,11 @@ If the vacuum is large enough, the potential between layers is flat and we can s
     gnuplot
     gnuplot> plot for [i=1:6] "avg.dat_az".i t "celldm3 = ".i w l
     ```
-    ![Dependence of electrostatic potential on cell size](Ref/Vacuum.png?raw=true "Potential vs cell size")
+    ![Dependence of electrostatic potential on cell size](Ref/graphene.scf.vacuum.png?raw=true "Potential vs cell size")
 
  4. Last, extract the Fermi level and vacuum level from the output files and plot the work function as a function of cell size. Convergence is reached for interplanar distance of about 10A. This is a typical minimum distance you should use for treating isolated systems. Other properties may need larger vacuums.
 
+    ![Dependence of WF on cell size](Ref/work_function.png?raw=true "WF vs cell size")
  4. ADVANCED USERS: The script run_vacuum and run_plots in the Scripts folder will perform the above steps automatically. 
 
 ### When you have completed this tutorial, you can move on to [1_variable_cell: Variable cell optimization](../1_variable_cell)
