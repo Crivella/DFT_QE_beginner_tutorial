@@ -55,4 +55,4 @@ If the vacuum is large enough, the potential between layers is flat and we can s
     ![Dependence of WF on cell size](Ref/work_function.png?raw=true "WF vs cell size")
  4. ADVANCED USERS: The script run_vacuum and run_plots in the Scripts folder will perform the above steps automatically. 
 
-### When you have completed this tutorial, you can move on to [1_variable_cell: Variable cell optimization](../1_variable_cell)
+### When you have completed this tutorial, you can move on to [3_alat: Variable cell optimization of alat](../3_alat)

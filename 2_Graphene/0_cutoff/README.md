@@ -39,4 +39,4 @@ ecutwfc = 20
       ```
       NB: Do not use the scripts for your own projects unless you understand well how they work!
       
-### When you have completed this tutorial, you can move on to [1_kpoints: Convergence with k-points](../1_kpoints)
+### When you have completed this tutorial, you can move on to [1_ksmear: Convergence with k-points and smearing](../1_ksmear)

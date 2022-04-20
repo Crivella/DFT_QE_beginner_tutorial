@@ -48,4 +48,4 @@ Recall that to study an isolated 2D graphene sheet we use a supercell full of em
   ```
   The message here is: vc-relax cannot work miracles! If you start too far from the global minimum, the code might not be able to find it. It is easy to generate metastable (or garbage) geometries. Symmetry of the system also plays a crucial role. The code will not break symmetries during a run, and thus will never find an ABA graphite structure. Use vc-relax with care, and always check the output files.
 
-### When you have completed this tutorial, you can move on to [1_variable_cell: Variable cell optimization](../1_variable_cell)
+### When you have completed this tutorial, you can move on to [4_spin: Spin polarization in a graphene nanoribbon](../4_spin)
