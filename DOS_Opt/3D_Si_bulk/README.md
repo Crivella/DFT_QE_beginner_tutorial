@@ -48,11 +48,11 @@ Dielectric function, as well as the DOS, is a quantity that requires the integra
     % mv Si_bulk_nscf_bnd10.in bnd10/
     % mv Si_bulk_nscf_bnd15.in bnd15/
     ```
-As done before, also this step can be done automatically with an analogue for loop;
+    As done before, also this step can be done automatically with an analogue for loop: 
     ```
     % for i in 5 10 20; do mv Si_bulk_nscf_kpt$i.in kpt$i/; done
     % for i in 5 10 15; do mv Si_bulk_nscf_bnd$i.in bnd$i/; done
-    ```  
+    ```   
  7. We have to copy the Si_bulk.dos.in and Si_bulk.pw2gw.in files in the kptXX e bndYY directories. This is necessary to avoid overwriting of the files since the dos.x and pw2gw.x codes generate file with default name (e.g. `epsTOT.dat`). We have to do this with both the dos and pw2gw input files.
     ```
     % xargs -n 1 cp -v Si_bulk_dos.in<<<"kpt5/ kpt10/ kpt20/ bnd5/ bnd10/ bnd15/"
