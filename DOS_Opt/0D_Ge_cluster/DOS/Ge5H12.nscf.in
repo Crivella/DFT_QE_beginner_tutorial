@@ -9,7 +9,7 @@
         outdir='./tmp/',
         prefix='Ge5H12',
         disk_io='default',
-        pseudo_dir ='../../pseudo',      
+        pseudo_dir ='../../Pseudo',      
         wf_collect =.true.,
 / 
  &SYSTEM
