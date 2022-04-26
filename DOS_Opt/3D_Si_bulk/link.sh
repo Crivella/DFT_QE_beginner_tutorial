@@ -1,4 +1,4 @@
-for i in 15 21 30
+for i in 5 10 20
     do
         cd kpt$i
         ln -s ../tmp tmp
