@@ -4,7 +4,7 @@
     prefix            = 'Grafene'
     tstress           = .true.
     tprnfor           = .true.
-    pseudo_dir        = '../pseudo'
+    pseudo_dir        = '../Pseudo'
     outdir            = './tmp/'
     verbosity         = 'high'
     disk_io           = 'minimal'
