@@ -2,7 +2,7 @@
     calculation       = 'nscf'
     restart_mode      = 'from_scratch'
     prefix            = 'Si_bulk'
-    pseudo_dir        = '../Pseudo',
+    pseudo_dir        = '../../Pseudo',
     outdir            = './tmp'
     forc_conv_thr     = 1.0d-3
     etot_conv_thr     = 1.0d-5
