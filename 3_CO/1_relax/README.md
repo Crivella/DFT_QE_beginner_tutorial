@@ -8,8 +8,11 @@ If we wanted to, it could be appropriate to rerun the previous exercise using th
   2. Run a calculation for a 0D system
 
 ## Running the exercise
-  1. Use the provided script 'run_ecut' to run several relax calculation for different cutoff values
-      ```
-      ./run_ecut
-      ```
-  2. The script will automatically collect the final coordinates of each calculation and write the in a two-column file vs the ecut
+  1. Calculate the total energy as a function of the kinetic energy cutoff, in the same manner as for the Si bulk tutorial.
+     Change the value of ecutwfc each time, and grep the final energy
+     ```
+     % pw.x < co.optimize.in > co.optimize.out_5Ry
+     % grep ! co.optimize.out_5Ry
+     ```
+     Collect the data in a 2-column file and plot the result.
+  2. ADVANCED: Use the provided script 'Script/run_ecut' to run several relax calculation for different cutoff values. The script will automatically collect the final coordinates of each calculation and write the in a two-column file vs the ecut

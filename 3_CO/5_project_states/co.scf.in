@@ -1,0 +1,32 @@
+&CONTROL
+  calculation  = "scf",
+  prefix       = "CO",
+  pseudo_dir   = "../../Pseudo",
+  outdir       = "./tmp",
+  verbosity    = 'high'
+/
+&SYSTEM
+  ibrav     = 0,
+  nat       = 2,
+  ntyp      = 2,
+  nbnd      = 10,
+  nspin     = 1
+  ecutwfc   = 50
+  occupations ='smearing'
+  degauss     =0.001
+/
+&ELECTRONS
+  conv_thr    = 1.D-7,
+  mixing_beta = 0.7D0,
+/
+CELL_PARAMETERS {bohr}
+12.0  0.0  0.0
+ 0.0 12.0  0.0
+ 0.0  0.0 12.0
+ATOMIC_SPECIES
+O  1.00  O.pw-mt_fhi.UPF
+C  1.00  C.pw-mt_fhi.UPF
+ATOMIC_POSITIONS {bohr}
+C  2.115  0.0  0.0  1 0 0
+O  0.000  0.0  0.0  0 0 0
+K_POINTS {Gamma}

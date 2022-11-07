@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+
+source ../../ENVIRONMENT_VARIABLES
+source ./functions
+echo "BIN_DIR:" $BIN_DIR
+echo "PSEUDO_DIR:" $PSEUDO_DIR
+echo "TMP_DIR:" $TMP_DIR
+echo "Parallel command:" $RUN_COMMAND
+echo "Started at: " `date`
+
+PREFIX=graphene.scf
+VAC=E_vs_vacuum-script.dat
+echo "#celldm3 Efermi Evac WF (eV)" > $VAC
+
+for celldm3 in 0.5 1 2 3 4 5 6 7 8 9 10; do
+IN=${PREFIX}_script_az${celldm3}.in
+OUT=${PREFIX}_script_az${celldm3}.out
+cat > $IN << EOF
+&CONTROL
+    calculation       = 'scf'
+    restart_mode      = 'from_scratch'
+    prefix            = 'graphene'
+    tstress           = .true.
+    tprnfor           = .true.
+    pseudo_dir        = '../../Pseudo'
+    outdir            = './'
+    verbosity         = 'high'
+    disk_io = 'minimal'
+    wf_collect        = .true.
+/
+&SYSTEM
+                       ibrav = 4,
+                   celldm(1) = 4.635,
+                   celldm(3) = $celldm3,
+                         nat = 2,
+                        ntyp = 1,
+                     ecutwfc = 20 ,
+                        nbnd = 8,
+                 occupations = 'smearing' ,
+                     degauss = 0.01 ,
+                    smearing = 'm-v' ,
+/
+&ELECTRONS
+                 mixing_beta = 0.7 ,
+/
+ATOMIC_SPECIES
+    C   12.01100  C.pz-vbc.UPF 
+ATOMIC_POSITIONS crystal 
+    C      0.000000000    0.000000000    0.500000000    
+    C      0.333333333    0.666666667    0.500000000    
+K_POINTS automatic
+  9 9 1	0 0 0
+EOF
+
+COMMAND="  $RUN_COMMAND $BIN_DIR/pw.x"
+echo -e "\t\t$COMMAND < $IN > $OUT"
+$COMMAND < $IN > $OUT
+
+COMMAND="  $RUN_COMMAND $BIN_DIR/pp.x"
+echo -e "\t\t$COMMAND < pp.in > pp-script.out"
+$COMMAND < pp.in > pp-script.out
+
+COMMAND=" $BIN_DIR/average.x"
+echo -e "\t\t$COMMAND < average.in > average-script.out"
+$COMMAND < average.in > average-script.out
+mv avg.dat ${OUT}.avg
+
+#Now extract the Fermi level and vacuum level
+efermi=`grep Fermi ${OUT} | awk '{print $5}'`
+evac=`awk 'FNR==1 {print $2*27.2114/2}' ${OUT}.avg`
+WF=`echo ${evac} - ${efermi} | bc -l`
+echo -e "$celldm3 \t\t $efermi \t\t $evac \t\t $WF"
+echo -e "$celldm3 \t\t $efermi \t\t $evac \t\t $WF" >> $VAC
+
+
+echo -e "\n"
+done
+
+exit
+
+
+
+
+

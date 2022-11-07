@@ -1,0 +1,35 @@
+&CONTROL
+  calculation  = "bands",
+  prefix       = "Si",
+  pseudo_dir   = "../../Pseudo",
+  outdir       = "./tmp",
+  restart_mode = "from_scratch"
+  tprnfor = .true.
+  wf_collect=.true.
+  verbosity='high'
+/
+&SYSTEM
+  ibrav     = 2,
+  celldm(1) = 10.21,
+  nat       = 2,
+  ntyp      = 1,
+  ecutwfc   = 20 
+  nbnd      = 10
+/
+&ELECTRONS
+  conv_thr    = 1.D-8,
+  mixing_beta = 0.7D0	,
+/
+ATOMIC_SPECIES
+ Si  28.086  Si.pz-vbc.UPF
+ATOMIC_POSITIONS {alat}
+ Si 0.00 0.00 0.00
+ Si 0.25 0.25 0.25
+K_POINTS {tpiba_b}
+  6
+    0.500 0.500 0.500 8 ! L
+    0.000 0.000 0.000 8 ! Gamma
+    0.000 1.000 0.000 8 ! X
+    0.250 1.000 0.250 1 ! U
+    0.750 0.750 0.000 8 ! K
+    0.000 0.000 0.000 1 ! Gamma

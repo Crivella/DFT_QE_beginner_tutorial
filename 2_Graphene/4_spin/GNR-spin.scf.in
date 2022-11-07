@@ -1,0 +1,51 @@
+&CONTROL
+    calculation       = 'relax'
+    restart_mode      = 'from_scratch'
+    prefix            = 'GNR'
+    tstress           = .true.
+    tprnfor           = .true.
+    pseudo_dir        = '../../Pseudo'
+    outdir            = './spin'
+    verbosity         = 'high'
+    disk_io = 'minimal'
+    wf_collect        = .true.
+/
+&SYSTEM
+                       ibrav = 0,
+                   celldm(1) = 4.635,
+!                  celldm(3) = 6,
+                         nat = 10,
+                        ntyp = 2,
+                     ecutwfc = 20 ,
+                       nbnd = 20,
+                 occupations = 'smearing' ,
+                     degauss = .003674930 ,  ! 0.1eV
+                    smearing = 'm-v' ,
+                     nspin = 2
+     starting_magnetization(1) = 0.5
+/
+&ELECTRONS
+                 mixing_beta = 0.7 ,
+/
+&IONS
+/
+CELL_PARAMETERS {alat}
+ 1.000000   0.000000   0.000000 
+ 0.000000   8.0  0.000000 
+ 0.000000   0.000000   6.000000 
+ATOMIC_SPECIES
+    C   12.01100  C.pz-vbc.UPF 
+    H   12.01100  H.pz-vbc.UPF 
+ATOMIC_POSITIONS {alat}
+H             0.0000000000        2.1060549047        3.0000000000    0   1   0
+C             0.0000000000        2.5773502692        3.0000000000    0   0   0
+C             0.5000000000        2.8660254038        3.0000000000    0   0   0
+C             0.5000000000        3.4433756730        3.0000000000    0   0   0
+C             0.0000000000        3.7320508076        3.0000000000    0   0   0
+C             0.0000000000        4.3094010768        3.0000000000    0   0   0
+C             0.5000000000        4.5980762114        3.0000000000    0   0   0
+C             0.5000000000        5.1754264805        3.0000000000    0   0   0
+C             0.0000000000        5.4641016151        3.0000000000    0   0   0
+H             0.0000000000        5.9353966977        3.0000000000    0   1   0
+K_POINTS automatic
+  30 1 1  0 0 0

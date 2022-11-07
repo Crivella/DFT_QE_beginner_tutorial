@@ -1,0 +1,43 @@
+&CONTROL
+  calculation  = "relax",
+  prefix       = "pyrrole",
+  pseudo_dir   = "../../Pseudo",
+  outdir       = "./tmp",
+  etot_conv_thr = 1.0D-4
+  forc_conv_thr = 1.0D-3
+  wf_collect=.true.
+/
+&SYSTEM
+  ibrav     = 0,
+  nat       = 10,
+  ntyp      = 3,
+  nbnd      = 15,
+  ecutwfc   = 40 
+/
+&ELECTRONS
+  conv_thr    = 1.D-7,
+  mixing_beta = 0.7D0,
+/
+&IONS
+  ion_dynamics = "bfgs"
+/
+CELL_PARAMETERS {angstrom}
+15  0.0  0.0
+ 0.0 15  0.0
+ 0.0  0.0 15
+ATOMIC_SPECIES
+C  1.00  C.pz-vbc.UPF
+N  1.00  N.pz-vbc.UPF
+H  1.00  H.pz-vbc.UPF
+ATOMIC_POSITIONS {angstrom}
+N 2.35756 5.26815 1.53628
+C 1.29444 5.14487 2.35133
+C 1.71998 5.02919 3.65865
+C 3.09852 5.08514 3.63045
+C 3.45956 5.23273 2.30705
+H 2.33211 5.37207 0.49783
+H 0.26588 5.13919 2.01538
+H 1.09519 4.91665 4.53452
+H 3.76561 5.02502 4.4799
+H 4.47063 5.30983 1.92938
+K_POINTS {Gamma}

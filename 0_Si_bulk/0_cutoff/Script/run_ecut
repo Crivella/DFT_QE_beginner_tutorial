@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+#Every 1st line of a bas script start with #! followed by the shell that should run the script
+
+source ../../ENVIRONMENT_VARIABLES		#Load variables/code present in a different file
+echo "BIN_DIR:" $BIN_DIR			#echo -> print a string to the stdout
+						#$NAME -> recal the value of a variable of name NAME
+echo "PSEUDO_DIR:" $PSEUDO_DIR
+echo "TMP_DIR:" $TMP_DIR
+echo "Parallel command:" $RUN_COMMAND
+echo "Started at: " `date`
+
+# Prepare the files to be plotted
+SAVE=Etot_vs_Ecut-script.dat				#NAME=something assign a variable of name NAME and value something (can be a string ora  number)
+						#!!!!!! There must be no spaces when assigning variable
+						#Use "... ..." for a string with spaces
+echo -e "# Ecut(Ry)\tEnergy(Ry)" > $SAVE	# COMMAND > NAME  write the stdout of the command COMMAND into the file NAME
+						#Create the file if it does not exist
+						#Overwrite the file it exist
+						#Use >> to append at the end of the file
+
+GAP=Gap_vs_Ecut-script.dat
+echo -e "# Ecut(Ry)\tVBM\tCBM\tGap (eV)" > $GAP	
+
+# Loop over cutoff energies
+for ecut in 5 10 15 20 25 30; do		#for NAME in LIST; do ... done
+						#cicle the variable NAME in a list of elements
+
+IN=si_script.scf.in
+OUT=si_script.scf.out_Ecut$ecut
+						#<<DELIM  ... DELIM   defines a block of text
+						#Will still resolve variables values using $NAME
+						#cat NAME/TEXT   read a file or string/block of text and print it into the stdout
+# self-consistent calculation
+cat > $IN << EOF
+&CONTROL
+  calculation  = "scf",
+  prefix       = "Si",
+  pseudo_dir   = "$PSEUDO_DIR",
+  outdir       = "$TMP_DIR",
+  restart_mode = "from_scratch"
+  tprnfor = .true.
+  wf_collect=.true.
+/
+&SYSTEM
+  ibrav     = 2,
+  celldm(1) = 10.21,
+  nat       = 2,
+  ntyp      = 1,
+  ecutwfc   = $ecut 
+  nbnd      = 5
+/
+&ELECTRONS
+  conv_thr    = 1.D-8,
+  mixing_beta = 0.7D0	,
+/
+ATOMIC_SPECIES
+ Si  28.086  Si.pz-vbc.UPF
+ATOMIC_POSITIONS
+ Si 0.00 0.00 0.00
+ Si 0.25 0.25 0.25
+K_POINTS {automatic}
+4 4 4 1 1 1
+EOF
+
+echo -e "\tStart: " `date`
+COMMAND="  $RUN_COMMAND $BIN_DIR/pw.x"
+echo -e "\t\t$COMMAND < $IN > $OUT"
+$COMMAND < $IN > $OUT
+echo -e "\tEnd: " `date`
+
+ENERGY=`cat $OUT | grep ! | tr -dc '0-9,-.'`		#COMMAND1 | COMMAND2   pipe stdout of COMMAND1 into the stdin of COMMAND2
+							#grep TEXT   look for every line containing the text TEXT and print it in the stdout
+							#tr -dc LIST  (delete complementary)  deletes every character that is not present 
+							#in the list LIST
+echo -e "$ecut\t\t$ENERGY" >> $SAVE
+
+BANDS=`cat $OUT | grep highest | awk '{print $7,$8,$8-$7}'`
+echo -e "$ecut\t\t$BANDS" >> $GAP
+
+done    # end of main loop over cutoff energy
+
+echo "Run completed at: " `date`
+echo "Now run the run_plots script" 
+

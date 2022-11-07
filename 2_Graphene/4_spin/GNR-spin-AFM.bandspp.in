@@ -1,0 +1,5 @@
+&bands
+    prefix = "GNR",
+    outdir='spin-AFM'
+    filband='GNR-spin-AFM-bands.dat'
+ /

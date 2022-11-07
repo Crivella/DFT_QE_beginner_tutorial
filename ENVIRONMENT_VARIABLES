@@ -1,6 +1,15 @@
 #The ABSOLUTE PATH of the bin folder containing the QE executables (pw.x, pp.x)
 #BIN_DIR=
+#
+#By default the code will run in serial.
+RUN_COMMAND=""
+#For running in parallel, uncomment the following line (remove the first # symbol)
+#RUN_COMMAND="mpirun -np 2"
 
+
+#
+# DO NOT MODIFY ANYTHING BELOW THIS LINE
+#
 if [ -d "$BIN_DIR" ]; then
 	if [ ! -f $BIN_DIR/pw.x ]; then
 		echo "Can't find pw.x in '$BIN_DIR'..."
@@ -33,7 +42,3 @@ fi
 #The RELATIVE PATH of the folder to contain temporary/restart QE files
 TMP_DIR='./tmp'
 
-#This is the default for running in serial
-RUN_COMMAND=""
-#For parallel execution uncomment this (remove the first # symbol)
-#RUN_COMMAND="mpirun -np 2"

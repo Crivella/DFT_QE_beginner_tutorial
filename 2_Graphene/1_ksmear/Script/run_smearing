@@ -1,0 +1,95 @@
+#!/usr/bin/env bash
+
+source ../../ENVIRONMENT_VARIABLES
+echo "BIN_DIR:" $BIN_DIR
+echo "PSEUDO_DIR:" $PSEUDO_DIR
+echo "TMP_DIR:" $TMP_DIR
+echo "Parallel command:" $RUN_COMMAND
+echo "Started at: " `date`
+
+SAVENAME=Etot_vs_kgrid-script.dat
+
+# Loop over smearing
+for smearing in gaussian m-v; do
+
+# Set up separate files for the different smearing types
+SAVE=${SAVENAME}_${smearing}
+echo "Results saved to file $SAVE"
+echo -e "# Sigma N\tNxNxN\t\tNKTOT\t\t energy(Ry)" > $SAVE
+
+# Loop over k-point grid
+for grid in 3 6 9 12; do
+
+# Loop over sigma (smearing)
+for sigma in 0.003 0.01 0.05 0.1 0.2; do
+
+klist="$grid $grid 1 0 0 0"
+echo $klist
+
+IN=si_script.scf.in
+OUT=si_script.scf.out_k${grid}_g${sigma}_${smearing}
+
+# self-consistent calculation
+cat > $IN << EOF
+&CONTROL
+    calculation       = 'scf'
+    restart_mode      = 'from_scratch'
+    prefix            = 'graphene'
+    tstress           = .true.
+    tprnfor           = .true.
+    pseudo_dir        = '../../Pseudo'
+    outdir            = './'
+    verbosity         = 'high'
+    disk_io = 'minimal'
+    wf_collect        = .true.
+/
+&SYSTEM
+                       ibrav = 4,
+                   celldm(1) = 4.635,
+                   celldm(3) = 6,
+                         nat = 2,
+                        ntyp = 1,
+                     ecutwfc = 20 ,
+                        nbnd = 8,
+                 occupations = 'smearing' ,
+                     degauss = $sigma ,
+                    smearing = '$smearing' ,
+/
+&ELECTRONS
+                 mixing_beta = 0.7 ,
+/
+ATOMIC_SPECIES
+    C   12.01100  C.pz-vbc.UPF 
+ATOMIC_POSITIONS crystal 
+    C      0.000000000    0.000000000    0.500000000    
+    C      0.333333333    0.666666667    0.500000000    
+K_POINTS {automatic}
+$klist
+EOF
+
+echo -e "\tStart: " `date`
+COMMAND="  $RUN_COMMAND $BIN_DIR/pw.x"
+echo -e "\t\t$COMMAND < $IN > $OUT"
+$COMMAND < $IN > $OUT
+echo -e "\tEnd: " `date`
+
+
+ENERGY=`cat $OUT | grep ! | tr -dc '0-9,-.'`
+KPOINTS=`cat $OUT | grep 'number of k points' | awk '{print $5}'`
+
+klabel="${grid}x${grid}x1"
+echo -e "$sigma\t$grid\t\t$klabel\t\t$KPOINTS\t\t$ENERGY" >> $SAVE
+
+done
+echo -e " " >> $SAVE
+echo -e " " >> $SAVE
+done
+done
+echo "Run completed at: " `date`
+#echo "Now launch the run_plots script."
+
+exit
+
+
+
+

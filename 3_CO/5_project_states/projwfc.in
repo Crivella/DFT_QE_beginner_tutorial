@@ -1,0 +1,6 @@
+&PROJWFC
+  prefix       = "CO",
+  outdir       = "./tmp",
+  lsym=.false.
+  filproj='CO.proj'
+/

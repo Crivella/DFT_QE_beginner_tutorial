@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+SAVE=smearing-script		
+
+#Print a gnuplot script to plot the 2 column files
+cat > plot-smearing-script.gnu <<EOF
+#!/usr/bin/gnuplot
+
+# x11 should work on any system
+# try wxt (ubuntu) or aqua (mac) for nicer plots
+set term x11 enhanced
+set out
+
+set xlabel "Smearing (Ry)"
+set ylabel "E_{tot} (Ry)
+Emin=-22.15272303
+thres_1meV_per_atom=0.0068
+thres_10meV_per_atom=0.068
+list="3x3x1 6x6x1 9x9x1 12x12x1"
+item(n) = word(list,n)
+
+set xtics 0.05
+set mxtics 5
+set xrange [0:0.2]
+set yrange [-22.18:-22.10]
+set multiplot layout 1,2
+set title "Smearing: gaussian"
+plot for [p=1:4] "Etot_vs_kgrid-script.dat_gaussian" index p-1 u 1:5 w lp title item(p)
+set title "Smearing: m-v"
+plot for [p=1:4] "Etot_vs_kgrid-script.dat_m-v" index p-1 u 1:5 w lp title item(p)
+set nomulti
+
+#plot \
+#	'$SAVE'  u 1:2 w lp pt 7 lw 2  lc rgb "black" title "Total energy" 
+#set yrange [GPVAL_DATA_Y_MIN-thres_10meV_per_atom:*]
+#replot GPVAL_DATA_Y_MIN t "Min value" w l lt 4 dt 4 lc "red",\
+#        GPVAL_DATA_Y_MIN+thres_1meV_per_atom w l lt 2 lc "blue" t "Min + 1meV/atom",\
+#        GPVAL_DATA_Y_MIN+thres_10meV_per_atom w l lt 3 lc "magenta" t "Min + 10meV/atom"
+
+pause -1
+#set term pdfcairo enhanced
+#set output "${SAVE}.pdf"
+#replot
+
+set term pngcairo enhanced size 900,500
+set output "${SAVE}.png"
+set multiplot layout 1,2
+set object 1 rectangle from 0,Emin-thres_1meV_per_atom to 0.2,Emin+thres_1meV_per_atom fc "light-blue" fs transparent solid 0.4 noborder
+set title "Smearing: gaussian"
+plot for [p=1:4] "Etot_vs_kgrid-script.dat_gaussian" index p-1 u 1:5 w lp title item(p)
+set title "Smearing: m-v"
+plot for [p=1:4] "Etot_vs_kgrid-script.dat_m-v" index p-1 u 1:5 w lp title item(p)
+set nomulti
+replot
+
+EOF
+
+
+#Run the gnuplot script to make the plot of the total energy
+gnuplot plot-smearing-script.gnu
+
+exit
+

@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+SAVE=Etot_vs_alat-script.dat
+
+cat > plot-script.gnu <<EOF
+#!/usr/bin/gnuplot
+
+set xlabel "alat (bohr)"
+set ylabel "E_{tot} (Ry)"
+
+set term pdfcairo enhanced
+set output "${SAVE}.pdf"
+plot \
+	'$SAVE'  u 1:2 w lp pt 7 lw 2  lc rgb "black" title "E_{tot} vs alat" 
+
+set term pngcairo enhanced
+set output "${SAVE}.png"
+replot
+
+set term x11 enhanced
+replot
+pause -1
+EOF
+
+gnuplot plot-script.gnu
+
+
+exit
+
+
+
+

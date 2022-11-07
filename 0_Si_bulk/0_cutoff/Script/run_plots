@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+
+SAVE=Etot_vs_Ecut-script.dat			
+GAP=Gap_vs_Ecut-script.dat
+
+#Print a gnuplot script to plot the 2 column files
+cat > plot-energy-script.gnu <<EOF
+#!/usr/bin/gnuplot
+
+# x11 should work on any system
+# try wxt (ubuntu) or aqua (mac) for nicer plots
+set term x11 enhanced
+set out
+
+set xlabel "E_{cut} (Ry)"
+set ylabel "E_{tot} (Ry)
+thres_1meV_per_atom=0.0068
+thres_10meV_per_atom=0.068
+
+plot \
+	'$SAVE'  u 1:2 w lp pt 7 lw 2  lc rgb "black" title "Total energy" 
+replot GPVAL_DATA_Y_MIN t "Min value" w l lt 4 dt 4 lc "red",\
+        GPVAL_DATA_Y_MIN+thres_1meV_per_atom w l lt 2 lc "blue" t "Min + 1meV/atom",\
+        GPVAL_DATA_Y_MIN+thres_10meV_per_atom w l lt 3 lc "magenta" t "Min + 10meV/atom"
+
+pause -1
+set term pdfcairo enhanced
+set output "${SAVE}.pdf"
+replot
+set term pngcairo enhanced size 600,400
+set output "${SAVE}.png"
+replot
+
+EOF
+
+
+#Run the gnuplot script to make the plot of the total energy
+gnuplot plot-energy-script.gnu
+
+#Print a gnuplot script to plot the 4 column files
+cat > plot-gap-script.gnu <<EOF
+#!/usr/bin/gnuplot
+
+set xlabel "E_{cut} (Ry)"
+set ylabel "E (eV)
+
+# Generate a PDF image
+set term pdfcairo enhanced
+set output "${GAP}.pdf"
+set multiplot layout 1,2
+plot \
+	'$GAP'  u 1:3 w lp pt 7 lw 2  lc rgb "red" title "CBM",\
+	'$GAP'  u 1:2 w lp pt 6 lw 2  lc rgb "blue" title "VBM"
+plot \
+	'$GAP'  u 1:4 w lp pt 5 lw 2  lc rgb "black" title "Gap"
+set nomulti
+
+# Generate a PNG image (useful for GitHub)
+set term pngcairo enhanced size 800,400
+set output "${GAP}.png"
+set multiplot layout 1,2
+plot \
+	'$GAP'  u 1:3 w lp pt 7 lw 2  lc rgb "red" title "CBM",\
+	'$GAP'  u 1:2 w lp pt 6 lw 2  lc rgb "blue" title "VBM"
+plot \
+	'$GAP'  u 1:4 w lp pt 5 lw 2  lc rgb "black" title "Gap"
+set nomulti
+replot
+
+# Plot onscreen just the gap.
+# x11 should work on most system. Try wxt (ubuntu) or aqua (mac) for nicer plots.
+set term x11 enhanced
+set out
+plot \
+	'$GAP'  u 1:4 w lp pt 5 lw 2  lc rgb "black" title "Gap"
+replot
+pause -1
+EOF
+
+#Run the gnuplot script to make the plot
+gnuplot plot-gap-script.gnu
+
+exit
+

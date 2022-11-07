@@ -1,0 +1,155 @@
+#!/usr/bin/env bash
+
+source ../../ENVIRONMENT_VARIABLES
+echo "BIN_DIR:" $BIN_DIR
+echo "PSEUDO_DIR:" $PSEUDO_DIR
+echo "TMP_DIR:" $TMP_DIR
+echo "Parallel command:" $RUN_COMMAND
+echo "Started at: " `date`
+
+
+# self-consistent calculation
+IN=si.scf-script.in
+OUT=si.scf-script.out
+cat > $IN << EOF
+&CONTROL
+  calculation  = "scf",
+  prefix       = "Si",
+  pseudo_dir   = "$PSEUDO_DIR",
+  outdir       = "$TMP_DIR",
+  restart_mode = "from_scratch"
+  tprnfor = .true.
+  wf_collect=.true.
+/
+&SYSTEM
+  ibrav     = 2,
+  celldm(1) = 10.21,
+  nat       = 2,
+  ntyp      = 1,
+  ecutwfc   = 20
+  nbnd      = 5
+/
+&ELECTRONS
+  conv_thr    = 1.D-8,
+  mixing_beta = 0.7D0	,
+/
+ATOMIC_SPECIES
+ Si  28.086  Si.pz-vbc.UPF
+ATOMIC_POSITIONS
+ Si 0.00 0.00 0.00
+ Si 0.25 0.25 0.25
+K_POINTS 
+  10
+   0.1250000  0.1250000  0.1250000   1.00
+   0.1250000  0.1250000  0.3750000   3.00
+   0.1250000  0.1250000  0.6250000   3.00
+   0.1250000  0.1250000  0.8750000   3.00
+   0.1250000  0.3750000  0.3750000   3.00
+   0.1250000  0.3750000  0.6250000   6.00
+   0.1250000  0.3750000  0.8750000   6.00
+   0.1250000  0.6250000  0.6250000   3.00
+   0.3750000  0.3750000  0.3750000   1.00
+   0.3750000  0.3750000  0.6250000   3.00
+EOF
+
+echo -e "\tStart: " `date`
+COMMAND="  $RUN_COMMAND $BIN_DIR/pw.x < $IN > $OUT"
+echo -e "\t\t$COMMAND"
+$COMMAND < $IN > $OUT
+echo -e "\tEnd: " `date`
+
+
+# bands calculation
+IN=si.bands-script.in
+OUT=si.bands-script.out
+cat > $IN << EOF
+&CONTROL
+  calculation  = "bands",
+  prefix       = "Si",
+  pseudo_dir   = "$PSEUDO_DIR",
+  outdir       = "$TMP_DIR",
+  tprnfor = .true.
+  wf_collect=.true.
+/
+&SYSTEM
+  ibrav     = 2,
+  celldm(1) = 10.21,
+  nat       = 2,
+  ntyp      = 1,
+  ecutwfc   = 20
+  nbnd      = 8 
+/
+&ELECTRONS
+  conv_thr    = 1.D-8,
+  mixing_beta = 0.7D0	,
+/
+ATOMIC_SPECIES
+ Si  28.086  Si.pz-vbc.UPF
+ATOMIC_POSITIONS
+ Si 0.00 0.00 0.00
+ Si 0.25 0.25 0.25
+K_POINTS {tpiba_b}
+  6
+    0.500 0.500 0.500 8 ! L
+    0.000 0.000 0.000 8 ! Gamma
+    0.000 1.000 0.000 8 ! X
+    0.250 1.000 0.250 1 ! U
+    0.750 0.750 0.000 8 ! K
+    0.000 0.000 0.000 1 ! Gamma
+EOF
+
+echo -e "\tStart: " `date`
+COMMAND="  $RUN_COMMAND $BIN_DIR/pw.x"
+echo -e "\t\t$COMMAND < $IN > $OUT"
+$COMMAND < $IN > $OUT
+echo -e "\tEnd: " `date`
+
+
+
+IN=si.bandspp-script.in
+OUT=si.bandspp-script.out
+cat > $IN << EOF
+&bands
+    prefix = "Si",
+    outdir='$TMP_DIR'
+    filband='Sibands.dat'
+    lsym=.true.
+ /
+EOF
+
+echo -e "\tStart: " `date`
+COMMAND="  $RUN_COMMAND $BIN_DIR/bands.x"
+echo -e "\t\t$COMMAND < $IN > $OUT"
+$COMMAND < $IN > $OUT
+echo -e "\tEnd: " `date`
+
+
+IN=si.plotband-script.in
+OUT=si.plotband-script.out
+cat > $IN << EOF
+Sibands.dat
+-6.0 10.0
+
+Sibands.ps
+6.377
+1 6.377
+EOF
+
+echo -e "\tStart: " `date`
+COMMAND="$BIN_DIR/plotband.x"
+echo -e "\t\t$COMMAND < $IN > $OUT"
+$COMMAND < $IN > $OUT
+echo -e "\tEnd: " `date`
+
+echo -e "\tRunning gnuplot script: " `date`
+gnuplot Sibands.gnuplot
+
+echo "Run completed at: " `date`
+
+
+
+exit
+
+
+
+

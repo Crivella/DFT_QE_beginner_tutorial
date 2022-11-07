@@ -5,9 +5,9 @@
     tstress           = .true.
     tprnfor           = .true.
     pseudo_dir        = '../../Pseudo'
-    outdir            = ''
+    outdir            = './'
     verbosity         = 'high'
-    disk_io = 'minimal'
+    disk_io           = 'minimal'
     wf_collect        = .true.
 /
 &system
@@ -16,8 +16,8 @@
     celldm(3)         =  6
     nat               =  2
     ntyp              = 2
-    ecutwfc           =  40
-    nbnd              = 4
+    ecutwfc           =  20
+    nbnd              = 5
 /
 &electrons
     conv_thr          = 1.0d-8
@@ -38,4 +38,4 @@ B     0.000000000   0.577350300   0.00
 N     0.500000000   0.288675100   0.00
 
 K_POINTS {automatic}
-12 12 1   1 1 1
+8 8 1   1 1 1
